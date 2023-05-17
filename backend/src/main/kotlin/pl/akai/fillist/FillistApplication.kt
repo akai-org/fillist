@@ -1,11 +1,11 @@
-package pl.akai.playlistgenerator
+package pl.akai.fillist
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class PlaylistGeneratorApplication
+class FillistApplication
 
 fun main(args: Array<String>) {
-    runApplication<PlaylistGeneratorApplication>(*args)
+	runApplication<FillistApplication>(*args)
 }
