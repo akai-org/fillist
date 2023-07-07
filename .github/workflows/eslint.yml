@@ -37,3 +37,12 @@ jobs:
         with:
           sarif_file: frontend/eslint-results.sarif
           wait-for-processing: true
+      - name: Remove result
+        run: rm eslint-results.sarif
+      - name: Push and commit eslint fixes
+        run: |
+          git config --local user.email "noreply@akai.org"
+          git config --local user.name "GitHub Action"
+          git add *
+          git commit -m "[CI] Automatic Eslint Fix"
+          git push
