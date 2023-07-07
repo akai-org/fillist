@@ -28,7 +28,7 @@ jobs:
           yarn install
 
       - name: Run ESLint
-        run: ypx eslint .
+        run: npx eslint .
           --config .eslintrc.json
           --ext .js,.jsx,.ts,.tsx
           --format @microsoft/eslint-formatter-sarif
