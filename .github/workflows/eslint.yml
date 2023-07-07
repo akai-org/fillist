@@ -14,9 +14,9 @@ jobs:
       run:
         working-directory: frontend
     permissions:
-      contents: read
+      contents: write
       security-events: write
-      actions: read
+      actions: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
