@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Lato:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+@import "variables";
+@import "mixin";
 
-body {
+body,html {
   margin: 0;
   height: 100vh;
   width: 100vw;
@@ -11,42 +13,42 @@ body {
 
 h1 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 2.5em;
+  font-size: 2.5rem;
   font-weight: 400;
   margin: 0;
 }
 
 h2 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 2.1459em;
+  font-size: 2.1459rem;
   font-weight: 400;
   margin: 0;
 }
 
 h3 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 1.842em;
+  font-size: 1.842rem;
   font-weight: 400;
   margin: 0;
 }
 
 h4 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 1.5811em;
+  font-size: 1.5811rem;
   font-weight: 400;
   margin: 0;
 }
 
 h5 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 1.3572em;
+  font-size: 1.3572rem;
   font-weight: 400;
   margin: 0;
 }
 
 h6 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 1.1667em;
+  font-size: 1.1667rem;
   font-weight: 400;
   margin: 0;
 }
@@ -54,5 +56,13 @@ h6 {
 small {
   font-family: Lato, sans-serif;
   font-weight: 300;
-  font-size: 0.8333em;
+  font-size: 0.8333rem;
+}
+
+button {
+  @include button;
+}
+
+.button-outline {
+  @include button($accent-purple, transparent, $accent-purple);
 }
