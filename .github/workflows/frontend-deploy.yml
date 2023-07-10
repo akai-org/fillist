@@ -7,6 +7,9 @@ on:
   pull_request:
     branches: [ "release" ]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,14 +27,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
           cache-dependency-path: 'frontend/yarn.lock'
-      - run: yarn install --frozen-lockfile
-      - run: yarn run test:prod
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Test app
+        run: yarn run test:prod
         # TODO remove
         continue-on-error: true
-      - run: yarn run build:prod
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .frontend/dist/fillist
+      - name: Deploy app
+        run: yarn run deploy
 
