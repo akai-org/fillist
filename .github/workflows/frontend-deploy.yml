@@ -3,6 +3,7 @@ name: Frontend deploy
 on:
   push:
     branches: [ "release" ]
+  # temporary
   pull_request:
     branches: [ "release" ]
 
@@ -21,10 +22,10 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run test:prod
-    - run: npm run build:prod
+        cache: 'yarn'
+    - run: yarn install --frozen-lockfile
+    - run: yarn run test:prod
+    - run: yarn run build:prod
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
