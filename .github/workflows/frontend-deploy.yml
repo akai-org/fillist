@@ -3,9 +3,6 @@ name: Frontend deploy
 on:
   push:
     branches: [ "release" ]
-  # TODO remove when workflow file is ended
-  pull_request:
-    branches: [ "release" ]
 
 jobs:
   build:
@@ -29,8 +26,6 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Test app
         run: yarn run test:prod
-        # TODO remove
-        continue-on-error: true
       - name: Deploy app
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
