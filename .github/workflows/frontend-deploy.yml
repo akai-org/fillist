@@ -7,15 +7,16 @@ on:
   pull_request:
     branches: [ "release" ]
 
-permissions:
-  contents: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: frontend
+    permissions:
+      contents: write
+      security-events: write
+      actions: write
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js 18.x

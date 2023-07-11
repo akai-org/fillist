@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test:prod": "ng test --browsers=ChromeHeadless --watch=false --code-coverage",
-    "deploy": "ng deploy --repo=https://github.com/akai-org/fillist.git --name=\"Github Actions\" --email=noreply@akai.org --base-href=/fillist/ --no-silent",
+    "deploy": "ng deploy --repo=https://github.com/akai-org/fillist.git --name=\"Github Actions\" --email=noreply@akai.org --base-href=/fillist/",
     "test": "ng test"
   },
   "private": true,
