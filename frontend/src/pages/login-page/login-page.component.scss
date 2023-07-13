@@ -18,6 +18,7 @@ main {
 section {
   display: flex;
   flex-direction: row;
+  margin-bottom: 1rem;
 
   h1 {
     color: #FFF;
@@ -28,5 +29,8 @@ section {
     margin-left: 2rem;
   }
 
-  margin-bottom: 1rem;
+  img {
+    height: 13rem;
+    width: auto;
+  }
 }
