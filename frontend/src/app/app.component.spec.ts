@@ -19,13 +19,4 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance
     expect(app.title).toEqual('fillist')
   })
-
-  // TODO fix this test
-  // it('should render title', () => {
-  //   const fixture = TestBed.createComponent(AppComponent)
-  //   fixture.detectChanges()
-  //   const compiled = fixture.nativeElement as HTMLElement
-  //   console.log(compiled.querySelector('.content')?.textContent)
-  //   expect(compiled.querySelector('.content')?.textContent).toContain('fillist')
-  // })
 })
