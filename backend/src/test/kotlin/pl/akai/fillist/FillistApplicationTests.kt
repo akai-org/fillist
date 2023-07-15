@@ -8,6 +8,5 @@ class FillistApplicationTests {
 
     @Test
     fun contextLoads() {
-
     }
 }
