@@ -42,10 +42,10 @@ jobs:
       - name: Remove result
         run: rm eslint-results.sarif
       - name: Push and commit eslint fixes
-        uses: actions/checkout@v3
-        run: |
-          git config --local user.email "noreply@akai.org"
-          git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "[CI] Automatic Eslint Fix"
-          git push
+          - uses: actions/checkout@v3
+          - run: |
+              git config --local user.email "noreply@akai.org"
+              git config --local user.name "GitHub Action"
+              git add .
+              git commit -m "[CI] Automatic Eslint Fix"
+              git push
