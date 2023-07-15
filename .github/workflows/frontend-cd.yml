@@ -1,17 +1,19 @@
-name: Frontend Test
+name: Frontend CD
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [ "release" ]
 
 jobs:
-  test:
+  cd:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: frontend
+    permissions:
+      contents: write
+      security-events: write
+      actions: write
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js 18.x
@@ -24,5 +26,8 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Test app
         run: yarn run test:prod
-      - name: Build app
-        run: yarn run build
+      - name: Deploy app
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: yarn run deploy
+

@@ -6,13 +6,13 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.1.0-SNAPSHOT</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>pl.akai</groupId>
 	<artifactId>fillist</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>fillist</name>
-	<description>Adavance tool to create playlist</description>
+	<description>Advance tool to create playlist</description>
 	<properties>
 		<java.version>17</java.version>
 		<kotlin.version>1.8.21</kotlin.version>
@@ -62,6 +62,74 @@
 						<groupId>org.jetbrains.kotlin</groupId>
 						<artifactId>kotlin-maven-allopen</artifactId>
 						<version>${kotlin.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>ktlint</id>
+						<phase>verify</phase>
+						<configuration>
+							<target name="ktlint">
+								<java taskname="ktlint" dir="${basedir}" fork="true" failonerror="false"
+									  classpathref="maven.plugin.classpath" classname="com.pinterest.ktlint.Main">
+									<jvmarg value="--add-opens=java.base/java.lang=ALL-UNNAMED"/>
+									<arg value="src/**/*.kt"/>
+									<arg value="-F"/>
+									<arg value="--reporter=plain"/>
+									<arg value="--editorconfig=.editorconfig"/>
+								</java>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>ktlint-scanning</id>
+						<configuration>
+							<target name="ktlint">
+								<java taskname="ktlint" dir="${basedir}" fork="true" failonerror="false"
+									  classpathref="maven.plugin.classpath" classname="com.pinterest.ktlint.Main">
+									<jvmarg value="--add-opens=java.base/java.lang=ALL-UNNAMED"/>
+									<arg value="src/**/*.kt"/>
+									<arg value="-F"/>
+									<arg value="--reporter=sarif,output=report.sarif"/>
+									<arg value="--editorconfig=.editorconfig"/>
+								</java>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>ktlint-format</id>
+						<configuration>
+							<target name="ktlint">
+								<java taskname="ktlint" dir="${basedir}" fork="true" failonerror="true"
+									  classpathref="maven.plugin.classpath" classname="com.pinterest.ktlint.Main">
+									<jvmarg value="--add-opens=java.base/java.lang=ALL-UNNAMED"/>
+									<arg value="-F"/>
+									<arg value="src/**/*.kt"/>
+									<arg value="--editorconfig=.editorconfig"/>
+								</java>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>com.pinterest</groupId>
+						<artifactId>ktlint</artifactId>
+						<version>0.50.0</version>
 					</dependency>
 				</dependencies>
 			</plugin>
