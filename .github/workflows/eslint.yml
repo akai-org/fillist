@@ -20,7 +20,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
+        with:
+          ref: ${{ github.ref_name }}
       - name: Install ESLint
         run: yarn
 
@@ -46,4 +47,3 @@ jobs:
           git add .
           git commit -m "[CI] Automatic Eslint Fix"
           git push
-        continue-on-error: true
