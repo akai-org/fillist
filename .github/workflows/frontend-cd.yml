@@ -5,7 +5,7 @@ on:
     branches: [ "release" ]
 
 jobs:
-  build:
+  cd:
     runs-on: ubuntu-latest
     defaults:
       run:
