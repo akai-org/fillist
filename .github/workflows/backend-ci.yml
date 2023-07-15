@@ -24,3 +24,21 @@ jobs:
         run: mvn --batch-mode --update-snapshots verify
       - name: Run Ktlint
         run: mvn antrun:run@ktlint-ci
+      - name: Upload analysis results to GitHub
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: backend/report.sarif
+          wait-for-processing: true
+      - name: Remove result
+        run: rm report.sarif
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Push and commit eslint fixes
+        run: |
+          git config --local user.email "noreply@akai.org"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "[CI] Automatic Eslint Fix"
+          git push
+        continue-on-error: true
