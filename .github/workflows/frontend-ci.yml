@@ -14,8 +14,8 @@ jobs:
         working-directory: frontend
     steps:
       - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
+#        with:
+#          ref: ${{ github.event.pull_request.head.ref }}
       - name: Use Node.js 18.x
         uses: actions/setup-node@v3
         with:
@@ -50,3 +50,5 @@ jobs:
             git add .
             git commit -m "[CI] Automatic Eslint Fix"
             git push
+        continue-on-error: true
+
