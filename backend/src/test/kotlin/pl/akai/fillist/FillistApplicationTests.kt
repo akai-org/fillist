@@ -8,9 +8,6 @@ class FillistApplicationTests {
 
     @Test
     fun contextLoads() {
+        ;;
     }
-}
-
-fun test() {
-    val el = 3d2;;;
 }
