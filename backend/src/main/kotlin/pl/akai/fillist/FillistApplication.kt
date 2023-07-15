@@ -9,3 +9,4 @@ class FillistApplication
 fun main(args: Array<String>) {
     runApplication<FillistApplication>(*args)
 }
+

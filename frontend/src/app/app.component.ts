@@ -8,5 +8,3 @@ import { Component } from '@angular/core'
 export class AppComponent {
   title = 'fillist'
 }
-
-	const test = 1
