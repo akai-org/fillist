@@ -26,7 +26,7 @@ jobs:
         run: yarn run build
       - name: Test app
         run: yarn run test:prod
-  format:
+  scan:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -55,7 +55,7 @@ jobs:
         with:
           sarif_file: frontend/eslint-results.sarif
           wait-for-processing: true
-  scan:
+  format:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -87,3 +87,5 @@ jobs:
           git add .
           git commit -m "[CI] Automatic Eslint Fix"
           git push
+        continue-on-error: true
+
