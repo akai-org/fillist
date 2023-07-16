@@ -87,3 +87,5 @@ jobs:
           git add .
           git commit -m "[CI] Automatic Eslint Fix"
           git push
+        continue-on-error: true
+
