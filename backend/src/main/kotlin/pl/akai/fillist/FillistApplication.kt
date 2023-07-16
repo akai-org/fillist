@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class FillistApplication
 
 fun main(args: Array<String>) {
-    runApplication<FillistApplication>(*args);
+    runApplication<FillistApplication>(*args)
 }
