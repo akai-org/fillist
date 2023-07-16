@@ -45,7 +45,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git pull
           git add .
-          git commit -m "[CI] Automatic Eslint Fix"
+          git commit -m "[CI] Automatic Ktlint Fix"
           git push
         continue-on-error: true
   scan:
