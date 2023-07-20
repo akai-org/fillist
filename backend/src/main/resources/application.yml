@@ -1,0 +1,11 @@
+spring:
+  security:
+    oauth2:
+      client:
+        clientId: ${SPOTIFY_CLIENT_ID}
+        clientSecret: ${SPOTIFY_CLIENT_SECRET}
+        userAuthorizationUri: https://accounts.spotify.com/authorize
+        accessTokenUri: https//:accounts.spotify.com/api/token
+        scope: user-read-private, user-read-email
+      resource:
+        userInfoUri: https://api.spotify.com/v1/me
