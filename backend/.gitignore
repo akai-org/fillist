@@ -33,4 +33,4 @@ build/
 .vscode/
 
 report.sarif
-.env
+/src/main/resources/application-dev.yml
