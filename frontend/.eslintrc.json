@@ -23,5 +23,8 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    "indent": ["error", 2],
+    "@typescript-eslint/prefer-readonly": "off",
+    "@typescript-eslint/consistent-type-imports": "off"
   }
 }
