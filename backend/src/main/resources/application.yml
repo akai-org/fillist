@@ -1,9 +1,10 @@
-spring:
-  security:
-    oauth2:
-      client:
-        registration:
-          spotify:
-            client-id: ${SPOTIFY_CLIENT_ID:}
-            client-secret: ${SPOTIFY_SECRET_ID:}
-            scope: playlist-read-private,playlist-modify-private,playlist-modify-private,user-library-read,user-read-recently-played,user-top-read,user-read-playback-position
+fillist:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:}
+  oauth2:
+    client:
+      registration:
+        spotify:
+          client-id: ${SPOTIFY_CLIENT_ID:}
+          client-secret: ${SPOTIFY_SECRET_ID:}
+          scope: playlist-read-private,playlist-modify-private,playlist-modify-private,user-library-read,user-read-recently-played,user-top-read,user-read-playback-position

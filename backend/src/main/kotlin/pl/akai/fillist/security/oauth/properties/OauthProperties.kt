@@ -5,9 +5,9 @@ import org.springframework.stereotype.Component
 
 @Component
 class OauthProperties {
-    @Value("\${spring.security.oauth2.client.registration.spotify.client-id}")
+    @Value("\${fillist.oauth2.client.registration.spotify.client-id}")
     lateinit var clientId: String
 
-    @Value("\${spring.security.oauth2.client.registration.spotify.scope}")
+    @Value("\${fillist.oauth2.client.registration.spotify.scope}")
     lateinit var scopes: List<String>
 }
