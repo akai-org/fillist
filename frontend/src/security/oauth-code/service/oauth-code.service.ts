@@ -9,6 +9,7 @@ import { OauthCodeParams } from '../model/oauth-code-params.interface'
   providedIn: 'root'
 })
 export class OAuthCodeService {
+  static OAUTH_STATE_KEY: string = 'oauthState'
   constructor (private http: HttpClient) {
   }
 
@@ -19,7 +20,7 @@ export class OAuthCodeService {
         response_type: 'code',
         redirect_uri: `${environment.frontendUrl}/callback`,
         scope: oauthProperties.scopes.join(','),
-        state: '34fFs29kd09'
+        state: this.saveOauthState()
       }
       const spotifyUrl: string = 'https://accounts.spotify.com/authorize'
       const params: string = `?client_id=${oauthCodeParams.client_id}&response_type=${oauthCodeParams.response_type}&redirect_uri=${oauthCodeParams.redirect_uri}&scope=${oauthCodeParams.scope}&state=${oauthCodeParams.state}`
@@ -29,5 +30,11 @@ export class OAuthCodeService {
 
   private getOauthProperties (): Observable<OauthProperties> {
     return this.http.get<OauthProperties>(`${environment.backendUrl}/oauth/properties`)
+  }
+
+  private saveOauthState (): string {
+    const state: string = btoa(Math.random().toString().substring(2, 10))
+    localStorage.setItem(OAuthCodeService.OAUTH_STATE_KEY, state)
+    return state
   }
 }
