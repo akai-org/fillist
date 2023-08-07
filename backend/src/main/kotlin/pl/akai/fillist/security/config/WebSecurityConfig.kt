@@ -9,7 +9,6 @@ import org.springframework.security.config.web.server.ServerHttpSecurity.Authori
 import org.springframework.security.web.server.SecurityWebFilterChain
 import org.springframework.security.web.server.authentication.HttpStatusServerEntryPoint
 
-
 @Configuration
 @EnableWebFluxSecurity
 class WebSecurityConfig {
@@ -21,7 +20,7 @@ class WebSecurityConfig {
                 exchanges.pathMatchers("/oauth2/**").permitAll()
                 exchanges.anyExchange().authenticated()
             }
-            .formLogin{ it.disable() }
+            .formLogin { it.disable() }
             .httpBasic { it.authenticationEntryPoint(HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)) }
         return http.build()
     }
