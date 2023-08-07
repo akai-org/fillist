@@ -19,9 +19,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: maven
-      - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots verify
+          cache: gradle
+      - name: Build with Gradle
+        run: ./gradlew build
   format:
     runs-on: ubuntu-latest
     defaults:
@@ -36,9 +36,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: maven
+          cache: gradle
       - name: Run Ktlint
-        run: mvn antrun:run@ktlint-format
+        run: ./gradlew ktlintFormatAndScanning
       - name: Push and commit klint fixes
         run: |
           git config --local user.email "noreply@akai.org"
@@ -60,9 +60,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: maven
+          cache: gradle
       - name: Run Ktlint
-        run: mvn antrun:run@ktlint-scanning
+        run: gradle ktlintScanning
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v2
         with:
