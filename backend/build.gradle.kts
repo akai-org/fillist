@@ -1,5 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+val ktlint by configurations.creating
+
 plugins {
     id("org.springframework.boot") version "3.1.2"
     id("io.spring.dependency-management") version "1.1.2"
@@ -26,9 +28,16 @@ dependencies {
     api("io.projectreactor.kotlin:reactor-kotlin-extensions")
     api("org.jetbrains.kotlin:kotlin-reflect")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.springframework.security:spring-security-test")
+
+    ktlint("com.pinterest:ktlint:0.50.0") {
+        attributes {
+            attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EXTERNAL))
+        }
+    }
 }
 
 tasks.withType<KotlinCompile> {
@@ -40,4 +49,36 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+val ktlintFormatAndScanning by tasks.registering(JavaExec::class) {
+    group = LifecycleBasePlugin.VERIFICATION_GROUP
+    description = "Check Kotlin code style and format"
+    classpath = ktlint
+    mainClass.set("com.pinterest.ktlint.Main")
+    args(
+        "-F",
+        "src/**/*.kt",
+        "**.kts",
+        "--editorconfig=.editorconfig",
+    )
+}
+
+tasks.check {
+    dependsOn(ktlintFormatAndScanning)
+}
+
+tasks.register<JavaExec>("ktlintScanning") {
+    group = LifecycleBasePlugin.VERIFICATION_GROUP
+    description = "Save ktlint scanning results to report.sarif"
+    classpath = ktlint
+    mainClass.set("com.pinterest.ktlint.Main")
+    jvmArgs("--add-opens=java.base/java.lang=ALL-UNNAMED")
+    args(
+        "-F",
+        "src/**/*.kt",
+        "**.kts",
+        "--reporter=sarif,output=report.sarif",
+        "--editorconfig=.editorconfig",
+    )
 }
