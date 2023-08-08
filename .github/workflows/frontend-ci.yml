@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test:
+  test-f:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -26,7 +26,7 @@ jobs:
         run: yarn run build
       - name: Test app
         run: yarn run test:prod
-  scan:
+  scan-f:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -55,7 +55,7 @@ jobs:
         with:
           sarif_file: frontend/eslint-results.sarif
           wait-for-processing: true
-  format:
+  format-f:
     runs-on: ubuntu-latest
     defaults:
       run:
