@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test-b:
+  test:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -22,7 +22,7 @@ jobs:
           cache: gradle
       - name: Build with Gradle
         run: ./gradlew build
-  format-b:
+  format:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -49,7 +49,7 @@ jobs:
           git commit -m "[CI] Automatic Ktlint Fix"
           git push
         continue-on-error: true
-  scan-b:
+  scan:
     runs-on: ubuntu-latest
     defaults:
       run:
