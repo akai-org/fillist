@@ -8,6 +8,6 @@ import org.springframework.boot.runApplication
 @EnableConfigurationProperties
 class FillistApplication
 
-fun   main(args: Array<String>) {
+fun    main(args: Array<String>) {
     runApplication<FillistApplication>(*args)
 }

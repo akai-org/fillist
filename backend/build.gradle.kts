@@ -58,10 +58,12 @@ val ktlintFormatAndScanning by tasks.registering(JavaExec::class) {
     description = "Check Kotlin code style and format"
     classpath = ktlint
     mainClass.set("com.pinterest.ktlint.Main")
+    jvmArgs("--add-opens=java.base/java.lang=ALL-UNNAMED")
     args(
         "-F",
         "src/**/*.kt",
         "**.kts",
+        "--reporter=plain",
         "--editorconfig=.editorconfig",
     )
 }
