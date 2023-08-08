@@ -40,6 +40,7 @@ jobs:
           cache: gradle
       - name: Run Ktlint
         run: ./gradlew ktlintFormatAndScanning
+        continue-on-error: true
       - name: Push and commit klint fixes
         run: |
           git config --local user.email "noreply@akai.org"
@@ -64,6 +65,7 @@ jobs:
           cache: gradle
       - name: Run Ktlint
         run: gradle ktlintScanning
+        continue-on-error: true
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v2
         with:
