@@ -7,6 +7,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.2"
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
+    kotlin("plugin.serialization") version "1.8.22"
 }
 
 group = "pl.akai"
@@ -28,6 +29,7 @@ dependencies {
     api("io.projectreactor.kotlin:reactor-kotlin-extensions")
     api("org.jetbrains.kotlin:kotlin-reflect")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0-RC")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
