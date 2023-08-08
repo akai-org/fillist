@@ -20,7 +20,7 @@ class WebSecurityConfig {
                 exchanges.pathMatchers("/oauth2/**").permitAll()
                 exchanges.anyExchange().authenticated()
             }
-            .csrf{ it.disable()}
+            .csrf { it.disable() }
             .formLogin { it.disable() }
             .httpBasic { it.authenticationEntryPoint(HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)) }
         return http.build()
