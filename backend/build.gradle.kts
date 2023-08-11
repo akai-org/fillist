@@ -35,6 +35,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.springframework.security:spring-security-test")
+    testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo:4.8.0")
 
     ktlint("com.pinterest:ktlint:0.50.0") {
         attributes {
