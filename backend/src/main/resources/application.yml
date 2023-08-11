@@ -7,3 +7,12 @@ spring:
       database: ${DB_NAME}
       port: ${DB_PORT:27017}
       authentication-database: admin
+fillist:
+  oauth2:
+    client:
+      registration:
+        spotify:
+          client-id: ${SPOTIFY_CLIENT_ID}
+          redirect-uri: http://localhost:4200/callback
+          authorization-uri: https://accounts.spotify.com/authorize
+          scope: user-read-private,user-read-email,user-library-read,user-library-modify,user-read-playback-state,user-modify-playback-state,user-read-currently-playing,user-read-recently-played

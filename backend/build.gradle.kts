@@ -23,14 +23,15 @@ repositories {
 }
 
 dependencies {
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0-RC")
     api("org.springframework.boot:spring-boot-starter-security")
     api("org.springframework.boot:spring-boot-starter-webflux")
     api("com.fasterxml.jackson.module:jackson-module-kotlin")
     api("io.projectreactor.kotlin:reactor-kotlin-extensions")
     api("org.jetbrains.kotlin:kotlin-reflect")
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-    api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0-RC")
     api("org.springframework.boot:spring-boot-starter-data-mongodb")
+    api("org.springframework.hateoas:spring-hateoas")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
