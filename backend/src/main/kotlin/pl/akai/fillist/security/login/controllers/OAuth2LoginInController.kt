@@ -24,6 +24,6 @@ class OAuth2LoginInController @Autowired constructor(
         val body = oauth2LoginService.getAuthorizationCodeUrl(state)
         val entityModel: Mono<EntityModel<AuthorizationCodeUrlResponseBody>> = Mono.just(EntityModel.of(body))
         val link: Mono<Link> = linkTo(methodOn(OAuth2LoginInController::class.java).getAuthorizationCodeUrl(state)).withSelfRel().toMono()
-        return  Mono.zip(entityModel, link).map { it.t1.add(it.t2) }
+        return Mono.zip(entityModel, link).map { it.t1.add(it.t2) }
     }
 }
