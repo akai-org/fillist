@@ -7,7 +7,7 @@ import pl.akai.fillist.security.sso.models.AuthorizationCodeUrlResponseBody
 import pl.akai.fillist.security.sso.models.OAuthParams
 
 @Service
-class Oauth2LoginService @Autowired constructor(val redirectUrlParams: OAuthParams) {
+class Oauth2AuthorizationCodeService @Autowired constructor(val redirectUrlParams: OAuthParams) {
 
     fun getAuthorizationCodeUrl(state: String): AuthorizationCodeUrlResponseBody {
         val url = UriComponentsBuilder.fromUriString(redirectUrlParams.authorizationUri)
