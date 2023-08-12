@@ -1,4 +1,4 @@
-package pl.akai.fillist.security.login.models
+package pl.akai.fillist.security.sso.models
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component

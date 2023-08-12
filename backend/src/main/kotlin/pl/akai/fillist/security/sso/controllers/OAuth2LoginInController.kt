@@ -1,4 +1,4 @@
-package pl.akai.fillist.security.login.controllers
+package pl.akai.fillist.security.sso.controllers
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.hateoas.EntityModel
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import pl.akai.fillist.security.login.models.AuthorizationCodeUrlResponseBody
-import pl.akai.fillist.security.login.service.Oauth2LoginService
+import pl.akai.fillist.security.sso.models.AuthorizationCodeUrlResponseBody
+import pl.akai.fillist.security.sso.service.Oauth2LoginService
 import reactor.core.publisher.Mono
 
 @RestController
