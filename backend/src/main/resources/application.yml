@@ -8,6 +8,7 @@ spring:
       port: ${DB_PORT:27017}
       authentication-database: admin
 fillist:
+  allow-origin: ${ALLOW_ORIGIN}
   oauth2:
     client:
       registration:

@@ -14,7 +14,7 @@ import pl.akai.fillist.security.login.service.Oauth2LoginService
 import reactor.core.publisher.Mono
 
 @RestController
-@RequestMapping("/oauth2/spotify")
+@RequestMapping("/oauth2/")
 class OAuth2LoginInController @Autowired constructor(
     private val oauth2LoginService: Oauth2LoginService,
 ) {
