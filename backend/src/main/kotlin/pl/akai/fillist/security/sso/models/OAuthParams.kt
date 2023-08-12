@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component
 import org.springframework.util.LinkedMultiValueMap
 import org.springframework.util.MultiValueMap
 
-
 @Component
 class OAuthParams {
     @Value("\${fillist.oauth2.client.registration.spotify.client-id}")
