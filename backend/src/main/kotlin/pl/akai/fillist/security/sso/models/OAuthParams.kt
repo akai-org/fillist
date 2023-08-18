@@ -19,6 +19,9 @@ class OAuthParams {
     @Value("\${fillist.oauth2.client.registration.spotify.scope}")
     lateinit var scope: String
 
+    @Value("\${fillist.oauth2.client.registration.spotify.spotify-idp-uri}")
+    lateinit var spotifyIdpUri: String
+
     fun toMultiValueMap(): MultiValueMap<String, String> {
         val map: MultiValueMap<String, String> = LinkedMultiValueMap()
         map.add("client_id", clientId)
