@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class AccessTokenResponseBody (
+class AccessTokenResponseBody(
     @SerialName("access_token")
     val accessToken: String,
     @SerialName("token_type")
@@ -15,4 +15,3 @@ class AccessTokenResponseBody (
     val refreshToken: String,
     val scope: String,
 )
-
