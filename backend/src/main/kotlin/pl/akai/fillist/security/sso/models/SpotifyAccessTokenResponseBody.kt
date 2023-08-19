@@ -2,7 +2,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class SpotifyAccessTokenResponseBody (
+class SpotifyAccessTokenResponseBody(
     @SerialName("access_token")
     val accessToken: String,
     @SerialName("token_type")
