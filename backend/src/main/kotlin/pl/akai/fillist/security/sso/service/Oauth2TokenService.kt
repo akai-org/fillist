@@ -1,5 +1,6 @@
 package pl.akai.fillist.security.sso.service
 
+import SpotifyAccessTokenResponseBody
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatusCode
@@ -40,7 +41,8 @@ class Oauth2TokenService @Autowired constructor(private val oauth2Params: OAuthP
                 .bodyValue(spotifyRequestBody.toLinkedMultiValueMap())
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError, getToken4xxErrorHandling)
-                .bodyToMono(AccessTokenResponseBody::class.java)
+                .bodyToMono(SpotifyAccessTokenResponseBody::class.java)
+                .flatMap { response -> Mono.just(AccessTokenResponseBody(response)) }
         }
 
     }
