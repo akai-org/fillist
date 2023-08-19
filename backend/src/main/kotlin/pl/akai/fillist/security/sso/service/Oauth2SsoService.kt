@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono
 @Service
 class Oauth2SsoService @Autowired constructor(
     val oauth2AuthorizationCodeService: Oauth2AuthorizationCodeService,
-    val oauth2TokenService: Oauth2TokenService
+    val oauth2TokenService: Oauth2TokenService,
 ) {
 
     fun getAuthorizationCodeUrl(state: String): Mono<AuthorizationCodeUrlResponseBody> {

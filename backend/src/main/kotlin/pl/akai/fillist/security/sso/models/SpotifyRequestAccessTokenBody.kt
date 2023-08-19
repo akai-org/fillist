@@ -5,13 +5,13 @@ import kotlinx.serialization.Serializable
 import org.springframework.util.LinkedMultiValueMap
 
 @Serializable
-data class SpotifyRequestAccessTokenBody (
+data class SpotifyRequestAccessTokenBody(
     @SerialName("grant_type")
     val grantType: String,
     val code: String,
     @SerialName("redirect_uri")
     val redirectUri: String,
-){
+) {
     fun toLinkedMultiValueMap(): LinkedMultiValueMap<String, String> {
         val formData: LinkedMultiValueMap<String, String> = LinkedMultiValueMap()
         formData.add("grant_type", grantType)

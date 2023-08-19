@@ -13,7 +13,6 @@ import reactor.core.publisher.Mono
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 
-
 @Service
 class Oauth2TokenService @Autowired constructor(private val oauth2Params: OAuthParams) {
 
@@ -24,7 +23,6 @@ class Oauth2TokenService @Autowired constructor(private val oauth2Params: OAuthP
     @Value("\${fillist.oauth2.client.registration.spotify.secret}")
     private val spotifySecret: String = ""
 
-
     private val webClient =
         WebClient.builder().baseUrl("${oauth2Params.spotifyIdpUri}${SPOTIFY_TOKEN_ENDPOINT}").build()
 
@@ -33,7 +31,7 @@ class Oauth2TokenService @Autowired constructor(private val oauth2Params: OAuthP
             val spotifyRequestBody = SpotifyRequestAccessTokenBody(
                 grantType = "authorization_code",
                 code = it.code,
-                redirectUri = oauth2Params.redirectUri
+                redirectUri = oauth2Params.redirectUri,
             )
             this.webClient.post()
                 .header("Authorization", getAuthorizationHeader())
@@ -44,12 +42,11 @@ class Oauth2TokenService @Autowired constructor(private val oauth2Params: OAuthP
                 .bodyToMono(SpotifyAccessTokenResponseBody::class.java)
                 .flatMap { response -> Mono.just(AccessTokenResponseBody(response)) }
         }
-
     }
 
     @OptIn(ExperimentalEncodingApi::class)
     private fun getAuthorizationHeader(): String {
-        val clientIdAndSecret = "${oauth2Params.clientId}:${spotifySecret}"
+        val clientIdAndSecret = "${oauth2Params.clientId}:$spotifySecret"
         val encoded = Base64.encode(clientIdAndSecret.toByteArray())
         return "Basic $encoded"
     }
@@ -58,5 +55,4 @@ class Oauth2TokenService @Autowired constructor(private val oauth2Params: OAuthP
         clientResponse.bodyToMono(SpotifyResponseAccessTokenErrorBody::class.java)
             .flatMap { Mono.error(InvalidGrantException(it.errorDescription)) }
     }
-
 }
