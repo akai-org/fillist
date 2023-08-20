@@ -28,6 +28,7 @@ export class Oauth2SsoService {
   getAccessTokenAndSetSession (code: string, state: string): void {
     this.getAccessToken(code, state).subscribe((accessToken: AccessTokenResponseBodyInterface) => {
       this.setSession(accessToken)
+      this.redirectToDashboard()
     })
   }
 

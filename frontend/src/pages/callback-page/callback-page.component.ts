@@ -23,7 +23,6 @@ export class CallbackPageComponent implements OnInit {
         params[CallbackPageComponent.CODE_KEY],
         params[CallbackPageComponent.STATE_KEY]
       )
-      this.oauth2SsoService.redirectToDashboard()
     })
   }
 }

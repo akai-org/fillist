@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { RouterLink } from '@angular/router'
 import { CallbackPageComponent } from './callback-page/callback-page.component'
 import { PlaylistsViewComponent } from './playlists-view/playlists-view.component'
+import { UiModule } from '../shared/ui/ui.module'
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PlaylistsViewComponent } from './playlists-view/playlists-view.componen
     CommonModule,
     NgOptimizedImage,
     HttpClientModule,
-    RouterLink
+    RouterLink,
+    UiModule
   ]
 })
 export class PagesModule {

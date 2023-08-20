@@ -1,0 +1,19 @@
+.logo {
+  stroke-opacity: 1;
+  stroke-width: 2.5;
+  stroke-dasharray: 518.122802734375;
+  stroke-dashoffset: 518.122802734375;
+  animation: dash 3s linear reverse infinite;
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dashoffset: 518.122802734375;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
