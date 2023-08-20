@@ -1,9 +1,11 @@
 package pl.akai.fillist.security.sso.service
 
 import SpotifyAccessTokenResponseBody
+import kotlinx.serialization.json.Json
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatusCode
+import org.springframework.http.codec.json.KotlinSerializationJsonDecoder
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.ClientResponse
 import org.springframework.web.reactive.function.client.WebClient
@@ -24,7 +26,10 @@ class Oauth2TokenService @Autowired constructor(private val oauth2Params: OAuthP
     private val spotifySecret: String = ""
 
     private val webClient =
-        WebClient.builder().baseUrl("${oauth2Params.spotifyIdpUri}${SPOTIFY_TOKEN_ENDPOINT}").build()
+        WebClient.builder().baseUrl("${oauth2Params.spotifyIdpUri}${SPOTIFY_TOKEN_ENDPOINT}").codecs {
+            val decoder = KotlinSerializationJsonDecoder(Json { ignoreUnknownKeys = true })
+            it.defaultCodecs().kotlinSerializationJsonDecoder(decoder)
+        }.build()
 
     fun getSpotifyToken(requestBody: Mono<AccessTokenRequestBody>): Mono<AccessTokenResponseBody> {
         return requestBody.flatMap {

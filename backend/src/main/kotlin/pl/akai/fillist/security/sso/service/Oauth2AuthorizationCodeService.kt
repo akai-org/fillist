@@ -8,13 +8,17 @@ import pl.akai.fillist.security.sso.models.OAuthParams
 import reactor.core.publisher.Mono
 
 @Service
-class Oauth2AuthorizationCodeService @Autowired constructor(val redirectUrlParams: OAuthParams) {
+class Oauth2AuthorizationCodeService @Autowired constructor(val oauth2Params: OAuthParams) {
+
+    companion object{
+        const val SPOTIFY_AUTHORIZE_ENDPOINT = "/authorize"
+    }
 
     fun getAuthorizationCodeUrl(state: String): Mono<AuthorizationCodeUrlResponseBody> {
-        val url = UriComponentsBuilder.fromUriString(redirectUrlParams.authorizationUri)
+        val url = UriComponentsBuilder.fromUriString("${oauth2Params.spotifyIdpUri}${SPOTIFY_AUTHORIZE_ENDPOINT}")
             .queryParam("response_type", "code")
             .queryParam("state", state)
-            .queryParams(redirectUrlParams.toMultiValueMap())
+            .queryParams(oauth2Params.toMultiValueMap())
             .build()
             .toUriString()
         return Mono.just(AuthorizationCodeUrlResponseBody(url))
