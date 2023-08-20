@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono
 @Service
 class Oauth2AuthorizationCodeService @Autowired constructor(val oauth2Params: OAuthParams) {
 
-    companion object{
+    companion object {
         const val SPOTIFY_AUTHORIZE_ENDPOINT = "/authorize"
     }
 
