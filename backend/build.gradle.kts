@@ -32,6 +32,7 @@ dependencies {
     api("io.projectreactor.kotlin:reactor-kotlin-extensions")
     api("org.jetbrains.kotlin:kotlin-reflect")
     api("org.springframework.boot:spring-boot-starter-data-mongodb")
+    api("com.auth0:java-jwt:4.4.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")

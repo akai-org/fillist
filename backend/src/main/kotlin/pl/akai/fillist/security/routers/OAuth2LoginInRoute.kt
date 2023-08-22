@@ -1,9 +1,9 @@
-package pl.akai.fillist.security.sso.routers
+package pl.akai.fillist.security.routers
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.reactive.function.server.router
-import pl.akai.fillist.security.sso.handlers.OAuth2LoginInHandler
+import pl.akai.fillist.security.handlers.OAuth2LoginInHandler
 
 @Configuration
 class OAuth2LoginInRoute {

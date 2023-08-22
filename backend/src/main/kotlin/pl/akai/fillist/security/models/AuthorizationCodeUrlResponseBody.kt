@@ -1,4 +1,4 @@
-package pl.akai.fillist.security.sso.models
+package pl.akai.fillist.security.models
 
 import kotlinx.serialization.Serializable
 

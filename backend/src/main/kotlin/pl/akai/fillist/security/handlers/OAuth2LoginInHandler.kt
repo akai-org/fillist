@@ -1,4 +1,4 @@
-package pl.akai.fillist.security.sso.handlers
+package pl.akai.fillist.security.handlers
 
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.BodyExtractors
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
-import pl.akai.fillist.security.sso.models.AccessTokenRequestBody
-import pl.akai.fillist.security.sso.models.AuthorizationCodeUrlResponseBody
-import pl.akai.fillist.security.sso.service.Oauth2SsoService
+import pl.akai.fillist.security.models.AccessTokenRequestBody
+import pl.akai.fillist.security.models.AuthorizationCodeUrlResponseBody
+import pl.akai.fillist.security.service.Oauth2SsoService
 import reactor.core.publisher.Mono
 
 @Component

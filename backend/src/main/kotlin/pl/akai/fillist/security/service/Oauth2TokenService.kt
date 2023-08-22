@@ -1,4 +1,4 @@
-package pl.akai.fillist.security.sso.service
+package pl.akai.fillist.security.service
 
 import SpotifyAccessTokenResponseBody
 import kotlinx.serialization.json.Json
@@ -9,14 +9,18 @@ import org.springframework.http.codec.json.KotlinSerializationJsonDecoder
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.ClientResponse
 import org.springframework.web.reactive.function.client.WebClient
-import pl.akai.fillist.security.sso.exceptions.InvalidGrantException
-import pl.akai.fillist.security.sso.models.*
+import pl.akai.fillist.security.exceptions.InvalidGrantException
+import pl.akai.fillist.security.models.*
 import reactor.core.publisher.Mono
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 
+
 @Service
-class Oauth2TokenService @Autowired constructor(private val oauth2Params: OAuthParams) {
+class Oauth2TokenService @Autowired constructor(
+    private val oauth2Params: OAuthParams,
+    private val tokenService: TokenService,
+) {
 
     companion object {
         const val SPOTIFY_TOKEN_ENDPOINT = "/api/token"
@@ -26,7 +30,7 @@ class Oauth2TokenService @Autowired constructor(private val oauth2Params: OAuthP
     private val spotifySecret: String = ""
 
     private val webClient =
-        WebClient.builder().baseUrl("${oauth2Params.spotifyIdpUri}${SPOTIFY_TOKEN_ENDPOINT}").codecs {
+        WebClient.builder().baseUrl("${oauth2Params.spotifyIdpUri}$SPOTIFY_TOKEN_ENDPOINT").codecs {
             val decoder = KotlinSerializationJsonDecoder(Json { ignoreUnknownKeys = true })
             it.defaultCodecs().kotlinSerializationJsonDecoder(decoder)
         }.build()
@@ -45,7 +49,9 @@ class Oauth2TokenService @Autowired constructor(private val oauth2Params: OAuthP
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError, getToken4xxErrorHandling)
                 .bodyToMono(SpotifyAccessTokenResponseBody::class.java)
-                .flatMap { response -> Mono.just(AccessTokenResponseBody(response)) }
+                .flatMap { response ->
+                    Mono.just(AccessTokenResponseBody(response, tokenService))
+                }
         }
     }
 

@@ -6,6 +6,6 @@ import reactor.core.publisher.Mono
 
 @RestController
 class TestController {
-    @GetMapping("/oauth2/test")
+    @GetMapping("/test")
     fun test(): Mono<String> = Mono.just("test")
 }

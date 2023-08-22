@@ -10,6 +10,7 @@ spring:
 fillist:
   allow-origin: ${ALLOW_ORIGIN}
   oauth2:
+    jwt-secret: ${JWT_SECRET}
     client:
       registration:
         spotify:
