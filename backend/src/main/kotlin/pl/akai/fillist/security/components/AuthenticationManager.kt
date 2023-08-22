@@ -21,7 +21,7 @@ class AuthenticationManager @Autowired constructor(
                 UsernamePasswordAuthenticationToken(
                     tokenService.getSpotifyEmail(authToken),
                     tokenService.getSpotifyAccessToken(authToken),
-                    null
+                    null,
                 )
             }
     }

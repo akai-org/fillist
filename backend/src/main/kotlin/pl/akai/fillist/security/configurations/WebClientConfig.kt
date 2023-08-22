@@ -11,7 +11,6 @@ import org.springframework.web.reactive.function.client.ClientRequest
 import org.springframework.web.reactive.function.client.ExchangeFunction
 import org.springframework.web.reactive.function.client.WebClient
 
-
 @Configuration
 class WebClientConfig {
     @Value("\${fillist.spotify-api-uri}")
@@ -36,13 +35,11 @@ class WebClientConfig {
                         println(it)
                         next.exchange(
                             ClientRequest.from(request)
-                                .header(HttpHeaders.AUTHORIZATION, "Bearer ${it}")
-                                .build()
+                                .header(HttpHeaders.AUTHORIZATION, "Bearer $it")
+                                .build(),
                         )
                     }
             }
             .build()
     }
-
-
 }

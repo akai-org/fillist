@@ -8,5 +8,4 @@ data class AccessTokenResponseBody(
     val tokenType: String,
     val expiresIn: Int,
     val refreshToken: String,
-) {
-}
+)

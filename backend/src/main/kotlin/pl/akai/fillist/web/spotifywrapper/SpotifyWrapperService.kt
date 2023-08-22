@@ -6,6 +6,5 @@ import pl.akai.fillist.web.spotifywrapper.user.SpotifyUserService
 
 @Service
 class SpotifyWrapperService @Autowired constructor(
-    val user: SpotifyUserService
-) {
-}
+    val user: SpotifyUserService,
+)
