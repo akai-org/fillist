@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.util.*
 
-
 @Service
 class TokenService {
 
@@ -29,7 +28,6 @@ class TokenService {
     }
 
     fun generateFillistRefreshToken(token: SpotifyAccessTokenResponseBody): String {
-
         return try {
             JWT.create()
                 .withIssuer(ISSUER)

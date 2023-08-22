@@ -12,7 +12,6 @@ import org.springframework.security.web.server.authentication.HttpStatusServerEn
 import pl.akai.fillist.security.components.AuthenticationManager
 import pl.akai.fillist.security.components.SecurityContextRepository
 
-
 @Configuration
 @EnableWebFluxSecurity
 class WebSecurityConfig {
