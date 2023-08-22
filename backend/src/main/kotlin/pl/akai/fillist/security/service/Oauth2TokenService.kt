@@ -16,7 +16,6 @@ import reactor.core.publisher.Mono
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 
-
 @Service
 class Oauth2TokenService @Autowired constructor(
     private val oauth2Params: OAuthParams,

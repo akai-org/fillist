@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component
 import org.springframework.web.server.ServerWebExchange
 import reactor.core.publisher.Mono
 
-
 @Component
 class SecurityContextRepository @Autowired constructor(
     private val authenticationManager: AuthenticationManager,
@@ -29,5 +28,4 @@ class SecurityContextRepository @Autowired constructor(
             this.authenticationManager.authenticate(auth).map { authentication -> SecurityContextImpl(authentication) }
         }
     }
-
 }
