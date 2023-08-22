@@ -4,6 +4,7 @@ import SpotifyAccessTokenResponseBody
 import kotlinx.serialization.json.Json
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatusCode
 import org.springframework.http.codec.json.KotlinSerializationJsonDecoder
 import org.springframework.stereotype.Service
@@ -43,14 +44,14 @@ class Oauth2TokenService @Autowired constructor(
                 redirectUri = oauth2Params.redirectUri,
             )
             this.webClient.post()
-                .header("Authorization", getAuthorizationHeader())
-                .header("Content-Type", "application/x-www-form-urlencoded")
+                .header(HttpHeaders.AUTHORIZATION, getAuthorizationHeader())
+                .header(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded")
                 .bodyValue(spotifyRequestBody.toLinkedMultiValueMap())
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError, getToken4xxErrorHandling)
                 .bodyToMono(SpotifyAccessTokenResponseBody::class.java)
                 .flatMap { response ->
-                    Mono.just(AccessTokenResponseBody(response, tokenService))
+                    tokenService.generateTokensResponse(response)
                 }
         }
     }

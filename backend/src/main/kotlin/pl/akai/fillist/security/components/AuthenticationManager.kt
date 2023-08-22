@@ -17,6 +17,12 @@ class AuthenticationManager @Autowired constructor(
         return Mono.just(tokenService.validateToken(authToken))
             .filter { it }
             .switchIfEmpty(Mono.empty())
-            .map { UsernamePasswordAuthenticationToken("test-value", tokenService.getSpotifyAccessToken(authToken), null) }
+            .map {
+                UsernamePasswordAuthenticationToken(
+                    tokenService.getSpotifyEmail(authToken),
+                    tokenService.getSpotifyAccessToken(authToken),
+                    null
+                )
+            }
     }
 }
