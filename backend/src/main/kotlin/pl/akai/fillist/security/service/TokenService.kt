@@ -85,6 +85,20 @@ class TokenService @Autowired constructor(
         }
     }
 
+    fun getSpotifyEmail(token: String): String {
+        try {
+            val verifier: JWTVerifier = JWT.require(algorithm())
+                .withIssuer(ISSUER)
+                .build()
+
+            val decodedJWT = verifier.verify(token)
+            return decodedJWT.getClaim(EMAIL_KEY).asString()
+        } catch (exception: JWTVerificationException) {
+            LOGGER.warn("JWT verification exception:", exception)
+            throw exception
+        }
+    }
+
     fun getSpotifyRefreshToken(token: String): String {
         try {
             val verifier: JWTVerifier = JWT.require(algorithm())
