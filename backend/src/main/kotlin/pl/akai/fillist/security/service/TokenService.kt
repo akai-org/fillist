@@ -46,10 +46,9 @@ class TokenService @Autowired constructor(
                         .withClaim(EMAIL_KEY, it.email)
                         .withExpiresAt(expireAt(token.expiresIn))
                         .withClaim(ACCESS_TOKEN_KEY, token.accessToken)
-                        .sign(algorithm())
+                        .sign(algorithm()),
                 )
-            }
-            catch (exception: JWTCreationException) {
+            } catch (exception: JWTCreationException) {
                 LOGGER.warn("JWT creation exception:", exception)
                 sink.error(exception)
             }
@@ -62,7 +61,7 @@ class TokenService @Autowired constructor(
                 JWT.create()
                     .withIssuer(ISSUER)
                     .withClaim(REFRESH_TOKEN_KEY, token.refreshToken)
-                    .sign(algorithm())
+                    .sign(algorithm()),
             )
         } catch (exception: JWTCreationException) {
             LOGGER.warn("JWT creation exception:", exception)

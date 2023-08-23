@@ -11,7 +11,7 @@ class SpotifyUserService @Autowired constructor(
     private val spotifyClient: WebClient,
 ) {
 
-    companion object{
+    companion object {
         const val PROFILE_ENDPOINT = "/me"
     }
 
@@ -25,4 +25,3 @@ class SpotifyUserService @Autowired constructor(
             .bodyToMono(SpotifyProfileResponseBody::class.java)
     }
 }
-
