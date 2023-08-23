@@ -13,6 +13,7 @@ class OAuth2LoginInRoute {
             "/oauth2".nest {
                 GET("/authorization", oAuth2LoginInHandler::getAuthorizationCodeUrl)
                 POST("/token", oAuth2LoginInHandler::getToken)
+                POST("/refresh", oAuth2LoginInHandler::getRefreshToken)
             }
         }
 }

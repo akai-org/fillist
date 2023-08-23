@@ -15,6 +15,7 @@ import org.springframework.web.reactive.function.client.WebClient
 import pl.akai.fillist.security.exceptions.InvalidGrantException
 import pl.akai.fillist.security.models.AccessTokenRequestBody
 import pl.akai.fillist.security.models.OAuthParams
+import pl.akai.fillist.security.models.RefreshTokenRequestBody
 import pl.akai.fillist.security.models.SpotifyResponseAccessTokenErrorBody
 import reactor.core.publisher.Mono
 import kotlin.io.encoding.Base64
@@ -47,6 +48,20 @@ class Oauth2TokenService @Autowired constructor(
             }.build()
 
     fun getSpotifyToken(requestBody: Mono<AccessTokenRequestBody>): Mono<AccessTokenResponseBody> {
+        return requestBody.flatMap {
+            this.webClient.post()
+                .header(HttpHeaders.AUTHORIZATION, getAuthorizationHeader())
+                .bodyValue(it.toLinkedMultiValueMap())
+                .retrieve()
+                .onStatus(HttpStatusCode::is4xxClientError, getToken4xxErrorHandling)
+                .bodyToMono(AccessTokenResponseBody::class.java)
+                .flatMap { response ->
+                    tokenService.generateTokensResponse(response)
+                }
+        }
+    }
+
+    fun getRefreshToken(requestBody: Mono<RefreshTokenRequestBody>): Mono<AccessTokenResponseBody> {
         return requestBody.flatMap {
             this.webClient.post()
                 .header(HttpHeaders.AUTHORIZATION, getAuthorizationHeader())
