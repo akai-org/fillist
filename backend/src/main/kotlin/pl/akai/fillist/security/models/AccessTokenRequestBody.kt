@@ -8,7 +8,7 @@ data class AccessTokenRequestBody(
     val grantType: String,
     val code: String,
     val redirectUri: String,
-){
+) {
     fun toLinkedMultiValueMap(): LinkedMultiValueMap<String, String> {
         val formData: LinkedMultiValueMap<String, String> = LinkedMultiValueMap()
         formData.add("grant_type", grantType)
