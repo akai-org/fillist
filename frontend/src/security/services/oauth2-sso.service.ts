@@ -14,6 +14,7 @@ export class Oauth2SsoService {
   static readonly REFRESH_TOKEN_KEY: string = 'refreshToken'
   static readonly ACCESS_TOKEN_KEY: string = 'accessToken'
   static readonly EXPIRES_IN_KEY: string = 'expiresIn'
+
   constructor (private http: HttpClient, private router: Router) {
   }
 
@@ -37,15 +38,22 @@ export class Oauth2SsoService {
     return this.http.post<AccessTokenResponseBodyInterface>(`${environment.backendUrl}/oauth2/token`, {
       code,
       grantType: 'authorization_code',
-      redirectUri: 'http://localhost:4200/callback'
+      redirectUri: `${environment.frontendUrl}${environment.redirectPath}`
     })
   }
 
-  setSession (AccessTokenResponseBody: AccessTokenResponseBodyInterface): void {
-    localStorage.setItem(Oauth2SsoService.ACCESS_TOKEN_KEY, AccessTokenResponseBody.accessToken)
-    localStorage.setItem(Oauth2SsoService.REFRESH_TOKEN_KEY, AccessTokenResponseBody.refreshToken)
+  getRefreshedToken (): Observable<AccessTokenResponseBodyInterface> {
+    return this.http.post<AccessTokenResponseBodyInterface>(`${environment.backendUrl}/oauth2/refresh`, {
+      grantType: 'refresh_token',
+      refreshToken: localStorage.getItem(Oauth2SsoService.REFRESH_TOKEN_KEY)
+    })
+  }
+
+  setSession (accessTokenResponseBody: AccessTokenResponseBodyInterface): void {
+    localStorage.setItem(Oauth2SsoService.ACCESS_TOKEN_KEY, accessTokenResponseBody.accessToken)
+    localStorage.setItem(Oauth2SsoService.REFRESH_TOKEN_KEY, accessTokenResponseBody.refreshToken)
     const now: number = new Date().getTime()
-    const expiresAt: number = now + (AccessTokenResponseBody.expiresIn * 1000)
+    const expiresAt: number = now + (accessTokenResponseBody.expiresIn * 1000)
     localStorage.setItem(Oauth2SsoService.EXPIRES_IN_KEY, expiresAt.toString())
   }
 
@@ -61,7 +69,12 @@ export class Oauth2SsoService {
     if ((accessToken == null) || (expiresIn == null)) return false
     const now: number = new Date().getTime()
     const expiresAt: number = parseInt(expiresIn)
-    return now < expiresAt
+    if (!(now < expiresAt)) {
+      this.getRefreshedToken().subscribe((accessTokenResponseBody: AccessTokenResponseBodyInterface) => {
+        this.setSession(accessTokenResponseBody)
+      })
+    }
+    return true
   }
 
   public getOauthState (): string {
