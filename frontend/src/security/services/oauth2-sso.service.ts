@@ -35,7 +35,9 @@ export class Oauth2SsoService {
   getAccessToken (code: string, state: string): Observable<AccessTokenResponseBodyInterface> {
     if (state !== this.getOauthState()) throw new Error('Invalid state')
     return this.http.post<AccessTokenResponseBodyInterface>(`${environment.backendUrl}/oauth2/token`, {
-      code
+      code,
+      grantType: 'authorization_code',
+      redirectUri: 'http://localhost:4200/callback'
     })
   }
 

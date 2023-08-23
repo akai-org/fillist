@@ -1,6 +1,6 @@
 package pl.akai.fillist.security.service
 
-import SpotifyAccessTokenResponseBody
+import AccessTokenResponseBody
 import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
-import pl.akai.fillist.security.models.AccessTokenResponseBody
 import pl.akai.fillist.web.spotifywrapper.SpotifyWrapperService
 import reactor.core.publisher.Mono
 import java.util.*
@@ -32,13 +31,13 @@ class TokenService @Autowired constructor(
     @Value("\${fillist.oauth2.jwt-secret}")
     private val secret: String? = null
 
-    fun generateTokensResponse(token: SpotifyAccessTokenResponseBody): Mono<AccessTokenResponseBody> {
+    fun generateTokensResponse(token: AccessTokenResponseBody): Mono<AccessTokenResponseBody> {
         return generateFillistAccessToken(token).zipWith(generateFillistRefreshToken(token)).map {
             AccessTokenResponseBody(it.t1, token.tokenType, token.expiresIn, it.t2)
         }
     }
 
-    fun generateFillistAccessToken(token: SpotifyAccessTokenResponseBody): Mono<String> {
+    fun generateFillistAccessToken(token: AccessTokenResponseBody): Mono<String> {
         return this.spotifyWrapperService.user.getProfile(token.accessToken).handle { it, sink ->
             try {
                 sink.next(
@@ -57,7 +56,7 @@ class TokenService @Autowired constructor(
         }
     }
 
-    fun generateFillistRefreshToken(token: SpotifyAccessTokenResponseBody): Mono<String> {
+    fun generateFillistRefreshToken(token: AccessTokenResponseBody): Mono<String> {
         return try {
             Mono.just(
                 JWT.create()

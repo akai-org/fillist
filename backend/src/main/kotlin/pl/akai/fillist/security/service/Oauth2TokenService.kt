@@ -1,7 +1,9 @@
 package pl.akai.fillist.security.service
 
-import SpotifyAccessTokenResponseBody
+import AccessTokenResponseBody
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonNamingStrategy
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
@@ -11,7 +13,9 @@ import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.ClientResponse
 import org.springframework.web.reactive.function.client.WebClient
 import pl.akai.fillist.security.exceptions.InvalidGrantException
-import pl.akai.fillist.security.models.*
+import pl.akai.fillist.security.models.AccessTokenRequestBody
+import pl.akai.fillist.security.models.OAuthParams
+import pl.akai.fillist.security.models.SpotifyResponseAccessTokenErrorBody
 import reactor.core.publisher.Mono
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
@@ -29,26 +33,27 @@ class Oauth2TokenService @Autowired constructor(
     @Value("\${fillist.oauth2.client.registration.spotify.secret}")
     private val spotifySecret: String = ""
 
+    @OptIn(ExperimentalSerializationApi::class)
     private val webClient =
-        WebClient.builder().baseUrl("${oauth2Params.spotifyIdpUri}$SPOTIFY_TOKEN_ENDPOINT").codecs {
-            val decoder = KotlinSerializationJsonDecoder(Json { ignoreUnknownKeys = true })
-            it.defaultCodecs().kotlinSerializationJsonDecoder(decoder)
-        }.build()
+        WebClient.builder()
+            .baseUrl("${oauth2Params.spotifyIdpUri}$SPOTIFY_TOKEN_ENDPOINT")
+            .defaultHeader(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded")
+            .codecs {
+                val decoder = KotlinSerializationJsonDecoder(Json {
+                    ignoreUnknownKeys = true
+                    namingStrategy = JsonNamingStrategy.SnakeCase
+                })
+                it.defaultCodecs().kotlinSerializationJsonDecoder(decoder)
+            }.build()
 
     fun getSpotifyToken(requestBody: Mono<AccessTokenRequestBody>): Mono<AccessTokenResponseBody> {
         return requestBody.flatMap {
-            val spotifyRequestBody = SpotifyRequestAccessTokenBody(
-                grantType = "authorization_code",
-                code = it.code,
-                redirectUri = oauth2Params.redirectUri,
-            )
             this.webClient.post()
                 .header(HttpHeaders.AUTHORIZATION, getAuthorizationHeader())
-                .header(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded")
-                .bodyValue(spotifyRequestBody.toLinkedMultiValueMap())
+                .bodyValue(it.toLinkedMultiValueMap())
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError, getToken4xxErrorHandling)
-                .bodyToMono(SpotifyAccessTokenResponseBody::class.java)
+                .bodyToMono(AccessTokenResponseBody::class.java)
                 .flatMap { response ->
                     tokenService.generateTokensResponse(response)
                 }
