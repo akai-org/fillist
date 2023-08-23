@@ -40,10 +40,12 @@ class Oauth2TokenService @Autowired constructor(
             .baseUrl("${oauth2Params.spotifyIdpUri}$SPOTIFY_TOKEN_ENDPOINT")
             .defaultHeader(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded")
             .codecs {
-                val decoder = KotlinSerializationJsonDecoder(Json {
-                    ignoreUnknownKeys = true
-                    namingStrategy = JsonNamingStrategy.SnakeCase
-                })
+                val decoder = KotlinSerializationJsonDecoder(
+                    Json {
+                        ignoreUnknownKeys = true
+                        namingStrategy = JsonNamingStrategy.SnakeCase
+                    },
+                )
                 it.defaultCodecs().kotlinSerializationJsonDecoder(decoder)
             }.build()
 
