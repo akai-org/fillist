@@ -5,5 +5,5 @@ class AccessTokenResponseBody(
     val accessToken: String,
     val tokenType: String,
     val expiresIn: Int,
-    val refreshToken: String,
+    var refreshToken: String? = null,
 )

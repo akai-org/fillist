@@ -64,17 +64,25 @@ class Oauth2TokenService @Autowired constructor(
     }
 
     fun getRefreshToken(requestBody: Mono<RefreshTokenRequestBody>): Mono<AccessTokenResponseBody> {
-        return requestBody.flatMap {
-            this.webClient.post()
-                .header(HttpHeaders.AUTHORIZATION, getAuthorizationHeader())
-                .bodyValue(it.toLinkedMultiValueMap())
-                .retrieve()
-                .onStatus(HttpStatusCode::is4xxClientError, getToken4xxErrorHandling)
-                .bodyToMono(AccessTokenResponseBody::class.java)
-                .flatMap { response ->
-                    tokenService.generateTokensResponse(response)
-                }
-        }
+        return requestBody
+            .map {
+                RefreshTokenRequestBody(
+                    it.grantType,
+                    this.tokenService.getSpotifyRefreshToken(it.refreshToken)
+                )
+            }
+            .flatMap {
+                this.webClient.post()
+                    .header(HttpHeaders.AUTHORIZATION, getAuthorizationHeader())
+                    .bodyValue(it.toLinkedMultiValueMap())
+                    .retrieve()
+                    .onStatus(HttpStatusCode::is4xxClientError, getToken4xxErrorHandling)
+                    .bodyToMono(AccessTokenResponseBody::class.java)
+                    .flatMap { response ->
+                        response.refreshToken = it.refreshToken
+                        tokenService.generateTokensResponse(response)
+                    }
+            }
     }
 
     @OptIn(ExperimentalEncodingApi::class)
