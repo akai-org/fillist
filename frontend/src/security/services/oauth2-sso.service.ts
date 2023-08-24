@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http'
-import { Injectable } from '@angular/core'
-import { map, Observable } from 'rxjs'
+import { Injectable, ViewContainerRef } from '@angular/core'
+import { catchError, map, Observable } from 'rxjs'
 import { AuthorizationCodeUrlResponseBodyInterface } from '../models/authorization-code-url-response-body.interface'
 import { environment } from 'src/environments/environment'
 import { AccessTokenResponseBodyInterface } from '../models/access-token-response-body.interface'
 import { Router } from '@angular/router'
+import { AlertService } from '../../shared/ui/services/alert.service'
+import { AlertColor } from '../../shared/ui/components/alert/alertColor'
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,8 @@ export class Oauth2SsoService {
   static readonly ACCESS_TOKEN_KEY: string = 'accessToken'
   static readonly EXPIRES_IN_KEY: string = 'expiresIn'
 
+  private static alertService: AlertService | undefined
+
   constructor (private http: HttpClient, private router: Router) {
   }
 
@@ -23,18 +27,46 @@ export class Oauth2SsoService {
       params: {
         state: this.getOauthState()
       }
-    }).pipe(map((response: AuthorizationCodeUrlResponseBodyInterface) => response.url))
+    }).pipe(map((response: AuthorizationCodeUrlResponseBodyInterface) => response.url)).pipe(catchError((err: any) => {
+      throw this.loginInErrorHandler(err)
+    }))
   }
 
   getAccessTokenAndSetSession (code: string, state: string): void {
-    this.getAccessToken(code, state).subscribe((accessToken: AccessTokenResponseBodyInterface) => {
+    this.getAccessToken(code, state).pipe(catchError((err: any) => {
+      throw this.loginInErrorHandler(err)
+    })).subscribe((accessToken: AccessTokenResponseBodyInterface) => {
       this.setSession(accessToken)
       this.redirectToDashboard()
     })
   }
 
+  static setViewContainerRef (viewContainerRef: ViewContainerRef): void {
+    Oauth2SsoService.alertService = new AlertService(viewContainerRef)
+  }
+
+  loginInErrorHandler (err: any): Error {
+    if (Oauth2SsoService.alertService == null) throw new Error('ViewContainerRef not set')
+    Oauth2SsoService.alertService.displayAlert('Something went wrong with authentication. Please try again later.', AlertColor.ERROR, () => {
+      this.logout()
+      this.redirectToLoginIn()
+    })
+    return new Error(err)
+  }
+
+  refreshTokenErrorHandler (err: any): Error {
+    if (Oauth2SsoService.alertService == null) throw new Error('ViewContainerRef not set')
+    Oauth2SsoService.alertService.displayAlert('Session refresh error. Please try login in again.', AlertColor.WARNING, () => {
+      this.logout()
+      this.redirectToLoginIn()
+    })
+    return new Error(err)
+  }
+
   getAccessToken (code: string, state: string): Observable<AccessTokenResponseBodyInterface> {
-    if (state !== this.getOauthState()) throw new Error('Invalid state')
+    if (state !== this.getOauthState()) {
+      throw this.loginInErrorHandler('Invalid state')
+    }
     return this.http.post<AccessTokenResponseBodyInterface>(`${environment.backendUrl}/oauth2/token`, {
       code,
       grantType: 'authorization_code',
@@ -51,7 +83,9 @@ export class Oauth2SsoService {
 
   setSession (accessTokenResponseBody: AccessTokenResponseBodyInterface): void {
     localStorage.setItem(Oauth2SsoService.ACCESS_TOKEN_KEY, accessTokenResponseBody.accessToken)
-    localStorage.setItem(Oauth2SsoService.REFRESH_TOKEN_KEY, accessTokenResponseBody.refreshToken)
+    if (accessTokenResponseBody.refreshToken == null) {
+      localStorage.setItem(Oauth2SsoService.REFRESH_TOKEN_KEY, accessTokenResponseBody.refreshToken)
+    }
     const now: number = new Date().getTime()
     const expiresAt: number = now + (accessTokenResponseBody.expiresIn * 1000)
     localStorage.setItem(Oauth2SsoService.EXPIRES_IN_KEY, expiresAt.toString())
@@ -70,9 +104,13 @@ export class Oauth2SsoService {
     const now: number = new Date().getTime()
     const expiresAt: number = parseInt(expiresIn)
     if (!(now < expiresAt)) {
-      this.getRefreshedToken().subscribe((accessTokenResponseBody: AccessTokenResponseBodyInterface) => {
-        this.setSession(accessTokenResponseBody)
-      })
+      this.getRefreshedToken()
+        .pipe(catchError((err: any) => {
+          throw this.refreshTokenErrorHandler(err)
+        }))
+        .subscribe((accessTokenResponseBody: AccessTokenResponseBodyInterface) => {
+          this.setSession(accessTokenResponseBody)
+        })
     }
     return true
   }

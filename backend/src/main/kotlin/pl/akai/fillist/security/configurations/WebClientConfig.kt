@@ -32,7 +32,6 @@ class WebClientConfig {
                     }
                     .defaultIfEmpty("")
                     .flatMap {
-                        println(it)
                         next.exchange(
                             ClientRequest.from(request)
                                 .header(HttpHeaders.AUTHORIZATION, "Bearer $it")

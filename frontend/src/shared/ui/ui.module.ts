@@ -1,17 +1,24 @@
 import { NgModule } from '@angular/core'
 import { CommonModule, NgOptimizedImage } from '@angular/common'
-import { SpinnerComponent } from './spinner/spinner.component'
+import { SpinnerComponent } from './components/spinner/spinner.component'
+import { AlertComponent } from './components/alert/alert.component'
+import { NgIconsModule } from '@ng-icons/core'
+import { cssClose, cssDanger } from '@ng-icons/css.gg'
 
 @NgModule({
   declarations: [
-    SpinnerComponent
+    SpinnerComponent,
+    AlertComponent
   ],
   exports: [
-    SpinnerComponent
+    SpinnerComponent,
+    AlertComponent
   ],
   imports: [
     CommonModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    NgIconsModule.withIcons({ cssClose, cssDanger })
   ]
 })
-export class UiModule { }
+export class UiModule {
+}
