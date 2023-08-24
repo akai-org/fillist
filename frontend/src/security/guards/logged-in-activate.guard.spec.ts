@@ -1,11 +1,13 @@
 import { TestBed } from '@angular/core/testing'
 import { CanActivateFn } from '@angular/router'
 
-import { loginActivateGuard } from './logged-in-activate.guard'
+import { loggedInActivate } from './logged-in-activate.guard'
 
 describe('loginActivateGuard', () => {
+  // eslint-disable-next-line
   const executeGuard: CanActivateFn = (...guardParameters) =>
-    TestBed.runInInjectionContext(() => loginActivateGuard(...guardParameters))
+    // eslint-disable-next-line
+    TestBed.runInInjectionContext(() => loggedInActivate(...guardParameters))
 
   beforeEach(() => {
     TestBed.configureTestingModule({})

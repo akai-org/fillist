@@ -1,6 +1,7 @@
 import { type ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { LoginPageComponent } from './login-page.component'
+import { HttpClient, HttpHandler } from '@angular/common/http'
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent
@@ -8,8 +9,8 @@ describe('LoginPageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LoginPageComponent]
-
+      declarations: [LoginPageComponent],
+      providers: [HttpClient, HttpHandler]
     })
     fixture = TestBed.createComponent(LoginPageComponent)
     component = fixture.componentInstance

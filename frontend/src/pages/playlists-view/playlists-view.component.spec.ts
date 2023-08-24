@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { PlaylistsViewComponent } from './playlists-view.component'
+import { HttpClient, HttpHandler } from '@angular/common/http'
+import { UiModule } from '../../shared/ui/ui.module'
 
 describe('PlaylistsViewComponent', () => {
   let component: PlaylistsViewComponent
@@ -8,7 +10,9 @@ describe('PlaylistsViewComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PlaylistsViewComponent]
+      declarations: [PlaylistsViewComponent],
+      providers: [HttpClient, HttpHandler],
+      imports: [UiModule]
     })
     fixture = TestBed.createComponent(PlaylistsViewComponent)
     component = fixture.componentInstance

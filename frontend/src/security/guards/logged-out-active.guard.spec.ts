@@ -4,8 +4,10 @@ import { CanActivateFn } from '@angular/router'
 import { loggedOutActivate } from './logged-out-activate.guard'
 
 describe('loggedOutActiveGuard', () => {
-  const executeGuard: CanActivateFn = async (...guardParameters) =>
-    await TestBed.runInInjectionContext(async () => await loggedOutActivate(...guardParameters))
+// eslint-disable-next-line
+  const executeGuard: CanActivateFn = (...guardParameters) =>
+    // eslint-disable-next-line
+    TestBed.runInInjectionContext(() => loggedOutActivate(...guardParameters))
 
   beforeEach(() => {
     TestBed.configureTestingModule({})

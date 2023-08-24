@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http'
-import { Injectable, ViewContainerRef } from '@angular/core'
+import { Injectable } from '@angular/core'
 import { catchError, map, Observable } from 'rxjs'
 import { AuthorizationCodeUrlResponseBodyInterface } from '../models/authorization-code-url-response-body.interface'
 import { environment } from 'src/environments/environment'
@@ -17,9 +17,7 @@ export class Oauth2SsoService {
   static readonly ACCESS_TOKEN_KEY: string = 'accessToken'
   static readonly EXPIRES_IN_KEY: string = 'expiresIn'
 
-  private static alertService: AlertService | undefined
-
-  constructor (private http: HttpClient, private router: Router) {
+  constructor (private http: HttpClient, private router: Router, private alertService: AlertService) {
   }
 
   getAuthorizationCodeUrl (): Observable<string> {
@@ -41,13 +39,8 @@ export class Oauth2SsoService {
     })
   }
 
-  static setViewContainerRef (viewContainerRef: ViewContainerRef): void {
-    Oauth2SsoService.alertService = new AlertService(viewContainerRef)
-  }
-
   loginInErrorHandler (err: any): Error {
-    if (Oauth2SsoService.alertService == null) throw new Error('ViewContainerRef not set')
-    Oauth2SsoService.alertService.displayAlert('Something went wrong with authentication. Please try again later.', AlertColor.ERROR, () => {
+    this.alertService.displayAlert('Something went wrong with authentication. Please try again later.', AlertColor.ERROR, () => {
       this.logout()
       this.redirectToLoginIn()
     })
@@ -55,8 +48,7 @@ export class Oauth2SsoService {
   }
 
   refreshTokenErrorHandler (err: any): Error {
-    if (Oauth2SsoService.alertService == null) throw new Error('ViewContainerRef not set')
-    Oauth2SsoService.alertService.displayAlert('Session refresh error. Please try login in again.', AlertColor.WARNING, () => {
+    this.alertService.displayAlert('Session refresh error. Please try login in again.', AlertColor.WARNING, () => {
       this.logout()
       this.redirectToLoginIn()
     })

@@ -1,5 +1,5 @@
 import { Component, ViewContainerRef } from '@angular/core'
-import { Oauth2SsoService } from '../security/services/oauth2-sso.service'
+import { AlertService } from '../shared/ui/services/alert.service'
 
 @Component({
   selector: 'app-root',
@@ -10,6 +10,6 @@ export class AppComponent {
   title = 'fillist'
 
   constructor (viewContainerRef: ViewContainerRef) {
-    Oauth2SsoService.setViewContainerRef(viewContainerRef)
+    AlertService.setViewContainerRef(viewContainerRef)
   }
 }
