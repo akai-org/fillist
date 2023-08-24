@@ -68,7 +68,7 @@ class Oauth2TokenService @Autowired constructor(
             .map {
                 RefreshTokenRequestBody(
                     it.grantType,
-                    this.tokenService.getSpotifyRefreshToken(it.refreshToken)
+                    this.tokenService.getSpotifyRefreshToken(it.refreshToken),
                 )
             }
             .flatMap {
