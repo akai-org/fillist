@@ -83,7 +83,7 @@ export class Oauth2SsoService {
 
   setSession (accessTokenResponseBody: AccessTokenResponseBodyInterface): void {
     localStorage.setItem(Oauth2SsoService.ACCESS_TOKEN_KEY, accessTokenResponseBody.accessToken)
-    if (accessTokenResponseBody.refreshToken == null) {
+    if (accessTokenResponseBody.refreshToken != null) {
       localStorage.setItem(Oauth2SsoService.REFRESH_TOKEN_KEY, accessTokenResponseBody.refreshToken)
     }
     const now: number = new Date().getTime()
