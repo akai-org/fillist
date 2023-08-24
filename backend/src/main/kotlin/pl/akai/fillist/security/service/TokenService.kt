@@ -97,7 +97,7 @@ class TokenService @Autowired constructor(
         }
     }
 
-    fun getSpotifyRefreshToken(token: String): String {
+    fun getSpotifyRefreshToken(token: String?): String {
         try {
             val verifier: JWTVerifier = JWT.require(algorithm())
                 .withIssuer(ISSUER)
@@ -123,11 +123,11 @@ class TokenService @Autowired constructor(
         }
     }
 
-    fun algorithm(): Algorithm {
+    private fun algorithm(): Algorithm {
         return Algorithm.HMAC256(secret)
     }
 
-    fun expireAt(expireInSeconds: Int): Date {
+    private fun expireAt(expireInSeconds: Int): Date {
         return Date(Date().time + expireInSeconds * 1000)
     }
 }
