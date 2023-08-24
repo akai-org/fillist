@@ -39,7 +39,7 @@ class TokenServiceTests {
                 expiresIn = 100,
                 tokenType = "",
                 refreshToken = "refresh",
-            )
+            ),
         ).block()!!
         assert(tokenService.getSpotifyAccessToken(token.accessToken) == spotifyToken)
         assert(tokenService.getSpotifyRefreshToken(token.refreshToken) == "refresh")
@@ -54,7 +54,7 @@ class TokenServiceTests {
                 expiresIn = 100,
                 tokenType = "",
                 refreshToken = "",
-            )
+            ),
         ).block()!!
         assert(tokenService.validateToken(token))
     }
@@ -73,7 +73,7 @@ class TokenServiceTests {
                 expiresIn = 100,
                 tokenType = "",
                 refreshToken = "",
-            )
+            ),
         ).block()!!
         assert(token.isNotEmpty())
     }
@@ -87,7 +87,7 @@ class TokenServiceTests {
                 expiresIn = 100,
                 tokenType = "",
                 refreshToken = "",
-            )
+            ),
         ).block()!!
         assert(tokenService.getSpotifyAccessToken(token) == spotifyToken)
     }
@@ -100,7 +100,7 @@ class TokenServiceTests {
                 expiresIn = 100,
                 tokenType = "",
                 refreshToken = "refresh",
-            )
+            ),
         ).block()!!
         assert(token.isNotEmpty())
     }
@@ -113,13 +113,13 @@ class TokenServiceTests {
                 expiresIn = 100,
                 tokenType = "",
                 refreshToken = "refresh",
-            )
+            ),
         ).block()!!
         assert(tokenService.getSpotifyRefreshToken(token) == "refresh")
     }
 
     @Test
-    fun getSpotifyEmail(){
+    fun getSpotifyEmail() {
         configMock()
         val token = tokenService.generateFillistAccessToken(
             AccessTokenResponseBody(
@@ -127,7 +127,7 @@ class TokenServiceTests {
                 expiresIn = 100,
                 tokenType = "",
                 refreshToken = "",
-            )
+            ),
         ).block()!!
         assert(tokenService.getSpotifyEmail(token) == "email")
     }
