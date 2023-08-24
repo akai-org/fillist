@@ -1,13 +1,13 @@
 fillist:
-  allow-origin: "*"
+  allow-origin: { $JWT_SECRET:"*" }
   spotify-api-uri: https://api.spotify.com/v1
   oauth2:
-    jwt-secret: "secret"
+    jwt-secret: { $JWT_SECRET:"secret" }
     client:
       registration:
         spotify:
-          client-id: "client-id"
-          secret: "secret"
+          client-id: { $SPOTIFY_CLIENT_ID:"id" }
+          secret: { $SPOTIFY_CLIENT_SECRET:"secret" }
           redirect-uri: http://localhost:4200/callback
           spotify-idp-uri: https://accounts.spotify.com
           scope: user-read-private,user-read-email,user-library-read,user-library-modify,user-read-playback-state,user-modify-playback-state,user-read-currently-playing,user-read-recently-played
