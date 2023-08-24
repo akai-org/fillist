@@ -16,7 +16,7 @@ class SecurityContextRepository @Autowired constructor(
 ) : ServerSecurityContextRepository {
 
     override fun save(exchange: ServerWebExchange?, context: SecurityContext?): Mono<Void> {
-        TODO("Not yet implemented")
+        throw UnsupportedOperationException("Not supported yet.")
     }
 
     override fun load(exchange: ServerWebExchange?): Mono<SecurityContext> {
