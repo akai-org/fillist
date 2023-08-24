@@ -8,6 +8,7 @@ spring:
       port: ${DB_PORT:27017}
       authentication-database: admin
 fillist:
+  spotify-api-uri: https://api.spotify.com/v1
   allow-origin: ${ALLOW_ORIGIN}
   oauth2:
     jwt-secret: ${JWT_SECRET}
