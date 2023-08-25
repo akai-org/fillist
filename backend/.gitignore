@@ -39,4 +39,5 @@ report.sarif
 
 # Ignore Gradle build output directory
 build
-/src/test/resources/application.yml
+
+/src/test/resources/application-dev.yml
