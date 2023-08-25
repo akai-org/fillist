@@ -27,7 +27,7 @@ jobs:
         env:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
-        run: ./gradlew build -pSPOTIFY_CLIENT_ID={{ secrets.SPOTIFY_CLIENT_ID }} -pSPOTIFY_CLIENT_SECRET={{ secrets.SPOTIFY_CLIENT_SECRET }}
+        run: ./gradlew build -PSPOTIFY_CLIENT_ID={{ secrets.SPOTIFY_CLIENT_ID }} -PSPOTIFY_CLIENT_SECRET={{ secrets.SPOTIFY_CLIENT_SECRET }}
   format:
     runs-on: ubuntu-latest
     defaults:
