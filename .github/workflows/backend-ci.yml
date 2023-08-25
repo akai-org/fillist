@@ -21,7 +21,10 @@ jobs:
           distribution: 'temurin'
           cache: gradle
       - name: Build with Gradle
-        run: ./gradlew build -Pprofile=template
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+        run: ./gradlew build
   format:
     runs-on: ubuntu-latest
     defaults:
