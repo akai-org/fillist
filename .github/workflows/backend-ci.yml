@@ -9,7 +9,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    environment: SPOTIFY
     defaults:
       run:
         working-directory: backend
