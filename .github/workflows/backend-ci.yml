@@ -9,6 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    environment: SPOTIFY
     defaults:
       run:
         working-directory: backend
@@ -21,10 +22,7 @@ jobs:
           distribution: 'temurin'
           cache: gradle
       - name: Build with Gradle
-        env:
-          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
-        run: echo $SPOTIFY_CLIENT_ID & echo $SPOTIFY_CLIENT_SECRET & ./gradlew build
+        run: ./gradlew build
   format:
     runs-on: ubuntu-latest
     defaults:
