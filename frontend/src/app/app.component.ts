@@ -1,4 +1,5 @@
-import { Component } from '@angular/core'
+import { Component, ViewContainerRef } from '@angular/core'
+import { AlertService } from '../shared/ui/services/alert.service'
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core'
 })
 export class AppComponent {
   title = 'fillist'
+
+  constructor (viewContainerRef: ViewContainerRef) {
+    AlertService.setViewContainerRef(viewContainerRef)
+  }
 }

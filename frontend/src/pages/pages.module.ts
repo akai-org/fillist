@@ -4,11 +4,14 @@ import { LoginPageComponent } from './login-page/login-page.component'
 import { HttpClientModule } from '@angular/common/http'
 import { RouterLink } from '@angular/router'
 import { CallbackPageComponent } from './callback-page/callback-page.component'
+import { PlaylistsViewComponent } from './playlists-view/playlists-view.component'
+import { UiModule } from '../shared/ui/ui.module'
 
 @NgModule({
   declarations: [
     LoginPageComponent,
-    CallbackPageComponent
+    CallbackPageComponent,
+    PlaylistsViewComponent
   ],
   exports: [
     LoginPageComponent
@@ -17,7 +20,8 @@ import { CallbackPageComponent } from './callback-page/callback-page.component'
     CommonModule,
     NgOptimizedImage,
     HttpClientModule,
-    RouterLink
+    RouterLink,
+    UiModule
   ]
 })
 export class PagesModule {

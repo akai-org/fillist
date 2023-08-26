@@ -23,19 +23,21 @@ repositories {
 }
 
 dependencies {
-    api("org.springframework.boot:spring-boot-starter-security")
-    api("org.springframework.boot:spring-boot-starter-webflux")
-    api("com.fasterxml.jackson.module:jackson-module-kotlin")
-    api("io.projectreactor.kotlin:reactor-kotlin-extensions")
-    api("org.jetbrains.kotlin:kotlin-reflect")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0-RC")
-    api("org.springframework.boot:spring-boot-starter-data-mongodb")
+    api("org.springframework.boot:spring-boot-starter-security")
+    api("org.springframework.boot:spring-boot-starter-webflux") {
+        exclude(group = "org.springframework.boot", module = "spring-boot-starter-json")
+    }
+    api("io.projectreactor.kotlin:reactor-kotlin-extensions")
+    api("org.jetbrains.kotlin:kotlin-reflect")
+    api("com.auth0:java-jwt:4.4.0")
+//    api("org.springframework.boot:spring-boot-starter-data-mongodb")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.springframework.security:spring-security-test")
-    testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo:4.8.0")
+//    testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo:4.8.0")
 
     ktlint("com.pinterest:ktlint:0.50.0") {
         attributes {
