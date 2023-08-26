@@ -19,7 +19,7 @@ export class CallbackPageComponent implements OnInit {
 
   ngOnInit (): void {
     this.activatedRoute.queryParams.subscribe((params) => {
-      this.oauth2SsoService.getAccessTokenAndSetSession(
+      this.oauth2SsoService.getNewAccessTokenAndSetSession(
         params[CallbackPageComponent.CODE_KEY],
         params[CallbackPageComponent.STATE_KEY]
       )

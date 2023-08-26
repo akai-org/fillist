@@ -30,8 +30,8 @@ export class Oauth2SsoService {
     }))
   }
 
-  getAccessTokenAndSetSession (code: string, state: string): void {
-    this.getAccessToken(code, state).pipe(catchError((err: any) => {
+  getNewAccessTokenAndSetSession (code: string, state: string): void {
+    this.getNewAccessToken(code, state).pipe(catchError((err: any) => {
       throw this.loginInErrorHandler(err)
     })).subscribe((accessToken: AccessTokenResponseBodyInterface) => {
       this.setSession(accessToken)
@@ -55,7 +55,7 @@ export class Oauth2SsoService {
     return new Error(err)
   }
 
-  getAccessToken (code: string, state: string): Observable<AccessTokenResponseBodyInterface> {
+  getNewAccessToken (code: string, state: string): Observable<AccessTokenResponseBodyInterface> {
     if (state !== this.getOauthState()) {
       throw this.loginInErrorHandler('Invalid state')
     }
@@ -66,7 +66,7 @@ export class Oauth2SsoService {
     })
   }
 
-  getRefreshedToken (): Observable<AccessTokenResponseBodyInterface> {
+  getNewRefreshedToken (): Observable<AccessTokenResponseBodyInterface> {
     return this.http.post<AccessTokenResponseBodyInterface>(`${environment.backendUrl}/oauth2/refresh`, {
       grantType: 'refresh_token',
       refreshToken: localStorage.getItem(Oauth2SsoService.REFRESH_TOKEN_KEY)
@@ -96,7 +96,7 @@ export class Oauth2SsoService {
     const now: number = new Date().getTime()
     const expiresAt: number = parseInt(expiresIn)
     if (!(now < expiresAt)) {
-      this.getRefreshedToken()
+      this.getNewRefreshedToken()
         .pipe(catchError((err: any) => {
           throw this.refreshTokenErrorHandler(err)
         }))
