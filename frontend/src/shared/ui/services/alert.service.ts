@@ -16,6 +16,7 @@ export class AlertService {
 
   displayAlert (message: string, type: AlertColor = AlertColor.ERROR, onClose: () => void = () => {
   }): void {
+    if (message.length > 50) throw new Error('Message too long')
     if (AlertService.viewContainerRef == null) throw new Error('ViewContainerRef not set')
     const componentRef = AlertService.viewContainerRef.createComponent(AlertComponent)
     componentRef.instance.message = message

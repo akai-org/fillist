@@ -13,6 +13,7 @@ main {
 
 .btn-lgn {
   all: unset;
+  margin-top: 2rem;
   display: flex;
   flex-direction: row;
   @include button($light-color, transparent, $light-color);

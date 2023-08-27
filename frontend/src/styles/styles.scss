@@ -79,3 +79,9 @@ button {
     font-size: 8px;
   }
 }
+
+@media (max-width: 450px) {
+  .alert-icon{
+    --ng-icon__size: 2rem !important;
+  }
+}
