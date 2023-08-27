@@ -40,7 +40,7 @@ export class Oauth2SsoService {
   }
 
   loginInErrorHandler (err: any): Error {
-    this.alertService.displayAlert('Something went wrong with authentication. Please try again later.', AlertColor.ERROR, () => {
+    this.alertService.displayAlert('Something went wrong. Please try again later.', AlertColor.ERROR, () => {
       this.logout()
       this.redirectToLoginIn()
     })
