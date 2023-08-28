@@ -1,18 +1,18 @@
 import { TestBed } from '@angular/core/testing'
 
-import { Oauth2SsoService } from './oauth2-sso.service'
+import { AuthService } from './auth.service'
 import { HttpClient, HttpHandler } from '@angular/common/http'
 import { AccessTokenResponseBodyInterface } from '../models/access-token-response-body.interface'
 import { Observable } from 'rxjs'
 
-describe('Oauth2SsoService', () => {
-  let service: Oauth2SsoService
+describe('AuthService', () => {
+  let service: AuthService
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [HttpClient, HttpHandler]
     })
-    service = TestBed.inject(Oauth2SsoService)
+    service = TestBed.inject(AuthService)
   })
 
   it('should be created', () => {
@@ -42,18 +42,18 @@ describe('Oauth2SsoService', () => {
       refreshToken: 'refreshToken',
       tokenType: 'test'
     })
-    expect(localStorage.getItem(Oauth2SsoService.ACCESS_TOKEN_KEY)).toBe('accessToken')
+    expect(localStorage.getItem(AuthService.ACCESS_TOKEN_KEY)).toBe('accessToken')
     const now: number = new Date().getTime()
-    expect(parseInt(localStorage.getItem(Oauth2SsoService.EXPIRES_IN_KEY) ?? '1')).toBe(now + 200000)
-    expect(localStorage.getItem(Oauth2SsoService.REFRESH_TOKEN_KEY)).toBe('refreshToken')
+    expect(parseInt(localStorage.getItem(AuthService.EXPIRES_IN_KEY) ?? '1')).toBe(now + 200000)
+    expect(localStorage.getItem(AuthService.REFRESH_TOKEN_KEY)).toBe('refreshToken')
     service.setSession({
       accessToken: 'accessToken2',
       expiresIn: 200,
       refreshToken: null,
       tokenType: 'test'
     })
-    expect(localStorage.getItem(Oauth2SsoService.ACCESS_TOKEN_KEY)).toBe('accessToken2')
-    expect(localStorage.getItem(Oauth2SsoService.REFRESH_TOKEN_KEY)).toBe('refreshToken')
+    expect(localStorage.getItem(AuthService.ACCESS_TOKEN_KEY)).toBe('accessToken2')
+    expect(localStorage.getItem(AuthService.REFRESH_TOKEN_KEY)).toBe('refreshToken')
   })
 
   it('should logout works', () => {
@@ -64,9 +64,9 @@ describe('Oauth2SsoService', () => {
       tokenType: 'test'
     })
     service.logout()
-    expect(localStorage.getItem(Oauth2SsoService.ACCESS_TOKEN_KEY)).toBeNull()
-    expect(localStorage.getItem(Oauth2SsoService.REFRESH_TOKEN_KEY)).toBeNull()
-    expect(localStorage.getItem(Oauth2SsoService.EXPIRES_IN_KEY)).toBeNull()
+    expect(localStorage.getItem(AuthService.ACCESS_TOKEN_KEY)).toBeNull()
+    expect(localStorage.getItem(AuthService.REFRESH_TOKEN_KEY)).toBeNull()
+    expect(localStorage.getItem(AuthService.EXPIRES_IN_KEY)).toBeNull()
   })
 
   it('should isLoggedIn works', () => {
