@@ -4,20 +4,28 @@ import { SpinnerComponent } from './components/spinner/spinner.component'
 import { AlertComponent } from './components/alert/alert.component'
 import { NgIconsModule } from '@ng-icons/core'
 import { cssClose, cssDanger } from '@ng-icons/css.gg'
+import { HeaderComponent } from './components/header/header.component'
+import { RouterLink } from '@angular/router'
 
 @NgModule({
   declarations: [
     SpinnerComponent,
-    AlertComponent
+    AlertComponent,
+    HeaderComponent
   ],
   exports: [
     SpinnerComponent,
-    AlertComponent
+    AlertComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
     NgOptimizedImage,
-    NgIconsModule.withIcons({ cssClose, cssDanger })
+    NgIconsModule.withIcons({
+      cssClose,
+      cssDanger
+    }),
+    RouterLink
   ]
 })
 export class UiModule {

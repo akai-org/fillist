@@ -6,6 +6,8 @@ import { AppComponent } from './app.component'
 import { PagesModule } from '../pages/pages.module'
 import { AuthInterceptor } from '../security/interceptor/auth.interceptor'
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
+import { NgOptimizedImage } from '@angular/common'
+import { UiModule } from '../shared/ui/ui.module'
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PagesModule
+    PagesModule,
+    NgOptimizedImage,
+    UiModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
