@@ -7,13 +7,15 @@ import { cssClose, cssDanger } from '@ng-icons/css.gg'
 import { HeaderComponent } from './components/header/header.component'
 import { RouterLink, RouterOutlet } from '@angular/router'
 import { LayoutComponent } from './components/layout/layout.component'
+import { UserPanelComponent } from './components/user-panel/user-panel.component'
 
 @NgModule({
   declarations: [
     SpinnerComponent,
     AlertComponent,
     HeaderComponent,
-    LayoutComponent
+    LayoutComponent,
+    UserPanelComponent
   ],
   exports: [
     SpinnerComponent,
