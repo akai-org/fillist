@@ -5,13 +5,15 @@ import { AlertComponent } from './components/alert/alert.component'
 import { NgIconsModule } from '@ng-icons/core'
 import { cssClose, cssDanger } from '@ng-icons/css.gg'
 import { HeaderComponent } from './components/header/header.component'
-import { RouterLink } from '@angular/router'
+import { RouterLink, RouterOutlet } from '@angular/router'
+import { LayoutComponent } from './components/layout/layout.component'
 
 @NgModule({
   declarations: [
     SpinnerComponent,
     AlertComponent,
-    HeaderComponent
+    HeaderComponent,
+    LayoutComponent
   ],
   exports: [
     SpinnerComponent,
@@ -25,7 +27,8 @@ import { RouterLink } from '@angular/router'
       cssClose,
       cssDanger
     }),
-    RouterLink
+    RouterLink,
+    RouterOutlet
   ]
 })
 export class UiModule {
