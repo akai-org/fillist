@@ -3,6 +3,7 @@ package pl.akai.fillist.security.configurations
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity
 import org.springframework.security.config.web.server.ServerHttpSecurity
@@ -27,6 +28,7 @@ class WebSecurityConfig {
         http
             .authorizeExchange { exchanges: AuthorizeExchangeSpec ->
                 exchanges.pathMatchers("/oauth2/**").permitAll()
+                exchanges.pathMatchers(HttpMethod.OPTIONS).permitAll()
                 exchanges.anyExchange().authenticated()
             }
             .csrf { it.disable() }
