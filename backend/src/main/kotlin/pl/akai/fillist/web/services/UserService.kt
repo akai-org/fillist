@@ -12,12 +12,14 @@ object UserService {
             largeImageUrl = getLargeImage(spotifyUserProfile.images),
         )
 
-    private fun getSmallImage(images: List<SpotifyProfileResponseBody.Image>): String {
+    private fun getSmallImage(images: List<SpotifyProfileResponseBody.Image>): String? {
+        if(images.isEmpty()) return null
         val min: Int = images.minOf { it.height }
         return images.find { it.height == min }?.url ?: ""
     }
 
-    private fun getLargeImage(images: List<SpotifyProfileResponseBody.Image>): String {
+    private fun getLargeImage(images: List<SpotifyProfileResponseBody.Image>): String? {
+        if(images.isEmpty()) return null
         val max: Int = images.maxOf { it.height }
         return images.find { it.height == max }?.url ?: ""
     }

@@ -10,10 +10,11 @@ import { TopViewContainerRefService } from '../../services/top-view-container-re
 })
 export class UserPanelComponent {
   smallImage: Observable<string> = this.userPanelService.userProfile.pipe(map(it => it.smallImageUrl))
+  dataIsReady: Observable<boolean> = this.userPanelService.userProfile.pipe(map(it => it.displayName !== ''))
   panelIsOpen = false
 
   constructor (
-    private userPanelService: UserProfileService,
+    protected userPanelService: UserProfileService,
     private topViewContainerRef: TopViewContainerRefService
   ) {
   }

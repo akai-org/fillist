@@ -1,7 +1,7 @@
-<div class="gradient-border" *ngIf="image$">
+<div class="gradient-border" *ngIf="displayName$">
     <main>
         <div class="image-gradient">
-            <img [ngSrc]="(image$ | async) || ''" alt="Profile photo" width="200" height="200">
+            <img [ngSrc]="(image$ | async) || 'assets/images/profile.svg'" alt="Profile photo" width="200" height="200">
         </div>
         <h5>{{ displayName$ | async }}</h5>
         <small>{{ email$ | async }}</small>
