@@ -33,11 +33,12 @@ export class TopViewContainerRefService {
     componentRef.changeDetectorRef.detectChanges()
   }
 
-  displayProfilePanel (): void {
+  displayProfilePanel (onClose: () => void = () => {}): void {
     if (TopViewContainerRefService.viewContainerRef == null) throw new Error('ViewContainerRef not set')
     const componentRef = TopViewContainerRefService.viewContainerRef.createComponent(UserPanelDialogComponent)
     componentRef.instance.onClose.subscribe(() => {
       componentRef.destroy()
+      onClose()
     })
     componentRef.changeDetectorRef.detectChanges()
   }
