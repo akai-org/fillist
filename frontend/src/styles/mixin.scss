@@ -16,3 +16,18 @@
     cursor: pointer;
   }
 }
+
+@mixin fade-in-animation($duration: 0.5s) {
+  -webkit-animation: fade 0.5s;
+  -o-animation: fade 0.5s;
+  animation: fade $duration;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

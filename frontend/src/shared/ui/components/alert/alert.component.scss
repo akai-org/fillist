@@ -1,4 +1,5 @@
 @import "variables";
+@import "mixin";
 
 div {
   position: absolute;
@@ -17,18 +18,7 @@ div {
     margin: 0 1em;
   }
 
-  -webkit-animation: fade 0.5s;
-  -o-animation: fade 0.5s;
-  animation: fade 0.5s;
-}
-
-@keyframes fade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  @include fade-in-animation()
 }
 
 button {

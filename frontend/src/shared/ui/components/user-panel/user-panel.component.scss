@@ -1,4 +1,5 @@
 @import "variables";
+@import "mixin";
 
 img {
   border-radius: 100em;
@@ -25,6 +26,7 @@ button {
   justify-content: center;
   align-content: center;
   background: $accent-gradient;
+  @include fade-in-animation();
 }
 
 button:hover{

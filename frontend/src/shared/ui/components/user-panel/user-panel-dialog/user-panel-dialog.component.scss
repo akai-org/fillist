@@ -1,4 +1,5 @@
 @import "variables";
+@import "mixin";
 
 main {
   background-color: $light-darker;
@@ -28,18 +29,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  -webkit-animation: fade 0.5s;
-  -o-animation: fade 0.5s;
-  animation: fade 0.5s;
-}
-
-@keyframes fade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  @include fade-in-animation()
 }
 
 .image-gradient {
