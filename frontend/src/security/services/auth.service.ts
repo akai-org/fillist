@@ -5,19 +5,19 @@ import { AuthorizationCodeUrlResponseBodyInterface } from '../models/authorizati
 import { environment } from 'src/environments/environment'
 import { AccessTokenResponseBodyInterface } from '../models/access-token-response-body.interface'
 import { Router } from '@angular/router'
-import { AlertService } from '../../shared/ui/services/alert.service'
+import { TopViewContainerRefService } from '../../shared/ui/services/top-view-container-ref.service'
 import { AlertColor } from '../../shared/ui/components/alert/alertColor'
 
 @Injectable({
   providedIn: 'root'
 })
-export class Oauth2SsoService {
+export class AuthService {
   static readonly OAUTH_STATE_KEY: string = 'oauthState'
   static readonly REFRESH_TOKEN_KEY: string = 'refreshToken'
   static readonly ACCESS_TOKEN_KEY: string = 'accessToken'
   static readonly EXPIRES_IN_KEY: string = 'expiresIn'
 
-  constructor (private http: HttpClient, private router: Router, private alertService: AlertService) {
+  constructor (private http: HttpClient, private router: Router, private topViewContainerRef: TopViewContainerRefService) {
   }
 
   getAuthorizationCodeUrl (): Observable<string> {
@@ -40,7 +40,7 @@ export class Oauth2SsoService {
   }
 
   loginInErrorHandler (err: any): Error {
-    this.alertService.displayAlert('Something went wrong. Please try again later.', AlertColor.ERROR, () => {
+    this.topViewContainerRef.displayAlert('Something went wrong. Please try again later.', AlertColor.ERROR, () => {
       this.logout()
       this.redirectToLoginIn()
     })
@@ -48,7 +48,7 @@ export class Oauth2SsoService {
   }
 
   refreshTokenErrorHandler (err: any): Error {
-    this.alertService.displayAlert('Session refresh error. Please try login in again.', AlertColor.WARNING, () => {
+    this.topViewContainerRef.displayAlert('Session refresh error. Please try login in again.', AlertColor.WARNING, () => {
       this.logout()
       this.redirectToLoginIn()
     })
@@ -69,29 +69,29 @@ export class Oauth2SsoService {
   getNewRefreshedToken (): Observable<AccessTokenResponseBodyInterface> {
     return this.http.post<AccessTokenResponseBodyInterface>(`${environment.backendUrl}/oauth2/refresh`, {
       grantType: 'refresh_token',
-      refreshToken: localStorage.getItem(Oauth2SsoService.REFRESH_TOKEN_KEY)
+      refreshToken: localStorage.getItem(AuthService.REFRESH_TOKEN_KEY)
     })
   }
 
   setSession (accessTokenResponseBody: AccessTokenResponseBodyInterface): void {
-    localStorage.setItem(Oauth2SsoService.ACCESS_TOKEN_KEY, accessTokenResponseBody.accessToken)
+    localStorage.setItem(AuthService.ACCESS_TOKEN_KEY, accessTokenResponseBody.accessToken)
     if (accessTokenResponseBody.refreshToken != null) {
-      localStorage.setItem(Oauth2SsoService.REFRESH_TOKEN_KEY, accessTokenResponseBody.refreshToken)
+      localStorage.setItem(AuthService.REFRESH_TOKEN_KEY, accessTokenResponseBody.refreshToken)
     }
     const now: number = new Date().getTime()
     const expiresAt: number = now + (accessTokenResponseBody.expiresIn * 1000)
-    localStorage.setItem(Oauth2SsoService.EXPIRES_IN_KEY, expiresAt.toString())
+    localStorage.setItem(AuthService.EXPIRES_IN_KEY, expiresAt.toString())
   }
 
   logout (): void {
-    localStorage.removeItem(Oauth2SsoService.ACCESS_TOKEN_KEY)
-    localStorage.removeItem(Oauth2SsoService.REFRESH_TOKEN_KEY)
-    localStorage.removeItem(Oauth2SsoService.EXPIRES_IN_KEY)
+    localStorage.removeItem(AuthService.ACCESS_TOKEN_KEY)
+    localStorage.removeItem(AuthService.REFRESH_TOKEN_KEY)
+    localStorage.removeItem(AuthService.EXPIRES_IN_KEY)
   }
 
   isLoggedIn (): boolean {
-    const accessToken: string | null = localStorage.getItem(Oauth2SsoService.ACCESS_TOKEN_KEY)
-    const expiresIn: string | null = localStorage.getItem(Oauth2SsoService.EXPIRES_IN_KEY)
+    const accessToken: string | null = localStorage.getItem(AuthService.ACCESS_TOKEN_KEY)
+    const expiresIn: string | null = localStorage.getItem(AuthService.EXPIRES_IN_KEY)
     if ((accessToken == null) || (expiresIn == null)) return false
     const now: number = new Date().getTime()
     const expiresAt: number = parseInt(expiresIn)
@@ -108,12 +108,12 @@ export class Oauth2SsoService {
   }
 
   public getOauthState (): string {
-    return localStorage.getItem(Oauth2SsoService.OAUTH_STATE_KEY) ?? this.saveOauthState()
+    return localStorage.getItem(AuthService.OAUTH_STATE_KEY) ?? this.saveOauthState()
   }
 
   private saveOauthState (): string {
     const state: string = btoa(Math.random().toString().substring(2, 10))
-    localStorage.setItem(Oauth2SsoService.OAUTH_STATE_KEY, state)
+    localStorage.setItem(AuthService.OAUTH_STATE_KEY, state)
     return state
   }
 

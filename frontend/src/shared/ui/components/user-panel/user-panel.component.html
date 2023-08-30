@@ -1,0 +1,3 @@
+<button (click)="openUserPanel()" *ngIf="dataIsReady| async">
+    <img [ngSrc]="(smallImage | async) || 'assets/images/profile.svg'" alt="Profile Photo" width="50" height="50">
+</button>

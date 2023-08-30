@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { Oauth2SsoService } from '../../security/services/oauth2-sso.service'
+import { AuthService } from '../../security/services/auth.service'
 import { Observable } from 'rxjs'
 
 @Component({
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs'
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent {
-  authorizationCodeUrl$: Observable<string> = this.oauth2SsoService.getAuthorizationCodeUrl()
-  constructor (private oauth2SsoService: Oauth2SsoService) {
+  authorizationCodeUrl$: Observable<string> = this.authService.getAuthorizationCodeUrl()
+  constructor (private authService: AuthService) {
   }
 }

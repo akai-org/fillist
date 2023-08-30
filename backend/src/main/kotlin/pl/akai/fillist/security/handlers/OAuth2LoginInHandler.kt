@@ -19,7 +19,7 @@ class OAuth2LoginInHandler @Autowired constructor(
 ) {
 
     companion object {
-        val LOGGER = LoggerFactory.getLogger(OAuth2LoginInHandler::class.java)
+        val LOGGER = LoggerFactory.getLogger(OAuth2LoginInHandler::class.java)!!
     }
 
     fun getAuthorizationCodeUrl(request: ServerRequest): Mono<ServerResponse> {

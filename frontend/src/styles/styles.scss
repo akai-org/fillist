@@ -4,52 +4,52 @@
 
 body,html {
   margin: 0;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   font-size: 16px;
   font-family: Lato, sans-serif;
   font-weight: 300;
-  background-color: $light-color;
+  background-color: $light;
 }
 
 h1 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 2.5rem;
+  font-size: 2.5em;
   font-weight: 400;
   margin: 0;
 }
 
 h2 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 2.1459rem;
+  font-size: 2.1459em;
   font-weight: 400;
   margin: 0;
 }
 
 h3 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 1.842rem;
+  font-size: 1.842em;
   font-weight: 400;
   margin: 0;
 }
 
 h4 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 1.5811rem;
+  font-size: 1.5811em;
   font-weight: 400;
   margin: 0;
 }
 
 h5 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 1.3572rem;
+  font-size: 1.3572em;
   font-weight: 400;
   margin: 0;
 }
 
 h6 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 1.1667rem;
+  font-size: 1.1667em;
   font-weight: 400;
   margin: 0;
 }
@@ -57,15 +57,28 @@ h6 {
 small {
   font-family: Lato, sans-serif;
   font-weight: 300;
-  font-size: 0.8333rem;
+  font-size: 0.8333em;
 }
 
 button {
   @include button;
+  border: unset;
+  &:hover{
+    background-color: $accent-purple-dark;
+  }
+  &:active{
+    background-color: $accent-purple-dark;
+  }
 }
 
 .button-outline {
   @include button($accent-purple, transparent, $accent-purple);
+  &:hover {
+    background-color: #ffffff30;
+  }
+  &:active{
+    background-color: #ffffff30;
+  }
 }
 
 @media (max-width: 700px) {
@@ -82,6 +95,6 @@ button {
 
 @media (max-width: 450px) {
   .alert-icon{
-    --ng-icon__size: 2rem !important;
+    --ng-icon__size: 2em !important;
   }
 }

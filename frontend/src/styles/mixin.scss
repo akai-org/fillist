@@ -1,17 +1,33 @@
 @import "variables";
 
-@mixin button($border-color: $accent-purple, $background-color :$accent-purple, $text-color: $light-color ){
+@mixin button($border-color: $accent-purple, $background-color :$accent-purple, $text-color: $light ){
+  all: unset;
   background-color: $background-color;
-  padding: 0.9375rem 3.125rem;
-  border-radius: 6.25rem;
-  border: 3px solid rgba($text-color, 0.9);
+  padding: 0.4375em 3.125em;
+  border-radius: 6.25em;
+  border: 3px solid rgba($border-color, 0.9);
   color: $text-color;
   font-family: 'Didact Gothic', sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   &:hover{
     cursor: pointer;
-    background-color: #ffffff30;
   }
-  &:active{
-    background-color: $text-color;
+}
+
+@mixin fade-in-animation($duration: 0.5s) {
+  -webkit-animation: fade 0.5s;
+  -o-animation: fade 0.5s;
+  animation: fade $duration;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { Oauth2SsoService } from '../../security/services/oauth2-sso.service'
+import { AuthService } from '../../security/services/auth.service'
 
 @Component({
   selector: 'fillist-callback-page',
@@ -13,13 +13,13 @@ export class CallbackPageComponent implements OnInit {
 
   constructor (
     private activatedRoute: ActivatedRoute,
-    private oauth2SsoService: Oauth2SsoService
+    private authService: AuthService
   ) {
   }
 
   ngOnInit (): void {
     this.activatedRoute.queryParams.subscribe((params) => {
-      this.oauth2SsoService.getNewAccessTokenAndSetSession(
+      this.authService.getNewAccessTokenAndSetSession(
         params[CallbackPageComponent.CODE_KEY],
         params[CallbackPageComponent.STATE_KEY]
       )

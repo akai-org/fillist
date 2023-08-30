@@ -1,12 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { AlertColor } from './alertColor'
+import { DialogComponent } from '../dialog-component.interface'
 
 @Component({
   selector: 'fillist-alert',
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss']
 })
-export class AlertComponent {
+export class AlertComponent implements DialogComponent {
   @Output() public onClose = new EventEmitter<() => void>()
   @Input() public message: string = 'An error occurred!'
   @Input() public type: AlertColor = AlertColor.ERROR

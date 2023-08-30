@@ -4,7 +4,7 @@
 main {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(91deg, $accent-purple-light 0%, $accent-blue 100%), $light-color;
+  background: linear-gradient(91deg, $accent-purple-light 0%, $accent-blue 100%), $light;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,33 +13,36 @@ main {
 
 .btn-lgn {
   all: unset;
-  margin-top: 2rem;
+  margin-top: 2em;
   display: flex;
   flex-direction: row;
-  @include button($light-color, transparent, $light-color);
+  @include button($light, transparent, $light);
   img{
-    margin-right: 1rem;
-    height: 4rem;
+    margin-right: 1em;
+    height: 4em;
     width: auto;
+  }
+  &:hover{
+    background-color: #ffffff30;
   }
 }
 
 section {
   display: flex;
   flex-direction: row;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 
   h1 {
     color: #FFF;
-    font-size: 9.375rem;
+    font-size: 9.375em;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-left: 2rem;
+    margin-left: 0.2em;
   }
 
   img {
-    height: 13rem;
+    height: 13em;
     width: auto;
   }
 }
