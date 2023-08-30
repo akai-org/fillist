@@ -30,11 +30,13 @@ class TokenServiceTests {
         `when`(spotifyUserService.getProfile(spotifyToken)).thenReturn(
             Mono.just(
                 SpotifyProfileResponseBody(
-                    "email", "displayName", listOf(
-                        SpotifyProfileResponseBody.Image("url", 100, 100)
-                    )
-                )
-            )
+                    "email",
+                    "displayName",
+                    listOf(
+                        SpotifyProfileResponseBody.Image("url", 100, 100),
+                    ),
+                ),
+            ),
         )
     }
 

@@ -25,10 +25,12 @@ class WebClientConfig {
             .baseUrl(spotifyApiUri)
             .defaultHeader(HttpHeaders.ACCEPT, "application/json")
             .codecs {
-                val decoder = KotlinSerializationJsonDecoder(Json {
-                    ignoreUnknownKeys = true
-                    namingStrategy = JsonNamingStrategy.SnakeCase
-                })
+                val decoder = KotlinSerializationJsonDecoder(
+                    Json {
+                        ignoreUnknownKeys = true
+                        namingStrategy = JsonNamingStrategy.SnakeCase
+                    },
+                )
                 it.defaultCodecs().kotlinSerializationJsonDecoder(decoder)
             }
             .filter { request: ClientRequest, next: ExchangeFunction ->
