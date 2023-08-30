@@ -6,6 +6,6 @@ import kotlinx.serialization.Serializable
 data class UserProfileResponseBody (
     val displayName: String,
     val email: String,
-    val smallImageUrl: String,
-    val largeImageUrl: String,
+    val smallImageUrl: String?,
+    val largeImageUrl: String?,
 )

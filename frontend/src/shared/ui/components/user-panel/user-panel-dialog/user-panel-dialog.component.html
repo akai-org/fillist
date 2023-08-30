@@ -1,6 +1,16 @@
-<div class="gradient-border">
+<div class="gradient-border" *ngIf="image$">
     <main>
-        <h4>Display Name</h4>
-        <h5>Mail</h5>
+        <div class="image-gradient">
+            <img [ngSrc]="(image$ | async) || ''" alt="Profile photo" width="200" height="200">
+        </div>
+        <h5>{{ displayName$ | async }}</h5>
+        <small>{{ email$ | async }}</small>
+        <button (click)="logout()">
+            <h6>Logout</h6>
+        </button>
     </main>
+    <button (click)="close()" class="close-button">
+        <ng-icon size="20" name="cssClose" class="alert-icon"></ng-icon>
+    </button>
 </div>
+

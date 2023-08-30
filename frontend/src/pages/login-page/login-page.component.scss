@@ -4,7 +4,7 @@
 main {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(91deg, $accent-purple-light 0%, $accent-blue 100%), $light-color;
+  background: linear-gradient(91deg, $accent-purple-light 0%, $accent-blue 100%), $light;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,11 +16,14 @@ main {
   margin-top: 2rem;
   display: flex;
   flex-direction: row;
-  @include button($light-color, transparent, $light-color);
+  @include button($light, transparent, $light);
   img{
     margin-right: 1rem;
     height: 4rem;
     width: auto;
+  }
+  &:hover{
+    background-color: #ffffff30;
   }
 }
 

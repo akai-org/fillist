@@ -36,6 +36,9 @@ export class TopViewContainerRefService {
   displayProfilePanel (): void {
     if (TopViewContainerRefService.viewContainerRef == null) throw new Error('ViewContainerRef not set')
     const componentRef = TopViewContainerRefService.viewContainerRef.createComponent(UserPanelDialogComponent)
+    componentRef.instance.onClose.subscribe(() => {
+      componentRef.destroy()
+    })
     componentRef.changeDetectorRef.detectChanges()
   }
 }

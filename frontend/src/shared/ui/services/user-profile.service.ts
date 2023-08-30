@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs'
   providedIn: 'root'
 })
 export class UserProfileService {
-  _userProfile = new BehaviorSubject<UserProfileInterface>({
+  private _userProfile = new BehaviorSubject<UserProfileInterface>({
     displayName: '',
     email: '',
     largeImageUrl: '',

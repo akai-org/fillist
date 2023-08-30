@@ -1,5 +1,8 @@
-$light-color: #FFFFF5;
-$dark-color: #4A4A4A;
+$light: #FFFFF5;
+$light-darker: #ffffea;
+$dark: #4A4A4A;
 $accent-purple: #AA36F0;
 $accent-purple-light: #C812F5;
+$accent-purple-dark: #862DBD;
 $accent-blue: #5F8CE3;
+$accent-gradient: linear-gradient(90deg, $accent-purple, $accent-blue);

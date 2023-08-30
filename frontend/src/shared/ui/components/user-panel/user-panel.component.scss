@@ -16,7 +16,7 @@ button {
   display: flex;
   justify-content: center;
   align-content: center;
-  background: linear-gradient(90deg, $accent-purple, $accent-blue);
+  background: $accent-gradient;
 }
 
 button:hover{
