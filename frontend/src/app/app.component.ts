@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core'
-import { AlertService } from '../shared/ui/services/alert.service'
+import { TopViewContainerRefService } from '../shared/ui/services/top-view-container-ref.service'
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   title = 'fillist'
 
   constructor (viewContainerRef: ViewContainerRef) {
-    AlertService.setViewContainerRef(viewContainerRef)
+    TopViewContainerRefService.setViewContainerRef(viewContainerRef)
   }
 
   ngOnInit (): void {

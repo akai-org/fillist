@@ -1,4 +1,3 @@
-<div *ngIf="smallImage | async" class="gradient-border">
+<button *ngIf="smallImage | async" (click)="openUserPanel()">
     <img [ngSrc]="(smallImage | async) || ''" alt="Profile Photo" width="50" height="50">
-</div>
-
+</button>

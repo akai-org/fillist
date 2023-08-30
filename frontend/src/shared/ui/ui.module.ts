@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component'
 import { RouterLink, RouterOutlet } from '@angular/router'
 import { LayoutComponent } from './components/layout/layout.component'
 import { UserPanelComponent } from './components/user-panel/user-panel.component'
+import { UserPanelDialogComponent } from './components/user-panel/user-panel-dialog/user-panel-dialog.component'
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { UserPanelComponent } from './components/user-panel/user-panel.component
     AlertComponent,
     HeaderComponent,
     LayoutComponent,
-    UserPanelComponent
+    UserPanelComponent,
+    UserPanelDialogComponent
   ],
   exports: [
     SpinnerComponent,
