@@ -14,42 +14,42 @@ body,html {
 
 h1 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 2.5rem;
+  font-size: 2.5em;
   font-weight: 400;
   margin: 0;
 }
 
 h2 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 2.1459rem;
+  font-size: 2.1459em;
   font-weight: 400;
   margin: 0;
 }
 
 h3 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 1.842rem;
+  font-size: 1.842em;
   font-weight: 400;
   margin: 0;
 }
 
 h4 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 1.5811rem;
+  font-size: 1.5811em;
   font-weight: 400;
   margin: 0;
 }
 
 h5 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 1.3572rem;
+  font-size: 1.3572em;
   font-weight: 400;
   margin: 0;
 }
 
 h6 {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 1.1667rem;
+  font-size: 1.1667em;
   font-weight: 400;
   margin: 0;
 }
@@ -57,7 +57,7 @@ h6 {
 small {
   font-family: Lato, sans-serif;
   font-weight: 300;
-  font-size: 0.8333rem;
+  font-size: 0.8333em;
 }
 
 button {
@@ -95,6 +95,6 @@ button {
 
 @media (max-width: 450px) {
   .alert-icon{
-    --ng-icon__size: 2rem !important;
+    --ng-icon__size: 2em !important;
   }
 }

@@ -1,15 +1,22 @@
 @import "variables";
 
 img {
-  border-radius: 100rem;
-  width: 2.8rem;
-  height: 2.8rem;
+  border-radius: 100em;
+  width: 2.8em;
+  height: 2.8em;
+}
+
+@media (max-width: 700px) {
+  img{
+    width: 3.8em;
+    height: 3.8em;
+  }
 }
 
 button {
   all: unset;
-  padding: 0.2rem;
-  border-radius: 100rem;
+  padding: 0.2em;
+  border-radius: 100em;
   position: relative;
   width: max-content;
   height: max-content;

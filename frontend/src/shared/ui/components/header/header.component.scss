@@ -4,21 +4,28 @@ header {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  padding: 1rem 0 1rem 0;
+  padding: 1em 0 1em 0;
 }
 
 div {
-  width: 3.5rem;
+  width: 3.5em;
 }
 
 fillist-user-panel {
-  width: 3rem;
-  height: 3rem;
+  width: 3em;
+  height: 3em;
+}
+
+@media (max-width: 700px) {
+  fillist-user-panel{
+    width: 4em;
+    height: 4em;
+  }
 }
 
 img {
   width: auto;
-  height: 5rem;
+  height: 5em;
 }
 
 img:hover {

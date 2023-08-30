@@ -3,8 +3,8 @@
 @mixin button($border-color: $accent-purple, $background-color :$accent-purple, $text-color: $light ){
   all: unset;
   background-color: $background-color;
-  padding: 0.4375rem 3.125rem;
-  border-radius: 6.25rem;
+  padding: 0.4375em 3.125em;
+  border-radius: 6.25em;
   border: 3px solid rgba($border-color, 0.9);
   color: $text-color;
   font-family: 'Didact Gothic', sans-serif;
