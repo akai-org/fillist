@@ -11,3 +11,6 @@ fillist:
           redirect-uri: http://localhost:4200/callback
           spotify-idp-uri: https://accounts.spotify.com
           scope: user-read-private,user-read-email,user-library-read,user-library-modify,user-read-playback-state,user-modify-playback-state,user-read-currently-playing,user-read-recently-played
+spring:
+  main:
+    allow-bean-definition-overriding: true

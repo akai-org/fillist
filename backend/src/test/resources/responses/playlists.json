@@ -1,0 +1,538 @@
+{
+  "items": [
+    {
+      "description": "",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/1CBGDKGM8kekBPfAG5jPZt"
+      },
+      "id": "1CBGDKGM8kekBPfAG5jPZt",
+      "images": [
+        {
+          "url": "https://mosaic.scdn.co/640/ab67616d0000b2732910c6fc625b0d5ae2eed26aab67616d0000b2733dc315e27e5cae6e5519823aab67616d0000b273d272c37389bd3d9c20564166ab67616d0000b273d5bb99cd52da195675b2f2cd",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://mosaic.scdn.co/300/ab67616d0000b2732910c6fc625b0d5ae2eed26aab67616d0000b2733dc315e27e5cae6e5519823aab67616d0000b273d272c37389bd3d9c20564166ab67616d0000b273d5bb99cd52da195675b2f2cd",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://mosaic.scdn.co/60/ab67616d0000b2732910c6fc625b0d5ae2eed26aab67616d0000b2733dc315e27e5cae6e5519823aab67616d0000b273d272c37389bd3d9c20564166ab67616d0000b273d5bb99cd52da195675b2f2cd",
+          "height": 60,
+          "width": 60
+        }
+      ],
+      "name": "Starred",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/smedjan"
+        },
+        "display_name": "smedjan",
+        "id": "smedjan"
+      }
+    },
+    {
+      "description": "Exhilarating fusion of mainstream and indie dance tracks, from disco to trance, pop and house. Curated by <a href=\"https://twitter.com/nicktoumpelis\">Nick Toumpelis</a>. Photography by <a href=\"https://unsplash.com/chrisjoelcampbell\">Christopher Campbell</a>. ",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/3tT3E3Q4u5Xd0v3ySPLR1O"
+      },
+      "id": "3tT3E3Q4u5Xd0v3ySPLR1O",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab67706c0000bebb5e937351a83b4014b68a09a0",
+          "height": null,
+          "width": null
+        }
+      ],
+      "name": "dance fusion",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/1226836970"
+        },
+        "display_name": "Nick Toumpelis",
+        "id": "1226836970"
+      }
+    },
+    {
+      "description": "",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/41R1UENL6yUDiRR2riptb7"
+      },
+      "id": "41R1UENL6yUDiRR2riptb7",
+      "images": [
+        {
+          "url": "https://mosaic.scdn.co/640/ab67616d0000b273722ee6054732c347e335cb35ab67616d0000b2737d4287bed60bfc5f13d96644ab67616d0000b273bef76218c65153abaed75e6eab67616d0000b273da6e3c1088d0a90bc96b848c",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://mosaic.scdn.co/300/ab67616d0000b273722ee6054732c347e335cb35ab67616d0000b2737d4287bed60bfc5f13d96644ab67616d0000b273bef76218c65153abaed75e6eab67616d0000b273da6e3c1088d0a90bc96b848c",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://mosaic.scdn.co/60/ab67616d0000b273722ee6054732c347e335cb35ab67616d0000b2737d4287bed60bfc5f13d96644ab67616d0000b273bef76218c65153abaed75e6eab67616d0000b273da6e3c1088d0a90bc96b848c",
+          "height": 60,
+          "width": 60
+        }
+      ],
+      "name": "covers and under covers",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/migo"
+        },
+        "display_name": "migo",
+        "id": "migo"
+      }
+    },
+    {
+      "description": "Bombastic tunes -- in some way or another",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/6dSh5StaaE1XbIF5s7Lxng"
+      },
+      "id": "6dSh5StaaE1XbIF5s7Lxng",
+      "images": [
+        {
+          "url": "https://mosaic.scdn.co/640/ab67616d0000b273341b1e5f0395b17821491c7dab67616d0000b2734ccb64f022a53d3e8ec84a20ab67616d0000b2735a335126b1854bd315d1fd4fab67616d0000b273e477610ef54781d751a9e319",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://mosaic.scdn.co/300/ab67616d0000b273341b1e5f0395b17821491c7dab67616d0000b2734ccb64f022a53d3e8ec84a20ab67616d0000b2735a335126b1854bd315d1fd4fab67616d0000b273e477610ef54781d751a9e319",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://mosaic.scdn.co/60/ab67616d0000b273341b1e5f0395b17821491c7dab67616d0000b2734ccb64f022a53d3e8ec84a20ab67616d0000b2735a335126b1854bd315d1fd4fab67616d0000b273e477610ef54781d751a9e319",
+          "height": 60,
+          "width": 60
+        }
+      ],
+      "name": "Fläskiga låtar",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/migo"
+        },
+        "display_name": "migo",
+        "id": "migo"
+      }
+    },
+    {
+      "description": "Migo",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/6hBpet9cW4cVgn96xBJ5Ay"
+      },
+      "id": "6hBpet9cW4cVgn96xBJ5Ay",
+      "images": [
+        {
+          "url": "https://mosaic.scdn.co/640/ab67616d0000b273578f1ac435ac326e48334f66ab67616d0000b2736b75d57d2d070c0c4afb3f9aab67616d0000b273722ee6054732c347e335cb35ab67616d0000b273e477610ef54781d751a9e319",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://mosaic.scdn.co/300/ab67616d0000b273578f1ac435ac326e48334f66ab67616d0000b2736b75d57d2d070c0c4afb3f9aab67616d0000b273722ee6054732c347e335cb35ab67616d0000b273e477610ef54781d751a9e319",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://mosaic.scdn.co/60/ab67616d0000b273578f1ac435ac326e48334f66ab67616d0000b2736b75d57d2d070c0c4afb3f9aab67616d0000b273722ee6054732c347e335cb35ab67616d0000b273e477610ef54781d751a9e319",
+          "height": 60,
+          "width": 60
+        }
+      ],
+      "name": "migo1",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/migo"
+        },
+        "display_name": "migo",
+        "id": "migo"
+      }
+    },
+    {
+      "description": "",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/47s8Pj6MjV5UWYEaHIe9ZH"
+      },
+      "id": "47s8Pj6MjV5UWYEaHIe9ZH",
+      "images": [
+        {
+          "url": "https://mosaic.scdn.co/640/ab67616d0000b2733a2d2b9621ef645380c63c16ab67616d0000b273ba4c798ab356b8adb64bb2fcab67616d0000b273cb8d1acbf1184d3b7b268747ab67616d0000b273dbe9c4609ec382dcc0391e62",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://mosaic.scdn.co/300/ab67616d0000b2733a2d2b9621ef645380c63c16ab67616d0000b273ba4c798ab356b8adb64bb2fcab67616d0000b273cb8d1acbf1184d3b7b268747ab67616d0000b273dbe9c4609ec382dcc0391e62",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://mosaic.scdn.co/60/ab67616d0000b2733a2d2b9621ef645380c63c16ab67616d0000b273ba4c798ab356b8adb64bb2fcab67616d0000b273cb8d1acbf1184d3b7b268747ab67616d0000b273dbe9c4609ec382dcc0391e62",
+          "height": 60,
+          "width": 60
+        }
+      ],
+      "name": "Dance I Said",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/michellekadir"
+        },
+        "display_name": "Michelle Kadir",
+        "id": "michellekadir"
+      }
+    },
+    {
+      "description": "",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/13XT3kKAKOuhKV1IdgQxzf"
+      },
+      "id": "13XT3kKAKOuhKV1IdgQxzf",
+      "images": [
+        {
+          "url": "https://mosaic.scdn.co/640/ab67616d0000b27342165edf668b41cb531722b0ab67616d0000b273599dfe976032830e5ec68945ab67616d0000b27397a9ac8888b636959cd8353cab67616d0000b2739d2ff3fc2590549e13f17670",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://mosaic.scdn.co/300/ab67616d0000b27342165edf668b41cb531722b0ab67616d0000b273599dfe976032830e5ec68945ab67616d0000b27397a9ac8888b636959cd8353cab67616d0000b2739d2ff3fc2590549e13f17670",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://mosaic.scdn.co/60/ab67616d0000b27342165edf668b41cb531722b0ab67616d0000b273599dfe976032830e5ec68945ab67616d0000b27397a9ac8888b636959cd8353cab67616d0000b2739d2ff3fc2590549e13f17670",
+          "height": 60,
+          "width": 60
+        }
+      ],
+      "name": "Instrumental",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/migo"
+        },
+        "display_name": "migo",
+        "id": "migo"
+      }
+    },
+    {
+      "description": "",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/70lIZA6kTENcryaoGNIPaA"
+      },
+      "id": "70lIZA6kTENcryaoGNIPaA",
+      "images": [],
+      "name": "Steve Vai - The Story of Light",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/migo"
+        },
+        "display_name": "migo",
+        "id": "migo"
+      }
+    },
+    {
+      "description": "",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/6FTrJV6xPwAxEGNsIDG5Uj"
+      },
+      "id": "6FTrJV6xPwAxEGNsIDG5Uj",
+      "images": [
+        {
+          "url": "https://mosaic.scdn.co/640/ab67616d0000b27310a9b88453d9d4a3aeb55a18ab67616d0000b27366c35697a32e5437811bb5ffab67616d0000b273a0ef2b3fa19f6d2a03149dcaab67616d0000b273a1fc113a6858d0824d9aaf38",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://mosaic.scdn.co/300/ab67616d0000b27310a9b88453d9d4a3aeb55a18ab67616d0000b27366c35697a32e5437811bb5ffab67616d0000b273a0ef2b3fa19f6d2a03149dcaab67616d0000b273a1fc113a6858d0824d9aaf38",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://mosaic.scdn.co/60/ab67616d0000b27310a9b88453d9d4a3aeb55a18ab67616d0000b27366c35697a32e5437811bb5ffab67616d0000b273a0ef2b3fa19f6d2a03149dcaab67616d0000b273a1fc113a6858d0824d9aaf38",
+          "height": 60,
+          "width": 60
+        }
+      ],
+      "name": "Pulp Fiction (approximate)",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/migo"
+        },
+        "display_name": "migo",
+        "id": "migo"
+      }
+    },
+    {
+      "description": "",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/2tiFrJw4jgaQEDTGkNY4Lt"
+      },
+      "id": "2tiFrJw4jgaQEDTGkNY4Lt",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab67616d0000b2731d7f86bc0a6c0cab4503aa17",
+          "height": 640,
+          "width": 640
+        }
+      ],
+      "name": "friday",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/smedjan"
+        },
+        "display_name": "smedjan",
+        "id": "smedjan"
+      }
+    },
+    {
+      "description": "",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/0EDdjGp3CRtWBWesrDv45e"
+      },
+      "id": "0EDdjGp3CRtWBWesrDv45e",
+      "images": [
+        {
+          "url": "https://images-ak.spotifycdn.com/image/ab67706c0000bebb046a80315ca7366b7e337a0f",
+          "height": null,
+          "width": null
+        }
+      ],
+      "name": "07:42",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/robbanrapp"
+        },
+        "display_name": "robin",
+        "id": "robbanrapp"
+      }
+    },
+    {
+      "description": "",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/29e81WfoAsVIwEzXpSv2KT"
+      },
+      "id": "29e81WfoAsVIwEzXpSv2KT",
+      "images": [
+        {
+          "url": "https://mosaic.scdn.co/640/ab67616d0000b2736fd7ec50eeda2f6820f1f873ab67616d0000b273aa7d2641af0fa4c1f76fafbfab67616d0000b273ccdb9c22f07f24a773110a87ab67616d0000b273fff2cb485c36a6d8f639bdba",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://mosaic.scdn.co/300/ab67616d0000b2736fd7ec50eeda2f6820f1f873ab67616d0000b273aa7d2641af0fa4c1f76fafbfab67616d0000b273ccdb9c22f07f24a773110a87ab67616d0000b273fff2cb485c36a6d8f639bdba",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://mosaic.scdn.co/60/ab67616d0000b2736fd7ec50eeda2f6820f1f873ab67616d0000b273aa7d2641af0fa4c1f76fafbfab67616d0000b273ccdb9c22f07f24a773110a87ab67616d0000b273fff2cb485c36a6d8f639bdba",
+          "height": 60,
+          "width": 60
+        }
+      ],
+      "name": "Top 100 Tracks of 2011",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/pitchfork"
+        },
+        "display_name": "Pitchfork",
+        "id": "pitchfork"
+      }
+    },
+    {
+      "description": "",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/6sjcAKwplYdvNVmXuVWqYK"
+      },
+      "id": "6sjcAKwplYdvNVmXuVWqYK",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab67706c0000bebbc421935777d6aa97ca36f613",
+          "height": null,
+          "width": null
+        }
+      ],
+      "name": "Kanye West - The Samples",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/125214440"
+        },
+        "display_name": "King Poop",
+        "id": "125214440"
+      }
+    },
+    {
+      "description": "The official <a href=\"http://www.billboard.com/charts/hot-100\">Billboard Hot 100</a> features this week's most popular songs across all genres, ranked by radio airplay monitored by Nielsen BDS, download sales tracked by Nielsen SoundScan and streaming activity data provided by leading online music services. For more information go to <a href=\"http://Billboard.com\">Billboard.com</a>.",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/6UeSakyzhiEt4NB3UAd6NQ"
+      },
+      "id": "6UeSakyzhiEt4NB3UAd6NQ",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab67706c0000bebb3bd5501a335b265807df34db",
+          "height": null,
+          "width": null
+        }
+      ],
+      "name": "Billboard Hot 100",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/billboard.com"
+        },
+        "display_name": "Billboard",
+        "id": "billboard.com"
+      }
+    },
+    {
+      "description": "Ta det lugnt &amp; koppla av till vårmysiga &amp; behagliga låtar. Kärlekssånger, sköna hits, svenska klassiker, akustiska låtar &amp; vackra ballader.",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/4tIypOcGSBi4GPlXbbNBmf"
+      },
+      "id": "4tIypOcGSBi4GPlXbbNBmf",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab67706c0000bebbbd5af3266f629da301350735",
+          "height": null,
+          "width": null
+        }
+      ],
+      "name": "LUGNA LÅTAR 2023 🌼 lugn & mysig musik",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/sonymusicentertainment"
+        },
+        "display_name": "Filtr Sweden",
+        "id": "sonymusicentertainment"
+      }
+    },
+    {
+      "description": "Sveriges största och bästa svenska klassiker, sånger och hits genom tiderna. Sommarhits och klassiska favoriter – svensk musik sommaren 2023.",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/26uqIdWqPakRB3c6Lw8I7C"
+      },
+      "id": "26uqIdWqPakRB3c6Lw8I7C",
+      "images": [
+        {
+          "url": "https://images-ak.spotifycdn.com/image/ab67706c0000bebbacef539a89e26149b1de32bd",
+          "height": null,
+          "width": null
+        }
+      ],
+      "name": "Svenska låtar alla kan! 🇸🇪",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/sonymusicentertainment"
+        },
+        "display_name": "Filtr Sweden",
+        "id": "sonymusicentertainment"
+      }
+    },
+    {
+      "description": "Världens bästa och mest tidlösa rockmusik i en mix av klassiska &amp; nya rockhits från Måneskin, Ozzy Osbourne, AC/DC, Judas Priest, Bruce Springsteen med flera.",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/1sNULKBP0MR5SCDhoTUGT1"
+      },
+      "id": "1sNULKBP0MR5SCDhoTUGT1",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab67706c0000bebbe4f6db61977bf17a3de7e8dc",
+          "height": null,
+          "width": null
+        }
+      ],
+      "name": "Rock Hits ⚡️",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/legacysweden"
+        },
+        "display_name": "Filtr Legacy Sweden",
+        "id": "legacysweden"
+      }
+    },
+    {
+      "description": "Summer chill beach vibes playlist all genres 2000s - 2023.",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/4u4WSPyfvZ4RrpWWnmjIYY"
+      },
+      "id": "4u4WSPyfvZ4RrpWWnmjIYY",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab67706c0000bebb59e76846e27ba7f51db46ae5",
+          "height": null,
+          "width": null
+        }
+      ],
+      "name": "Beach Vibes 🌴 Summertime Hits 2023",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/jhsizemore"
+        },
+        "display_name": "Beach Vibes",
+        "id": "jhsizemore"
+      }
+    },
+    {
+      "description": "",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/1jiWNIRgT9whCQZMGDzsZU"
+      },
+      "id": "1jiWNIRgT9whCQZMGDzsZU",
+      "images": [
+        {
+          "url": "https://mosaic.scdn.co/640/ab67616d0000b273396bcd4043a871d830c848a3ab67616d0000b273678bfbaf23b8dfa454017b0bab67616d0000b27367ba2e245cef890f6b981df7ab67616d0000b273e202fd7dbb4262a37b85a644",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://mosaic.scdn.co/300/ab67616d0000b273396bcd4043a871d830c848a3ab67616d0000b273678bfbaf23b8dfa454017b0bab67616d0000b27367ba2e245cef890f6b981df7ab67616d0000b273e202fd7dbb4262a37b85a644",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://mosaic.scdn.co/60/ab67616d0000b273396bcd4043a871d830c848a3ab67616d0000b273678bfbaf23b8dfa454017b0bab67616d0000b27367ba2e245cef890f6b981df7ab67616d0000b273e202fd7dbb4262a37b85a644",
+          "height": 60,
+          "width": 60
+        }
+      ],
+      "name": "RS Playlist",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/rsedit"
+        },
+        "display_name": "Rolling Stone",
+        "id": "rsedit"
+      }
+    },
+    {
+      "description": "",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/playlist/7JbyZrk837zNSgRRzMZITA"
+      },
+      "id": "7JbyZrk837zNSgRRzMZITA",
+      "images": [
+        {
+          "url": "https://mosaic.scdn.co/640/ab67616d0000b27313cbe3e4dfa81fe5b91f2f1cab67616d0000b2734b230178ff0f22cba27d7092ab67616d0000b27357274f85fc166c07cf73eecfab67616d0000b2738b9d4820655b6bf032ed41f3",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://mosaic.scdn.co/300/ab67616d0000b27313cbe3e4dfa81fe5b91f2f1cab67616d0000b2734b230178ff0f22cba27d7092ab67616d0000b27357274f85fc166c07cf73eecfab67616d0000b2738b9d4820655b6bf032ed41f3",
+          "height": 300,
+          "width": 300
+        },
+        {
+          "url": "https://mosaic.scdn.co/60/ab67616d0000b27313cbe3e4dfa81fe5b91f2f1cab67616d0000b2734b230178ff0f22cba27d7092ab67616d0000b27357274f85fc166c07cf73eecfab67616d0000b2738b9d4820655b6bf032ed41f3",
+          "height": 60,
+          "width": 60
+        }
+      ],
+      "name": "Eighties",
+      "owner": {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/user/migo"
+        },
+        "display_name": "migo",
+        "id": "migo"
+      }
+    }
+  ]
+}
