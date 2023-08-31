@@ -8,4 +8,4 @@ data class SpotifyProfileResponseBody(
     val email: String,
     val displayName: String,
     val images: List<Image>,
-){}
+) {}
