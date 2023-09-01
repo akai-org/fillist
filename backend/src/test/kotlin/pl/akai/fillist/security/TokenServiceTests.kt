@@ -20,6 +20,7 @@ class TokenServiceTests {
 
     @Autowired
     private lateinit var tokenService: TokenService
+
     @MockBean
     lateinit var spotifyUserService: SpotifyUserService
 
