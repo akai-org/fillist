@@ -62,7 +62,7 @@ class GlobalTestConfig {
             .filter { request: ClientRequest, next: ExchangeFunction ->
                 next.exchange(
                     ClientRequest.from(request).url(
-                        URI(request.url().toString().replace("me", "users/smedjan"))
+                        URI(request.url().toString().replace("me", "users/smedjan")),
                     )
                         .build(),
                 )

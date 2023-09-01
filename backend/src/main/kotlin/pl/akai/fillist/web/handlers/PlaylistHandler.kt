@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono
 @Component
 class PlaylistHandler(
     private val spotifyPlaylistsService: SpotifyPlaylistsService,
-    private val playlistUtils: PlaylistUtils
+    private val playlistUtils: PlaylistUtils,
 ) {
     fun getCurrentPlaylists(serverRequest: ServerRequest): Mono<ServerResponse> {
         val limit = serverRequest.queryParam("limit").orElse("20").toInt()

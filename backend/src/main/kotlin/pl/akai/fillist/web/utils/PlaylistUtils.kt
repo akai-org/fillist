@@ -18,7 +18,7 @@ class PlaylistUtils {
                     id = it.id,
                     name = it.name,
                     ownerDisplayName = it.owner.displayName,
-                    image = this.getLargeImage(it)
+                    image = this.getLargeImage(it),
                 )
             }
             .collectList().map {
