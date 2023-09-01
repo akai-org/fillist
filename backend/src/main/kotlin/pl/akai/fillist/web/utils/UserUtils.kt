@@ -21,7 +21,7 @@ object UserUtils {
 
     private fun getLargeImage(images: List<Image>): String? {
         if (images.isEmpty()) return null
-        val max: Int = images.maxOf { it.height ?: 0}
+        val max: Int = images.maxOf { it.height ?: 0 }
         return images.find { it.height == max }?.url ?: images[0].url
     }
 }

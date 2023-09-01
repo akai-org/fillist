@@ -8,16 +8,16 @@ data class SpotifyPlaylistsResponseBody(
     val items: List<SpotifyPlaylist>,
 ) {
     @Serializable
-    data class SpotifyPlaylist (
+    data class SpotifyPlaylist(
         val description: String,
         val externalUrls: ExternalUrls,
         val id: String,
         val images: List<Image>,
         val name: String,
         val owner: Owner,
-    ){
+    ) {
         @Serializable
-        data class ExternalUrls (
+        data class ExternalUrls(
             val spotify: String,
         )
 
