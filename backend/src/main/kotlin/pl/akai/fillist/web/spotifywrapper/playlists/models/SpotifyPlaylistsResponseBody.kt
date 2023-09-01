@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import pl.akai.fillist.web.spotifywrapper.models.Image
 
 @Serializable
-data class SpotifyCurrentUserPlaylistsBodyResponse(
+data class SpotifyPlaylistsResponseBody(
     val items: List<SpotifyPlaylist>,
 ) {
     @Serializable

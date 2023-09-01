@@ -29,6 +29,7 @@ class TokenServiceTests {
         `when`(spotifyUserService.getProfile(spotifyToken)).thenReturn(
             Mono.just(
                 SpotifyProfileResponseBody(
+                    "id",
                     "email",
                     "displayName",
                     listOf(
@@ -128,7 +129,7 @@ class TokenServiceTests {
     }
 
     @Test
-    fun getSpotifyEmail() {
+    fun getSpotifyUserId() {
         configMock()
         val token = tokenService.generateFillistAccessToken(
             AccessTokenResponseBody(
@@ -138,6 +139,6 @@ class TokenServiceTests {
                 refreshToken = "",
             ),
         ).block()!!
-        assert(tokenService.getSpotifyEmail(token) == "email")
+        assert(tokenService.getSpotifyUserId(token) == "id")
     }
 }

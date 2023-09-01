@@ -10,7 +10,7 @@ import org.springframework.core.io.ClassPathResource
 import pl.akai.fillist.security.GlobalTestConfig
 import pl.akai.fillist.security.models.OAuthParams
 import pl.akai.fillist.web.spotifywrapper.playlists.SpotifyPlaylistsService
-import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyCurrentUserPlaylistsBodyResponse
+import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylistsResponseBody
 
 @SpringBootTest(classes = [SpotifyPlaylistsService::class, GlobalTestConfig::class, OAuthParams::class])
 class SpotifyPlaylistsTests {
@@ -24,7 +24,7 @@ class SpotifyPlaylistsTests {
     fun getPlaylists() {
         val playlists = spotifyPlaylistsService.getCurrentPlaylists().block()!!
         val file = ClassPathResource("responses/playlists.json").file.readText()
-        val validResponse = spotifyJson.decodeFromString<SpotifyCurrentUserPlaylistsBodyResponse>(file)
+        val validResponse = spotifyJson.decodeFromString<SpotifyPlaylistsResponseBody>(file)
         assertNotNull(playlists)
         assertEquals(validResponse, playlists)
     }

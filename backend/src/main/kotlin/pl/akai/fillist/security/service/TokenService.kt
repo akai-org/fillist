@@ -22,7 +22,7 @@ class TokenService @Autowired constructor(
 
     companion object {
         const val ISSUER = "fillist"
-        const val EMAIL_KEY = "email"
+        const val USER_ID_KEY = "user_id"
         const val ACCESS_TOKEN_KEY = "access_token"
         const val REFRESH_TOKEN_KEY = "refresh_token"
         val LOGGER: Logger = LoggerFactory.getLogger(TokenService::class.java)
@@ -43,7 +43,7 @@ class TokenService @Autowired constructor(
                 sink.next(
                     JWT.create()
                         .withIssuer(ISSUER)
-                        .withClaim(EMAIL_KEY, it.email)
+                        .withClaim(USER_ID_KEY, it.id)
                         .withExpiresAt(expireAt(token.expiresIn))
                         .withClaim(ACCESS_TOKEN_KEY, token.accessToken)
                         .sign(algorithm()),
@@ -83,14 +83,14 @@ class TokenService @Autowired constructor(
         }
     }
 
-    fun getSpotifyEmail(token: String): String {
+    fun getSpotifyUserId(token: String): String {
         try {
             val verifier: JWTVerifier = JWT.require(algorithm())
                 .withIssuer(ISSUER)
                 .build()
 
             val decodedJWT = verifier.verify(token)
-            return decodedJWT.getClaim(EMAIL_KEY).asString()
+            return decodedJWT.getClaim(USER_ID_KEY).asString()
         } catch (exception: JWTVerificationException) {
             LOGGER.warn("JWT verification exception:", exception)
             throw exception

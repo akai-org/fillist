@@ -1,10 +1,10 @@
-package pl.akai.fillist.web.services
+package pl.akai.fillist.web.utils
 
 import pl.akai.fillist.web.models.UserProfileResponseBody
 import pl.akai.fillist.web.spotifywrapper.models.Image
 import pl.akai.fillist.web.spotifywrapper.user.SpotifyProfileResponseBody
 
-object UserService {
+object UserUtils {
     fun toUserProfile(spotifyUserProfile: SpotifyProfileResponseBody): UserProfileResponseBody =
         UserProfileResponseBody(
             displayName = spotifyUserProfile.displayName,
