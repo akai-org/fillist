@@ -11,13 +11,13 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
-import pl.akai.fillist.web.spotifywrapper.SpotifyWrapperService
+import pl.akai.fillist.web.spotifywrapper.user.SpotifyUserService
 import reactor.core.publisher.Mono
 import java.util.*
 
 @Service
 class TokenService @Autowired constructor(
-    private val spotifyWrapperService: SpotifyWrapperService,
+    private val spotifyUserService: SpotifyUserService,
 ) {
 
     companion object {
@@ -38,7 +38,7 @@ class TokenService @Autowired constructor(
     }
 
     fun generateFillistAccessToken(token: AccessTokenResponseBody): Mono<String> {
-        return this.spotifyWrapperService.user.getProfile(token.accessToken).handle { it, sink ->
+        return this.spotifyUserService.getProfile(token.accessToken).handle { it, sink ->
             try {
                 sink.next(
                     JWT.create()

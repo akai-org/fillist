@@ -20,8 +20,8 @@ class SpotifyUserService @Autowired constructor(
             .bodyToMono(SpotifyProfileResponseBody::class.java)
     }
 
-    fun getProfile(token: String): Mono<SpotifyProfileResponseBody> {
-        return spotifyClient.get().uri(PROFILE_ENDPOINT).header(HttpHeaders.AUTHORIZATION, "Bearer $token").retrieve()
+    fun getProfile(spotifyToken: String): Mono<SpotifyProfileResponseBody> {
+        return spotifyClient.get().uri(PROFILE_ENDPOINT).header(HttpHeaders.AUTHORIZATION, "Bearer $spotifyToken").retrieve()
             .bodyToMono(SpotifyProfileResponseBody::class.java)
     }
 }

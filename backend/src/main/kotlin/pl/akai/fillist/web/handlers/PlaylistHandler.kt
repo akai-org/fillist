@@ -11,12 +11,11 @@ import reactor.core.publisher.Mono
 @Component
 class PlaylistHandler(
     private val spotifyPlaylistsService: SpotifyPlaylistsService,
-    private val playlistUtils: PlaylistUtils
 ) {
     fun getCurrentPlaylists(serverRequest: ServerRequest): Mono<ServerResponse> {
         val limit = serverRequest.queryParam("limit").orElse("20").toInt()
         val offset = serverRequest.queryParam("offset").orElse("0").toInt()
-        val body = spotifyPlaylistsService.getCurrentPlaylists(offset, limit).flatMap(playlistUtils.toPlaylists)
+        val body = spotifyPlaylistsService.getCurrentPlaylists(offset, limit).flatMap(PlaylistUtils.toPlaylists)
         return ServerResponse.ok().body(body)
     }
 }

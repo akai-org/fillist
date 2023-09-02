@@ -1,13 +1,11 @@
 package pl.akai.fillist.web.utils
 
 import org.springframework.security.core.context.ReactiveSecurityContextHolder
-import org.springframework.stereotype.Service
 import pl.akai.fillist.web.models.PlaylistsResponseBody
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylistsResponseBody
 import reactor.core.publisher.Mono
 
-@Service
-class PlaylistUtils {
+object PlaylistUtils {
     val toPlaylists: (SpotifyPlaylistsResponseBody) -> Mono<PlaylistsResponseBody> = { playlists ->
         Mono.just(playlists)
             .flatMapIterable {
