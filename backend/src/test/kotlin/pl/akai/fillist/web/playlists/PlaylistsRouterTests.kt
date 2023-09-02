@@ -11,7 +11,6 @@ import pl.akai.fillist.configurations.SpotifyClientConfig
 import pl.akai.fillist.configurations.WebTestClientConfig
 import pl.akai.fillist.web.models.PlaylistsResponseBody
 
-
 @SpringBootTest()
 @Import(WebTestClientConfig::class, SpotifyClientConfig::class)
 @ContextConfiguration(classes = [SpotifyClientConfig::class])

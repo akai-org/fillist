@@ -16,7 +16,6 @@ import pl.akai.fillist.web.spotifywrapper.user.SpotifyProfileResponseBody
 import pl.akai.fillist.web.spotifywrapper.user.SpotifyUserService
 import reactor.core.publisher.Mono
 
-
 @TestConfiguration
 class WebTestClientConfig {
 
@@ -35,7 +34,7 @@ class WebTestClientConfig {
         return WebTestClientBuilderCustomizer { builder: WebTestClient.Builder ->
             builder.defaultHeader(
                 HttpHeaders.AUTHORIZATION,
-                "Bearer ${getFillistToken(spotifyToken)}"
+                "Bearer ${getFillistToken(spotifyToken)}",
             )
         }
     }
