@@ -21,6 +21,9 @@ class SpotifyPlaylistsTests {
     @Test
     fun getPlaylists() {
         val playlists = spotifyPlaylistsService.getCurrentPlaylists().block()!!
+        assertNotNull(playlists.limit)
+        assertNotNull(playlists.offset)
+        assertNotNull(playlists.total)
         playlists.items.forEach {
             assertNotNull(it.id)
             assertNotNull(it.name)

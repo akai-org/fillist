@@ -20,7 +20,12 @@ object PlaylistUtils {
                 )
             }
             .collectList().map {
-                PlaylistsResponseBody(playlists = it)
+                PlaylistsResponseBody(
+                    limit = playlists.limit,
+                    offset = playlists.offset,
+                    total = playlists.total,
+                    playlists = it
+                )
             }
     }
 
