@@ -35,11 +35,11 @@ object PlaylistUtils {
 
     private fun checkNameLengthAndFix(name: String): String {
         val maxLength = 30
-        if(name.length > maxLength) {
+        if (name.length > maxLength) {
             val words = name.substring(0, maxLength).split(" ")
             var shortName = words.subList(0, words.size - 2).joinToString(" ")
-            if(shortName.isEmpty()) shortName = name.substring(0,maxLength)
-            return "${shortName}..."
+            if (shortName.isEmpty()) shortName = name.substring(0, maxLength)
+            return "$shortName..."
         }
         return name
     }
