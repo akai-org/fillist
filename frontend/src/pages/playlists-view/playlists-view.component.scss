@@ -1,0 +1,10 @@
+main {
+  display: flex;
+  margin: 5em 10em 5em 10em;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+
+fillist-playlist-tile {
+  flex-basis: calc(19% - 2em);
+}

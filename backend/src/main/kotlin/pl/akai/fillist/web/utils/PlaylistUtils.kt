@@ -1,6 +1,5 @@
 package pl.akai.fillist.web.utils
 
-import org.springframework.security.core.context.ReactiveSecurityContextHolder
 import pl.akai.fillist.web.models.PlaylistsResponseBody
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylistsResponseBody
 import reactor.core.publisher.Mono
@@ -11,10 +10,10 @@ object PlaylistUtils {
             .flatMapIterable {
                 it.items
             }
-            .filterWhen(filterPlaylists).map {
+            .map {
                 PlaylistsResponseBody.Playlist(
                     id = it.id,
-                    name = it.name,
+                    name = checkNameLengthAndFix(it.name),
                     ownerDisplayName = it.owner.displayName,
                     image = this.getLargeImage(it),
                 )
@@ -34,9 +33,14 @@ object PlaylistUtils {
         return playlist.images.find { it.height == max }?.url ?: playlist.images.firstOrNull()?.url
     }
 
-    private val filterPlaylists: (SpotifyPlaylistsResponseBody.SpotifyPlaylist) -> Mono<Boolean> = { playlist ->
-        ReactiveSecurityContextHolder.getContext().map {
-            it.authentication.principal == playlist.owner.id
+    private fun checkNameLengthAndFix(name: String): String {
+        val maxLength = 30
+        if(name.length > maxLength) {
+            val words = name.substring(0, maxLength).split(" ")
+            var shortName = words.subList(0, words.size - 2).joinToString(" ")
+            if(shortName.isEmpty()) shortName = name.substring(0,maxLength)
+            return "${shortName}..."
         }
+        return name
     }
 }

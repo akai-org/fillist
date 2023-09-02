@@ -1,9 +1,26 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
+import { environment } from '../../environments/environment'
+import { PlaylistsResponseBody } from './playlists-response-body.interface'
 
 @Component({
   selector: 'fillist-playlists-view',
   templateUrl: './playlists-view.component.html',
   styleUrls: ['./playlists-view.component.scss']
 })
-export class PlaylistsViewComponent {
+export class PlaylistsViewComponent implements OnInit {
+  playlistsResponse: PlaylistsResponseBody | undefined
+
+  constructor (private httpClient: HttpClient) {
+  }
+
+  ngOnInit (): void {
+    this.getPlaylists()
+  }
+
+  getPlaylists (): void {
+    this.httpClient.get<PlaylistsResponseBody>(`${environment.backendUrl}/playlists`).subscribe((data: PlaylistsResponseBody) => {
+      this.playlistsResponse = data
+    })
+  }
 }

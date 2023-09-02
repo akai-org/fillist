@@ -1,5 +1,6 @@
 package pl.akai.fillist.web.playlists
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
@@ -22,6 +23,8 @@ class PlaylistsRouterTests {
     @Test
     fun getPlaylists() {
         webTestClient.get().uri("/playlists").exchange()
-            .expectStatus().isOk.expectBody(PlaylistsResponseBody::class.java)
+            .expectStatus().isOk.expectBody(PlaylistsResponseBody::class.java).value {
+                assertEquals(it.playlists.size, 20)
+            }
     }
 }

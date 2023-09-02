@@ -1,1 +1,8 @@
-<fillist-spinner></fillist-spinner>
+<main>
+    <fillist-playlist-tile *ngFor="let playlist of playlistsResponse?.playlists"
+                           [name]="playlist.name"
+                           [owner]="playlist.ownerDisplayName"
+                           [image]="playlist.image"
+                           [id]="playlist.id"
+    ></fillist-playlist-tile>
+</main>
