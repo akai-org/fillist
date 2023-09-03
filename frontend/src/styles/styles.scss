@@ -81,6 +81,12 @@ button {
   }
 }
 
+@media (max-width: 1100px) {
+  body,html{
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 700px) {
   body,html{
     font-size: 12px;

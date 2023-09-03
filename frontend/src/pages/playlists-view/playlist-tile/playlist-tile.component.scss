@@ -4,17 +4,36 @@ div{
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  transition: transform 0.2s;
+  height: calc(95% + 4em);
+  word-break: normal;
+  overflow-wrap: anywhere
 }
 
 img{
   width: 95%;
-  height: 95%;
+  height: auto;
   border-radius: 0.5em;
+}
+
+h6{
+  text-align: center;
 }
 
 div:hover{
   transform: scale(1.05);
   transition: transform 0.2s;
   cursor: pointer;
+}
+
+@media (max-width: 1400px) {
+  div{
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 850px) {
+  div{
+    font-size: 10px;
+  }
 }
