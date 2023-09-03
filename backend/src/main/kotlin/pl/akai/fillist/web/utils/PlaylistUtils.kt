@@ -29,6 +29,7 @@ object PlaylistUtils {
     }
 
     private fun getLargeImage(playlist: SpotifyPlaylistsResponseBody.SpotifyPlaylist): String? {
+        if (playlist.images.isEmpty()) return null
         val max = playlist.images.maxOf { it.height ?: 0 }
         return playlist.images.find { it.height == max }?.url ?: playlist.images.firstOrNull()?.url
     }
