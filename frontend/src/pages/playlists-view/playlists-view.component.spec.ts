@@ -4,7 +4,6 @@ import { PlaylistsViewComponent } from './playlists-view.component'
 import { HttpClient } from '@angular/common/http'
 import { UiModule } from '../../shared/ui/ui.module'
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
-import { environment } from '../../environments/environment'
 import { PlaylistsResponseBody } from './playlists-response-body.interface'
 
 describe('PlaylistsViewComponent', () => {
@@ -41,7 +40,7 @@ describe('PlaylistsViewComponent', () => {
         }
       ]
     }
-    httpTestingController.expectOne(`${environment.backendUrl}/playlists`).flush(mockResponse)
+    httpTestingController.expectOne('/playlists').flush(mockResponse)
     expect(component).toBeTruthy()
     expect(component.playlistsResponse).toEqual(mockResponse)
   })

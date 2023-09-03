@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  backendUrl: '',
+  backendUrl: 'backendUrl',
   frontendUrl: '',
   redirectPath: ''
 }
