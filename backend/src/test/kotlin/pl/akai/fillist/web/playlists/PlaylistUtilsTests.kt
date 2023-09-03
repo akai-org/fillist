@@ -32,8 +32,7 @@ class PlaylistUtilsTests {
     @Test
     fun toPlaylistsEmptyImage() {
         testToPlaylists(
-            images = listOf(
-            ),
+            images = listOf(),
             validImageUrl = null,
             playlistName = "name",
             validPlaylistName = "name",
@@ -92,7 +91,7 @@ class PlaylistUtilsTests {
         images: List<Image>,
         validImageUrl: String?,
         playlistName: String,
-        validPlaylistName: String
+        validPlaylistName: String,
     ) {
         val spotifyPlaylistsResponseBody = SpotifyPlaylistsResponseBody(
             total = 1,
@@ -133,6 +132,4 @@ class PlaylistUtilsTests {
         )
         assertEquals(response.block(), validResponse)
     }
-
-
 }
