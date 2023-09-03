@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { environment } from '../../environments/environment'
 import { PlaylistsResponseBody } from './playlists-response-body.interface'
 
 @Component({
@@ -19,7 +18,7 @@ export class PlaylistsViewComponent implements OnInit {
   }
 
   getPlaylists (): void {
-    this.httpClient.get<PlaylistsResponseBody>(`${environment.backendUrl}/playlists`).subscribe((data: PlaylistsResponseBody) => {
+    this.httpClient.get<PlaylistsResponseBody>('/playlists').subscribe((data: PlaylistsResponseBody) => {
       this.playlistsResponse = data
     })
   }

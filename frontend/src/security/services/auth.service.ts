@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   getAuthorizationCodeUrl (): Observable<string> {
-    return this.http.get<AuthorizationCodeUrlResponseBodyInterface>(`${environment.backendUrl}/oauth2/authorization`, {
+    return this.http.get<AuthorizationCodeUrlResponseBodyInterface>('/oauth2/authorization', {
       params: {
         state: this.getOauthState()
       }
@@ -59,7 +59,7 @@ export class AuthService {
     if (state !== this.getOauthState()) {
       throw this.loginInErrorHandler('Invalid state')
     }
-    return this.http.post<AccessTokenResponseBodyInterface>(`${environment.backendUrl}/oauth2/token`, {
+    return this.http.post<AccessTokenResponseBodyInterface>('/oauth2/token', {
       code,
       grantType: 'authorization_code',
       redirectUri: `${environment.frontendUrl}${environment.redirectPath}`
@@ -67,7 +67,7 @@ export class AuthService {
   }
 
   getNewRefreshedToken (): Observable<AccessTokenResponseBodyInterface> {
-    return this.http.post<AccessTokenResponseBodyInterface>(`${environment.backendUrl}/oauth2/refresh`, {
+    return this.http.post<AccessTokenResponseBodyInterface>('/oauth2/refresh', {
       grantType: 'refresh_token',
       refreshToken: localStorage.getItem(AuthService.REFRESH_TOKEN_KEY)
     })
