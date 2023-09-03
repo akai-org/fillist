@@ -1,4 +1,4 @@
-div{
+div {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -10,30 +10,30 @@ div{
   overflow-wrap: anywhere
 }
 
-img{
+img {
   width: 95%;
   height: auto;
   border-radius: 0.5em;
 }
 
-h6{
+h6 {
   text-align: center;
 }
 
-div:hover{
+div:hover {
   transform: scale(1.05);
   transition: transform 0.2s;
   cursor: pointer;
 }
 
 @media (max-width: 1400px) {
-  div{
+  div {
     font-size: 12px;
   }
 }
 
 @media (max-width: 850px) {
-  div{
+  div {
     font-size: 10px;
   }
 }
