@@ -15,7 +15,7 @@ export class PlaylistsViewComponent implements OnInit {
   }
 
   ngOnInit (): void {
-    this.getPlaylists({ offset: 0, limit: 20 })
+    this.getPlaylists({ offset: 0, limit: 19 })
   }
 
   getPlaylists (page: Page): void {
