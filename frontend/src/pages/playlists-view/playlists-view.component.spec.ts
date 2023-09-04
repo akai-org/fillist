@@ -40,7 +40,7 @@ describe('PlaylistsViewComponent', () => {
         }
       ]
     }
-    httpTestingController.expectOne('/playlists').flush(mockResponse)
+    httpTestingController.expectOne('/playlists?offset=0&limit=19').flush(mockResponse)
     expect(component).toBeTruthy()
     expect(component.playlistsResponse).toEqual(mockResponse)
   })

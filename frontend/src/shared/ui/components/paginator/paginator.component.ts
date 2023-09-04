@@ -16,7 +16,6 @@ export class PaginatorComponent implements OnInit {
   readonly maxPages: number = 7
 
   ngOnInit (): void {
-    console.log(this.total)
     this.setPagesIndexes()
   }
 

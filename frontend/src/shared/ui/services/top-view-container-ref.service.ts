@@ -23,7 +23,6 @@ export class TopViewContainerRefService {
     componentRef.instance.message = message
     componentRef.instance.type = type
     TopViewContainerRefService.alertCount += 1
-    console.log(TopViewContainerRefService.alertCount)
     componentRef.instance.order = TopViewContainerRefService.alertCount
     componentRef.instance.onClose.subscribe(() => {
       componentRef.destroy()
