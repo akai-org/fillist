@@ -24,9 +24,9 @@ fillist-playlist-tile {
   fillist-playlist-tile {
     flex-basis: calc(50% - 2em);
   }
-
-  main {
-    margin: 5vh 5vw 5vh 5vw;
-  }
 }
 
+fillist-paginator{
+  display: block;
+  padding-bottom: 2em;
+}

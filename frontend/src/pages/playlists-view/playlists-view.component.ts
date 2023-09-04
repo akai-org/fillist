@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { PlaylistsResponseBody } from './playlists-response-body.interface'
+import { Page } from '../../shared/ui/components/paginator/page.interface'
 
 @Component({
   selector: 'fillist-playlists-view',
@@ -14,12 +15,21 @@ export class PlaylistsViewComponent implements OnInit {
   }
 
   ngOnInit (): void {
-    this.getPlaylists()
+    this.getPlaylists({ offset: 0, limit: 20 })
   }
 
-  getPlaylists (): void {
-    this.httpClient.get<PlaylistsResponseBody>('/playlists').subscribe((data: PlaylistsResponseBody) => {
+  getPlaylists (page: Page): void {
+    this.httpClient.get<PlaylistsResponseBody>('/playlists', {
+      params: {
+        offset: page.offset.toString(),
+        limit: page.limit.toString()
+      }
+    }).subscribe((data: PlaylistsResponseBody) => {
       this.playlistsResponse = data
     })
+  }
+
+  changePage (page: Page): void {
+    this.getPlaylists(page)
   }
 }

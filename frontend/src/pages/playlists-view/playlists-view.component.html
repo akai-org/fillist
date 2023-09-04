@@ -1,9 +1,13 @@
-<main>
-    <fillist-playlist-tile *ngFor="let playlist of playlistsResponse?.playlists"
-                           [name]="playlist.name"
-                           [owner]="playlist.ownerDisplayName"
-                           [image]="playlist.image"
-                           [id]="playlist.id"
-    ></fillist-playlist-tile>
-    <fillist-paginator [pageSize]="5" [total]="70"></fillist-paginator>
-</main>
+<div *ngIf="playlistsResponse">
+    <main>
+        <fillist-playlist-tile *ngFor="let playlist of playlistsResponse.playlists"
+                               [name]="playlist.name"
+                               [owner]="playlist.ownerDisplayName"
+                               [image]="playlist.image"
+                               [id]="playlist.id"
+        ></fillist-playlist-tile>
+    </main>
+    <fillist-paginator [pageSize]="playlistsResponse.limit"
+                       [total]="playlistsResponse.total"
+                       (onPageChange)="changePage($event)"></fillist-paginator>
+</div>

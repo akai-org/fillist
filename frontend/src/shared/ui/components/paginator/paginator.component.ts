@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { PageProperties } from './page-properties.interface'
+import { Page } from './page.interface'
 
 @Component({
   selector: 'fillist-paginator',
@@ -9,13 +9,14 @@ import { PageProperties } from './page-properties.interface'
 export class PaginatorComponent implements OnInit {
   @Input() total: number = 0
   @Input() pageSize: number = 0
-  @Output() onPageChange = new EventEmitter<PageProperties>()
+  @Output() onPageChange = new EventEmitter<Page>()
   pagesIndexes: number[] = []
   activePage: number = 1
   pagesCount: number = 0
   readonly maxPages: number = 7
 
   ngOnInit (): void {
+    console.log(this.total)
     this.setPagesIndexes()
   }
 

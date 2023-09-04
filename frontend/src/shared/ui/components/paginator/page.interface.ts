@@ -1,4 +1,4 @@
-export interface PageProperties {
+export interface Page {
   offset: number
   limit: number
 }
