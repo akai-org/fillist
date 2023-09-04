@@ -19,7 +19,7 @@ class AuthenticationManager @Autowired constructor(
             .switchIfEmpty(Mono.empty())
             .map {
                 UsernamePasswordAuthenticationToken(
-                    tokenService.getSpotifyEmail(authToken),
+                    tokenService.getSpotifyUserId(authToken),
                     tokenService.getSpotifyAccessToken(authToken),
                     null,
                 )

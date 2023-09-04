@@ -1,0 +1,31 @@
+@import "variables";
+
+div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.5em;
+  font-size: 16px;
+
+  * {
+    all: unset;
+    width: 1.5em;
+    height: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100em;
+  }
+
+  *:hover {
+    cursor: pointer;
+    background-color: $accent-purple;
+    color: $light;
+    font-weight: bold;
+  }
+
+  .active {
+    border: 2px solid $accent-purple;
+  }
+}

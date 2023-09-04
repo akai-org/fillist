@@ -6,6 +6,7 @@ import { RouterLink, RouterModule, Routes } from '@angular/router'
 import { CallbackPageComponent } from './callback-page/callback-page.component'
 import { PlaylistsViewComponent } from './playlists-view/playlists-view.component'
 import { UiModule } from '../shared/ui/ui.module'
+import { PlaylistTileComponent } from './playlists-view/playlist-tile/playlist-tile.component'
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
   declarations: [
     LoginPageComponent,
     CallbackPageComponent,
-    PlaylistsViewComponent
+    PlaylistsViewComponent,
+    PlaylistTileComponent
   ],
   exports: [
     LoginPageComponent,

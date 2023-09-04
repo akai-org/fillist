@@ -2,7 +2,7 @@
 @import "variables";
 @import "mixin";
 
-body,html {
+body, html {
   margin: 0;
   height: 100%;
   width: 100vw;
@@ -63,38 +63,48 @@ small {
 button {
   @include button;
   border: unset;
-  &:hover{
+
+  &:hover {
     background-color: $accent-purple-dark;
   }
-  &:active{
+
+  &:active {
     background-color: $accent-purple-dark;
   }
 }
 
 .button-outline {
   @include button($accent-purple, transparent, $accent-purple);
+
   &:hover {
     background-color: #ffffff30;
   }
-  &:active{
+
+  &:active {
     background-color: #ffffff30;
   }
 }
 
+@media (max-width: 1100px) {
+  body, html {
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 700px) {
-  body,html{
+  body, html {
     font-size: 12px;
   }
 }
 
 @media (max-width: 450px) {
-  body,html{
+  body, html {
     font-size: 8px;
   }
 }
 
 @media (max-width: 450px) {
-  .alert-icon{
+  .alert-icon {
     --ng-icon__size: 2em !important;
   }
 }

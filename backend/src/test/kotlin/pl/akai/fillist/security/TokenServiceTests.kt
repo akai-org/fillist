@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import pl.akai.fillist.security.service.TokenService
+import pl.akai.fillist.web.spotifywrapper.models.Image
 import pl.akai.fillist.web.spotifywrapper.user.SpotifyProfileResponseBody
 import pl.akai.fillist.web.spotifywrapper.user.SpotifyUserService
 import reactor.core.publisher.Mono
@@ -20,20 +21,20 @@ class TokenServiceTests {
     @Autowired
     private lateinit var tokenService: TokenService
 
-    @Autowired
-    private lateinit var spotifyToken: String
-
     @MockBean
     lateinit var spotifyUserService: SpotifyUserService
+
+    var spotifyToken: String = "spotifyToken"
 
     fun configMock() {
         `when`(spotifyUserService.getProfile(spotifyToken)).thenReturn(
             Mono.just(
                 SpotifyProfileResponseBody(
+                    "id",
                     "email",
                     "displayName",
                     listOf(
-                        SpotifyProfileResponseBody.Image("url", 100, 100),
+                        Image("url", 100, 100),
                     ),
                 ),
             ),
@@ -129,7 +130,7 @@ class TokenServiceTests {
     }
 
     @Test
-    fun getSpotifyEmail() {
+    fun getSpotifyUserId() {
         configMock()
         val token = tokenService.generateFillistAccessToken(
             AccessTokenResponseBody(
@@ -139,6 +140,6 @@ class TokenServiceTests {
                 refreshToken = "",
             ),
         ).block()!!
-        assert(tokenService.getSpotifyEmail(token) == "email")
+        assert(tokenService.getSpotifyUserId(token) == "id")
     }
 }

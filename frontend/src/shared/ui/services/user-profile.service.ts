@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { environment } from '../../../environments/environment.development'
 import { UserProfileInterface } from '../models/user-profile.interface'
 import { BehaviorSubject, Observable } from 'rxjs'
 
@@ -20,7 +19,7 @@ export class UserProfileService {
   }
 
   constructor (httpClient: HttpClient) {
-    httpClient.get<UserProfileInterface>(`${environment.backendUrl}/me`)
+    httpClient.get<UserProfileInterface>('/me')
       .subscribe((response: UserProfileInterface) => {
         this._userProfile.next(response)
       })

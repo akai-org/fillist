@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing'
 import { UserProfileService } from './user-profile.service'
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 import { UserProfileInterface } from '../models/user-profile.interface'
-import { environment } from '../../../environments/environment.development'
 import { HttpClient } from '@angular/common/http'
 
 describe('UserProfileService', () => {
@@ -23,21 +22,22 @@ describe('UserProfileService', () => {
   })
 
   it('should be created', () => {
-    httpTestingController.expectOne(`${environment.backendUrl}/me`)
+    httpTestingController.expectOne('/me')
     expect(service).toBeTruthy()
   })
 
-  it('Profile state works', () => {
+  it('Profile state works', (done) => {
     const mockResponse: UserProfileInterface = {
       displayName: 'name',
       email: 'email',
       largeImageUrl: 'imagel',
       smallImageUrl: 'images'
     }
-    const req = httpTestingController.expectOne(`${environment.backendUrl}/me`)
+    const req = httpTestingController.expectOne('/me')
     req.flush(mockResponse)
     service.userProfile.subscribe((response: UserProfileInterface) => {
       expect(response).toEqual(mockResponse)
+      done()
     })
   })
 })

@@ -1,0 +1,11 @@
+<div *ngIf="pagesCount > 1">
+    <button (click)="changeToPreviousPage()">
+        <ng-icon name="cssArrowLeft"></ng-icon>
+    </button>
+    <button *ngFor="let index of pagesIndexes" (click)="changePage(index)" [class.active]="index == activePage">
+        <p>{{index}}</p>
+    </button>
+    <button (click)="changeToNextPage()">
+        <ng-icon name="cssArrowRight"></ng-icon>
+    </button>
+</div>
