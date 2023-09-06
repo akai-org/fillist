@@ -33,5 +33,4 @@ class WebTestClientConfig {
     private fun getFillistToken(spotifyToken: AccessTokenResponseBody): String {
         return tokenService.generateFillistAccessToken(spotifyToken).block()!!
     }
-
 }
