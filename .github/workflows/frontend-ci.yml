@@ -55,37 +55,4 @@ jobs:
         with:
           sarif_file: frontend/eslint-results.sarif
           wait-for-processing: true
-  format:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: frontend
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
-          cache: 'yarn'
-          cache-dependency-path: 'frontend/yarn.lock'
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-      - name: Run ESLint
-        run: npx eslint .
-          --config .eslintrc.json
-          --ext .js,.jsx,.ts,.tsx
-          --fix
-          --ignore-path .gitignore
-        continue-on-error: true
-      - name: Push and commit eslint fixes
-        run: |
-          git config --local user.email "noreply@akai.org"
-          git config --local user.name "GitHub Action"
-          git pull
-          git add .
-          git commit -m "[CI] Automatic Eslint Fix"
-          git push
-        continue-on-error: true
 
