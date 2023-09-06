@@ -21,7 +21,7 @@ class PlaylistHandler(
         return ServerResponse.ok().body(body)
     }
 
-    fun createPlaylist(serverRequest: ServerRequest): Mono<ServerResponse>{
+    fun createPlaylist(serverRequest: ServerRequest): Mono<ServerResponse> {
         val requestBody = serverRequest.bodyToMono(SpotifyCreatePlaylistRequestBody::class.java)
         val userId = ReactiveSecurityContextHolder.getContext().map { it.authentication.principal.toString() }
         val responseBody = Mono.zip(requestBody, userId).flatMap {

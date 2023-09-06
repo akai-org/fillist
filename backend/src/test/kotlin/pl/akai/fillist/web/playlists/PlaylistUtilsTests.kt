@@ -117,7 +117,7 @@ class PlaylistUtilsTests {
                         displayName = "displayName",
                         id = "id",
                     ),
-                    public = false
+                    public = false,
                 ),
             ),
         )
@@ -163,7 +163,7 @@ class PlaylistUtilsTests {
                 displayName = "displayName",
                 id = "id",
             ),
-            public = false
+            public = false,
         )
         val playlist = PlaylistUtils.toPlaylist(spotifyPlaylist)
         assertEquals(playlist.id, spotifyPlaylist.id)

@@ -18,7 +18,7 @@ class SpotifyPlaylistsService @Autowired constructor(
     }
 
     fun createPlaylist(userId: String, spotifyCreatePlaylistRequestBody: SpotifyCreatePlaylistRequestBody): Mono<SpotifyPlaylist> {
-        return spotifyClient.post().uri("/users/${userId}/playlists")
+        return spotifyClient.post().uri("/users/$userId/playlists")
             .body(Mono.just(spotifyCreatePlaylistRequestBody), SpotifyCreatePlaylistRequestBody::class.java)
             .retrieve()
             .bodyToMono(SpotifyPlaylist::class.java)

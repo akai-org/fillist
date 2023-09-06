@@ -6,7 +6,7 @@ import pl.akai.fillist.web.spotifywrapper.models.Image
 import pl.akai.fillist.web.spotifywrapper.models.Owner
 
 @Serializable
-data class SpotifyPlaylist (
+data class SpotifyPlaylist(
     val description: String?,
     val externalUrls: ExternalUrls,
     val id: String,
