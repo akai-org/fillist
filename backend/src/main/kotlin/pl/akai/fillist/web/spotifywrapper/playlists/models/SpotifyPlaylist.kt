@@ -13,4 +13,5 @@ data class SpotifyPlaylist (
     val images: List<Image>,
     val name: String,
     val owner: Owner,
+    val public: Boolean,
 )
