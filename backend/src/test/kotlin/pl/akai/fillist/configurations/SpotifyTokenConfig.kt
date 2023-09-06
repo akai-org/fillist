@@ -6,31 +6,54 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Import
 import org.springframework.http.HttpHeaders
 import org.springframework.http.codec.json.KotlinSerializationJsonDecoder
 import org.springframework.web.reactive.function.client.WebClient
 import pl.akai.fillist.security.models.OAuthParams
+import pl.akai.fillist.security.models.RefreshTokenRequestBody
+import pl.akai.fillist.security.service.Oauth2TokenService
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 
 @Configuration
+@Import(SpotifyClientConfig::class)
 class SpotifyTokenConfig {
-    @Autowired
-    private lateinit var oauth2Params: OAuthParams
 
     @Autowired
     private lateinit var spotifyJson: Json
+
+    @Autowired
+    private lateinit var oauth2Params: OAuthParams
+
+    @Value("\${fillist.test.spotify.refresh-token}")
+    private val refreshToken: String = ""
 
     @Value("\${fillist.oauth2.client.registration.spotify.secret}")
     private lateinit var spotifySecret: String
 
     @Bean
     fun spotifyToken(): AccessTokenResponseBody {
-        return WebClient.builder().codecs {
-            it.defaultCodecs().kotlinSerializationJsonDecoder(KotlinSerializationJsonDecoder(spotifyJson))
-        }.build().post().uri("https://accounts.spotify.com/api/token").bodyValue("grant_type=client_credentials")
+        val requestBody =
+            RefreshTokenRequestBody(
+                refreshToken = refreshToken,
+                grantType = "refresh_token",
+            )
+        return getSpotifyRefreshToken(requestBody)
+    }
+
+    fun getSpotifyRefreshToken(requestBody: RefreshTokenRequestBody): AccessTokenResponseBody {
+        return WebClient.builder()
+            .baseUrl("${oauth2Params.spotifyIdpUri}${Oauth2TokenService.SPOTIFY_TOKEN_ENDPOINT}")
+            .codecs {
+                it.defaultCodecs().kotlinSerializationJsonDecoder(KotlinSerializationJsonDecoder(spotifyJson))
+            }
+            .build()
+            .post()
             .header(HttpHeaders.AUTHORIZATION, getAuthorizationHeader())
-            .header("Content-Type", "application/x-www-form-urlencoded").retrieve()
+            .header(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded")
+            .bodyValue(requestBody.toLinkedMultiValueMap())
+            .retrieve()
             .bodyToMono(AccessTokenResponseBody::class.java).block()!!
     }
 

@@ -1,4 +1,8 @@
 fillist:
+  test:
+    spotify:
+      user-id: ${SPOTIFY_USER_ID:"user-id"}
+      refresh-token: ${SPOTIFY_REFRESH_TOKEN:"token"}
   allow-origin: "*"
   spotify-api-uri: https://api.spotify.com/v1
   oauth2:
@@ -10,7 +14,7 @@ fillist:
           secret: ${SPOTIFY_CLIENT_SECRET:"secret"}
           redirect-uri: http://localhost:4200/callback
           spotify-idp-uri: https://accounts.spotify.com
-          scope: user-read-private,user-read-email,user-library-read,user-library-modify,user-read-playback-state,user-modify-playback-state,user-read-currently-playing,user-read-recently-played
+          scope: user-read-private,user-read-email,playlist-read-private,playlist-modify-public,playlist-modify-private
 spring:
   main:
     allow-bean-definition-overriding: true

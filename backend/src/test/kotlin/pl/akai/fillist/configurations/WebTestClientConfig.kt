@@ -3,6 +3,7 @@ package pl.akai.fillist.configurations
 import AccessTokenResponseBody
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.web.reactive.server.WebTestClientBuilderCustomizer
@@ -24,6 +25,9 @@ class WebTestClientConfig {
 
     @Autowired
     private lateinit var tokenService: TokenService
+
+    @Value("\${fillist.test.spotify.user-id}")
+    private lateinit var id: String
 
     @MockBean
     lateinit var spotifyUserService: SpotifyUserService
@@ -48,7 +52,7 @@ class WebTestClientConfig {
         Mockito.`when`(spotifyUserService.getProfile(spotifyToken.accessToken)).thenReturn(
             Mono.just(
                 SpotifyProfileResponseBody(
-                    "id",
+                    id,
                     "email",
                     "displayName",
                     listOf(
