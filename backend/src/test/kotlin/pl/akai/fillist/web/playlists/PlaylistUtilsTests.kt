@@ -3,7 +3,10 @@ package pl.akai.fillist.web.playlists
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import pl.akai.fillist.web.models.PlaylistsResponseBody
+import pl.akai.fillist.web.spotifywrapper.models.ExternalUrls
 import pl.akai.fillist.web.spotifywrapper.models.Image
+import pl.akai.fillist.web.spotifywrapper.models.Owner
+import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylist
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylistsResponseBody
 import pl.akai.fillist.web.utils.PlaylistUtils
 
@@ -98,16 +101,16 @@ class PlaylistUtilsTests {
             limit = 1,
             offset = 1,
             items = listOf(
-                SpotifyPlaylistsResponseBody.SpotifyPlaylist(
+                SpotifyPlaylist(
                     description = "description",
-                    externalUrls = SpotifyPlaylistsResponseBody.SpotifyPlaylist.ExternalUrls(
+                    externalUrls = ExternalUrls(
                         spotify = "spotify",
                     ),
                     id = "id",
                     images = images,
                     name = playlistName,
-                    owner = SpotifyPlaylistsResponseBody.SpotifyPlaylist.Owner(
-                        externalUrls = SpotifyPlaylistsResponseBody.SpotifyPlaylist.ExternalUrls(
+                    owner = Owner(
+                        externalUrls = ExternalUrls(
                             spotify = "spotify",
                         ),
                         displayName = "displayName",

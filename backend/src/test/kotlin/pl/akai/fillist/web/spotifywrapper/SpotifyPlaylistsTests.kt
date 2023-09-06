@@ -4,11 +4,13 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Import
 import org.springframework.test.context.ContextConfiguration
 import pl.akai.fillist.configurations.SpotifyClientConfig
 import pl.akai.fillist.web.spotifywrapper.playlists.SpotifyPlaylistsService
+import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyCreatePlaylistRequestBody
 
 @SpringBootTest()
 @Import(SpotifyClientConfig::class)
@@ -16,6 +18,9 @@ import pl.akai.fillist.web.spotifywrapper.playlists.SpotifyPlaylistsService
 class SpotifyPlaylistsTests {
     @Autowired
     private lateinit var spotifyPlaylistsService: SpotifyPlaylistsService
+
+    @Value("\${fillist.test.spotify.user-id}")
+    private val userId: String = ""
 
     @Test
     fun getPlaylists() {
@@ -31,5 +36,19 @@ class SpotifyPlaylistsTests {
             assertNotNull(it.externalUrls)
         }
         assertEquals(playlists.items.size, 20)
+    }
+
+    @Test
+    fun createPlaylistsTestResponseModel() {
+        val createPlaylistRequestBody = SpotifyCreatePlaylistRequestBody(
+            name = "New Playlist",
+            description = "New playlist description",
+            public = false,
+        )
+        val playlist = spotifyPlaylistsService.createPlaylist(userId, createPlaylistRequestBody).block()!!
+        assertNotNull(playlist)
+        assertEquals(playlist.name, createPlaylistRequestBody.name)
+        assertEquals(playlist.description, createPlaylistRequestBody.description)
+        assertEquals(playlist.owner.id, userId)
     }
 }
