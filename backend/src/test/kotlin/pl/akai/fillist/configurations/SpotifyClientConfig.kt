@@ -8,10 +8,7 @@ import org.springframework.boot.test.context.TestConfiguration
 import org.springframework.context.annotation.Bean
 import org.springframework.http.HttpHeaders
 import org.springframework.http.codec.json.KotlinSerializationJsonDecoder
-import org.springframework.web.reactive.function.client.ClientRequest
-import org.springframework.web.reactive.function.client.ExchangeFunction
 import org.springframework.web.reactive.function.client.WebClient
-import java.net.URI
 
 @TestConfiguration
 class SpotifyClientConfig {
@@ -29,14 +26,6 @@ class SpotifyClientConfig {
         return WebClient.builder().baseUrl(spotifyApiUri).defaultHeader(HttpHeaders.ACCEPT, "application/json")
             .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer ${spotifyToken.accessToken}").codecs {
                 it.defaultCodecs().kotlinSerializationJsonDecoder(KotlinSerializationJsonDecoder(spotifyJson))
-            }
-            .filter { request: ClientRequest, next: ExchangeFunction ->
-                next.exchange(
-                    ClientRequest.from(request).url(
-                        URI(request.url().toString().replace("me", "users/smedjan")),
-                    )
-                        .build(),
-                )
             }
             .build()
     }
