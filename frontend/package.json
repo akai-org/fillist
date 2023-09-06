@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "format": "npx eslint . --config .eslintrc.json --ext .js,.jsx,.ts,.tsx --fix --ignore-path .gitignore",
     "watch": "ng build --watch --configuration development",
     "test:prod": "ng test --browsers=ChromeHeadless --no-watch --no-progress --code-coverage",
     "deploy": "ng deploy --repo=https://github.com/akai-org/fillist.git --name=\"Github Action\" --email=noreply@akai.org --base-href=/fillist/",

@@ -57,14 +57,13 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-val ktlintFormatAndScanning by tasks.registering(JavaExec::class) {
+val ktlintCheck by tasks.registering(JavaExec::class) {
     group = LifecycleBasePlugin.VERIFICATION_GROUP
-    description = "Check Kotlin code style and format"
+    description = "Check Kotlin code style"
     classpath = ktlint
     mainClass.set("com.pinterest.ktlint.Main")
     jvmArgs("--add-opens=java.base/java.lang=ALL-UNNAMED")
     args(
-        "-F",
         "src/**/*.kt",
         "**.kts",
         "--reporter=plain",
@@ -73,7 +72,7 @@ val ktlintFormatAndScanning by tasks.registering(JavaExec::class) {
 }
 
 tasks.check {
-    dependsOn(ktlintFormatAndScanning)
+    dependsOn(ktlintCheck)
 }
 
 tasks.register<JavaExec>("ktlintScanning") {
@@ -83,10 +82,24 @@ tasks.register<JavaExec>("ktlintScanning") {
     mainClass.set("com.pinterest.ktlint.Main")
     jvmArgs("--add-opens=java.base/java.lang=ALL-UNNAMED")
     args(
-        "-F",
         "src/**/*.kt",
         "**.kts",
         "--reporter=sarif,output=report.sarif",
+        "--editorconfig=.editorconfig",
+    )
+}
+
+tasks.register<JavaExec>("ktlintFormat") {
+    group = LifecycleBasePlugin.VERIFICATION_GROUP
+    description = "Save ktlint scanning results to report.sarif"
+    classpath = ktlint
+    mainClass.set("com.pinterest.ktlint.Main")
+    jvmArgs("--add-opens=java.base/java.lang=ALL-UNNAMED")
+    args(
+        "-F",
+        "src/**/*.kt",
+        "**.kts",
+        "--reporter=plain",
         "--editorconfig=.editorconfig",
     )
 }
