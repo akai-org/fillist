@@ -26,11 +26,11 @@ class SpotifyTokenConfig {
     @Autowired
     private lateinit var oauth2Params: OAuthParams
 
-    @Value("\${fillist.test.spotify.refresh-token}")
-    private val refreshToken: String = ""
-
     @Value("\${fillist.oauth2.client.registration.spotify.secret}")
     private lateinit var spotifySecret: String
+
+    @Value("\${fillist.test.spotify.refresh-token}")
+    private val refreshToken: String = ""
 
     @Bean
     fun spotifyToken(): AccessTokenResponseBody {
