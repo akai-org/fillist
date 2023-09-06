@@ -1,7 +1,8 @@
 fillist:
   test:
     spotify:
-      user-id: "test"
+      user-id: ${SPOTIFY_USER_ID:"user-id"}
+      refresh-token: ${SPOTIFY_REFRESH_TOKEN:"token"}
   allow-origin: "*"
   spotify-api-uri: https://api.spotify.com/v1
   oauth2:

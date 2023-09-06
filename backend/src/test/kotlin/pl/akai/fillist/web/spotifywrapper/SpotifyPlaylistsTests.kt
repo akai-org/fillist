@@ -8,11 +8,10 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Import
 import org.springframework.test.context.ContextConfiguration
 import pl.akai.fillist.configurations.SpotifyClientConfig
-import pl.akai.fillist.configurations.WebTestClientConfig
 import pl.akai.fillist.web.spotifywrapper.playlists.SpotifyPlaylistsService
 
 @SpringBootTest()
-@Import(WebTestClientConfig::class, SpotifyClientConfig::class)
+@Import(SpotifyClientConfig::class)
 @ContextConfiguration(classes = [SpotifyClientConfig::class])
 class SpotifyPlaylistsTests {
     @Autowired
