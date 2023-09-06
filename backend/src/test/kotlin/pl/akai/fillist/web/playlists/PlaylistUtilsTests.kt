@@ -2,8 +2,12 @@ package pl.akai.fillist.web.playlists
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import pl.akai.fillist.web.models.Playlist
 import pl.akai.fillist.web.models.PlaylistsResponseBody
+import pl.akai.fillist.web.spotifywrapper.models.ExternalUrls
 import pl.akai.fillist.web.spotifywrapper.models.Image
+import pl.akai.fillist.web.spotifywrapper.models.Owner
+import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylist
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylistsResponseBody
 import pl.akai.fillist.web.utils.PlaylistUtils
 
@@ -98,21 +102,22 @@ class PlaylistUtilsTests {
             limit = 1,
             offset = 1,
             items = listOf(
-                SpotifyPlaylistsResponseBody.SpotifyPlaylist(
+                SpotifyPlaylist(
                     description = "description",
-                    externalUrls = SpotifyPlaylistsResponseBody.SpotifyPlaylist.ExternalUrls(
+                    externalUrls = ExternalUrls(
                         spotify = "spotify",
                     ),
                     id = "id",
                     images = images,
                     name = playlistName,
-                    owner = SpotifyPlaylistsResponseBody.SpotifyPlaylist.Owner(
-                        externalUrls = SpotifyPlaylistsResponseBody.SpotifyPlaylist.ExternalUrls(
+                    owner = Owner(
+                        externalUrls = ExternalUrls(
                             spotify = "spotify",
                         ),
                         displayName = "displayName",
                         id = "id",
                     ),
+                    public = false,
                 ),
             ),
         )
@@ -122,14 +127,48 @@ class PlaylistUtilsTests {
             limit = 1,
             offset = 1,
             playlists = listOf(
-                PlaylistsResponseBody.Playlist(
+                Playlist(
                     id = "id",
                     name = validPlaylistName,
                     ownerDisplayName = "displayName",
                     image = validImageUrl,
+                    description = "description",
+                    public = false,
                 ),
             ),
         )
         assertEquals(response.block(), validResponse)
+    }
+
+    @Test
+    fun testToPlaylist() {
+        val spotifyPlaylist = SpotifyPlaylist(
+            description = "description",
+            externalUrls = ExternalUrls(
+                spotify = "spotify",
+            ),
+            id = "id",
+            images = listOf(
+                Image(
+                    height = 100,
+                    url = "url",
+                    width = 100,
+                ),
+            ),
+            name = "name",
+            owner = Owner(
+                externalUrls = ExternalUrls(
+                    spotify = "spotify",
+                ),
+                displayName = "displayName",
+                id = "id",
+            ),
+            public = false,
+        )
+        val playlist = PlaylistUtils.toPlaylist(spotifyPlaylist)
+        assertEquals(playlist.id, spotifyPlaylist.id)
+        assertEquals(playlist.name, spotifyPlaylist.name)
+        assertEquals(playlist.image, "url")
+        assertEquals(playlist.ownerDisplayName, spotifyPlaylist.owner.displayName)
     }
 }

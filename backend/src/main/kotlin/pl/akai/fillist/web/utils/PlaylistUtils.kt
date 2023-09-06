@@ -1,6 +1,8 @@
 package pl.akai.fillist.web.utils
 
+import pl.akai.fillist.web.models.Playlist
 import pl.akai.fillist.web.models.PlaylistsResponseBody
+import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylist
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylistsResponseBody
 import reactor.core.publisher.Mono
 
@@ -11,12 +13,7 @@ object PlaylistUtils {
                 it.items
             }
             .map {
-                PlaylistsResponseBody.Playlist(
-                    id = it.id,
-                    name = checkNameLengthAndFix(it.name),
-                    ownerDisplayName = it.owner.displayName,
-                    image = this.getLargeImage(it),
-                )
+                this.toPlaylist(it)
             }
             .collectList().map {
                 PlaylistsResponseBody(
@@ -28,7 +25,18 @@ object PlaylistUtils {
             }
     }
 
-    private fun getLargeImage(playlist: SpotifyPlaylistsResponseBody.SpotifyPlaylist): String? {
+    val toPlaylist: (SpotifyPlaylist) -> Playlist = { playlist ->
+        Playlist(
+            id = playlist.id,
+            name = checkNameLengthAndFix(playlist.name),
+            ownerDisplayName = playlist.owner.displayName,
+            image = this.getLargeImage(playlist),
+            description = playlist.description,
+            public = playlist.public,
+        )
+    }
+
+    private fun getLargeImage(playlist: SpotifyPlaylist): String? {
         if (playlist.images.isEmpty()) return null
         val max = playlist.images.maxOf { it.height ?: 0 }
         return playlist.images.find { it.height == max }?.url ?: playlist.images.firstOrNull()?.url

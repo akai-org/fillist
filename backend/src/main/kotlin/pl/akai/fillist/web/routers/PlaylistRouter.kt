@@ -11,5 +11,6 @@ class PlaylistRouter {
     fun playlistRouterFunction(playlistHandler: PlaylistHandler) =
         router {
             GET("/playlists", playlistHandler::getCurrentPlaylists)
+            POST("/playlists", playlistHandler::createPlaylist)
         }
 }
