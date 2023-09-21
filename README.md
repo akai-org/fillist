@@ -6,7 +6,8 @@
 <br>
 Powerful application designed to create Spotify playlists using advanced filters and exclusively featuring your liked songs. Create personalized playlists that perfectly match your musical preferences with ease.
 ## Info
-App not available yet for public. Currently, we use Spotify API in development mode only for specific users. If you want to test app, you can set up by yourself.## Setup Instruction
+App not available yet for public. Currently, we use Spotify API in development mode only for specific users. If you want to test app, you can set up by yourself.
+## Setup Instruction
 TODO
 ## Technologies
 Project is created with:
