@@ -1,5 +1,6 @@
 # Fillist
-![fillist](ui/logo_label.png) <br>
+![fillist](ui/logo/logo_label.png) 
+<br><br>
 [![Frontend CI](https://github.com/akai-org/fillist/actions/workflows/frontend-ci.yml/badge.svg)](https://github.com/akai-org/fillist/actions/workflows/frontend-ci.yml)
 [![Backend CI](https://github.com/akai-org/fillist/actions/workflows/backend-ci.yml/badge.svg)](https://github.com/akai-org/fillist/actions/workflows/backend-ci.yml)
 <br>
