@@ -8,7 +8,7 @@ Powerful application designed to create Spotify playlists using advanced filters
 ## Info
 App not available yet for public. Currently, we use Spotify API in development mode only for specific users. If you want to test app, you can set up by yourself.
 ## Setup Instruction
-TODO
+Look at [SETUP_INSTRUCTION.md](SETUP_INSTRUCTION.md)
 ## Technologies
 Project is created with:
 - [Angular](https://angular.io/)
