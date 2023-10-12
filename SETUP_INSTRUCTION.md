@@ -22,7 +22,10 @@
 1. Go to `backend/src/test/resources/application.yml` directory
 2. Copy file `application.yml` as `application-dev.yml`
 3. Change properties the same as in `application-dev.yml` in `main` directory
-4. TODO SCRIPT FOR GETTING REFRESH TOKEN
+4. Go to `backend` and run `refresh-setup.sh` script
+5. Change properties in `application-dev.yml` in `test` directory to value from script:
+   - `fillist.test.spotify.user-id`
+   - `fillist.test.spotify.refresh-token`
 
 **IMPORTANT - to use new created `application-dev.yml` file, you need to set spring profile to `dev` (e.g. in IntelliJ IDEA: `Edit Configurations...` -> `Environment variables` -> `SPRING_PROFILES_ACTIVE=dev`)**
 
