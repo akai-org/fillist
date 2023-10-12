@@ -32,3 +32,14 @@
 #### Run
 1. Go to `backend` directory
 2. Run `gradle bootRun --args='--spring.profiles.active=dev'`
+
+## Frontend
+### Prerequisites
+- Angular CLI
+- Node.js
+- yarn
+### Setup
+1. Go to `frontend` directory
+2. Run `yarn install`
+3. Run `yarn start`
+4. Go to `http://localhost:4200/`
