@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { UserProfileService } from '../../services/user-profile.service'
 import { map, Observable } from 'rxjs'
 import { TopViewContainerRefService } from '../../services/top-view-container-ref.service'
+import { UserPanelDialogInitializer } from './user-panel-dialog/user-panel-dialog.initializer'
 
 @Component({
   selector: 'fillist-user-panel',
@@ -22,10 +23,10 @@ export class UserPanelComponent {
   openUserPanel (): void {
     if (this.panelIsOpen) return
     this.panelIsOpen = true
-    this.topViewContainerRef.displayProfilePanel(
+    this.topViewContainerRef.displayDialog(new UserPanelDialogInitializer(
       () => {
         this.panelIsOpen = false
-      }
+      })
     )
   }
 }

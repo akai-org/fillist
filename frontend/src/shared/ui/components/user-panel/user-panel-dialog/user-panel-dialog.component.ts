@@ -3,7 +3,7 @@ import { UserProfileService } from '../../../services/user-profile.service'
 import { map, Observable } from 'rxjs'
 import { UserProfileInterface } from '../../../models/user-profile.interface'
 import { AuthService } from '../../../../../security/services/auth.service'
-import { DialogComponent } from '../../dialog-component.interface'
+import { DialogComponent } from '../../../models/dialog-component.interface'
 
 @Component({
   selector: 'fillist-user-panel-dialog',
