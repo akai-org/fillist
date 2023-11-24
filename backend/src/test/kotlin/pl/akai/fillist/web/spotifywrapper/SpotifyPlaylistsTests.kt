@@ -52,4 +52,18 @@ class SpotifyPlaylistsTests {
         // assertEquals(playlist.description, createPlaylistRequestBody.description)
         assertEquals(playlist.owner.id, userId)
     }
+
+    @Test
+    fun getPlaylist() {
+        // Sample playlist ID
+        val playlistId = "3cEYpjA9oz9GiPac4AsH4n"
+        val playlist = spotifyPlaylistsService.getPlaylist(playlistId).block()!!
+        assertNotNull(playlist.name)
+        assertNotNull(playlist.owner)
+        assertNotNull(playlist.public)
+        assertNotNull(playlist.images)
+        assertNotNull(playlist.description)
+        assertNotNull(playlist.externalUrls)
+        assertEquals(playlistId, playlist.id)
+    }
 }
