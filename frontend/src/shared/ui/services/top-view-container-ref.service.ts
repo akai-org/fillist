@@ -1,7 +1,5 @@
-import { Injectable, ViewContainerRef } from '@angular/core'
-import { AlertComponent } from '../components/alert/alert.component'
-import { AlertColor } from '../components/alert/alertColor'
-import { UserPanelDialogComponent } from '../components/user-panel/user-panel-dialog/user-panel-dialog.component'
+import { ComponentRef, Injectable, Type, ViewContainerRef } from '@angular/core'
+import { DialogInitializer } from '../models/dialog.initializer'
 
 @Injectable({
   providedIn: 'root'
@@ -15,30 +13,12 @@ export class TopViewContainerRefService {
     TopViewContainerRefService.viewContainerRef = viewContainerRef
   }
 
-  displayAlert (message: string, type: AlertColor = AlertColor.ERROR, onClose: () => void = () => {
-  }): void {
-    if (message.length > 50) throw new Error('Message too long')
+  static getComponent<T>(componentType: Type<T>): ComponentRef<T> {
     if (TopViewContainerRefService.viewContainerRef == null) throw new Error('ViewContainerRef not set')
-    const componentRef = TopViewContainerRefService.viewContainerRef.createComponent(AlertComponent)
-    componentRef.instance.message = message
-    componentRef.instance.type = type
-    TopViewContainerRefService.alertCount += 1
-    componentRef.instance.order = TopViewContainerRefService.alertCount
-    componentRef.instance.onClose.subscribe(() => {
-      componentRef.destroy()
-      TopViewContainerRefService.alertCount -= 1
-      onClose()
-    })
-    componentRef.changeDetectorRef.detectChanges()
+    return TopViewContainerRefService.viewContainerRef.createComponent<T>(componentType)
   }
 
-  displayProfilePanel (onClose: () => void = () => {}): void {
-    if (TopViewContainerRefService.viewContainerRef == null) throw new Error('ViewContainerRef not set')
-    const componentRef = TopViewContainerRefService.viewContainerRef.createComponent(UserPanelDialogComponent)
-    componentRef.instance.onClose.subscribe(() => {
-      componentRef.destroy()
-      onClose()
-    })
-    componentRef.changeDetectorRef.detectChanges()
+  displayDialog (dialogInitializer: DialogInitializer): void {
+    dialogInitializer.init()
   }
 }

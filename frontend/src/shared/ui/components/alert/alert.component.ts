@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { AlertColor } from './alertColor'
-import { DialogComponent } from '../dialog-component.interface'
+import { AlertColor } from './alert-color'
+import { DialogComponent } from '../../models/dialog-component.interface'
 
 @Component({
   selector: 'fillist-alert',
