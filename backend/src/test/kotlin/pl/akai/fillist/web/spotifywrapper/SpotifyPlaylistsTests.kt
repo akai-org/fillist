@@ -55,7 +55,6 @@ class SpotifyPlaylistsTests {
 
     @Test
     fun getPlaylist() {
-        // Sample playlist ID
         val playlistId = "3cEYpjA9oz9GiPac4AsH4n"
         val playlist = spotifyPlaylistsService.getPlaylist(playlistId).block()!!
         assertNotNull(playlist.name)
