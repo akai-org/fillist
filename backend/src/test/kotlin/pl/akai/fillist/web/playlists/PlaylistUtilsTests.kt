@@ -1,12 +1,14 @@
 package pl.akai.fillist.web.playlists
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import pl.akai.fillist.web.models.Playlist
 import pl.akai.fillist.web.models.PlaylistsResponseBody
 import pl.akai.fillist.web.spotifywrapper.models.ExternalUrls
 import pl.akai.fillist.web.spotifywrapper.models.Image
 import pl.akai.fillist.web.spotifywrapper.models.Owner
+import pl.akai.fillist.web.spotifywrapper.models.OwnerDetails
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylist
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylistsResponseBody
 import pl.akai.fillist.web.utils.PlaylistUtils
@@ -170,5 +172,34 @@ class PlaylistUtilsTests {
         assertEquals(playlist.name, spotifyPlaylist.name)
         assertEquals(playlist.image, "url")
         assertEquals(playlist.ownerDisplayName, spotifyPlaylist.owner.displayName)
+    }
+
+    @Test
+    fun toPlaylistDetails() {
+        val spotifyPlaylist = SpotifyPlaylist(
+            description = "description",
+            externalUrls = ExternalUrls(
+                spotify = "spotify",
+            ),
+            id = "id",
+            images = listOf(
+                Image(
+                    height = 100,
+                    url = "url",
+                    width = 100,
+                ),
+            ),
+            name = "name",
+            owner = Owner(
+                externalUrls = ExternalUrls(
+                    spotify = "spotify",
+                ),
+                displayName = "displayName",
+                id = "id",
+            ),
+            public = false,
+        )
+        val playlistDetails = PlaylistUtils.toPlaylistDetails(spotifyPlaylist)
+        assertNotNull(playlistDetails)
     }
 }

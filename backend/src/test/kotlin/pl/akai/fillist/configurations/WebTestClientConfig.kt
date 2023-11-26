@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Primary
 import org.springframework.http.HttpHeaders
 import org.springframework.test.web.reactive.server.WebTestClient
+import org.springframework.web.reactive.function.client.ExchangeStrategies
 import pl.akai.fillist.security.service.TokenService
 
 @TestConfiguration
@@ -22,11 +23,17 @@ class WebTestClientConfig {
     @Bean
     @Primary
     fun webTestClientBuilderCustomizer(): WebTestClientBuilderCustomizer {
+        val size = 16 * 1024 * 1024
+        val strategies = ExchangeStrategies.builder()
+            .codecs { clientDefaultCodecsConfigurer ->
+                clientDefaultCodecsConfigurer.defaultCodecs().maxInMemorySize(size)
+            }
+            .build()
         return WebTestClientBuilderCustomizer { builder: WebTestClient.Builder ->
             builder.defaultHeader(
                 HttpHeaders.AUTHORIZATION,
                 "Bearer ${getFillistToken(spotifyToken)}",
-            )
+            ).exchangeStrategies(strategies)
         }
     }
 
