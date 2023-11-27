@@ -65,4 +65,24 @@ class SpotifyPlaylistsTests {
         assertNotNull(playlist.externalUrls)
         assertEquals(playlistId, playlist.id)
     }
+
+    @Test
+    fun updatePlaylistDetails() {
+        val createPlaylistRequestBody = SpotifyCreatePlaylistRequestBody(
+            name = "Test Playlist",
+            description = "Test playlist description",
+            public = false,
+        )
+        val playlist = spotifyPlaylistsService.createPlaylist(userId, createPlaylistRequestBody).block()!!
+        val updatedPlaylistBody = SpotifyCreatePlaylistRequestBody(
+            name = "Updated Playlist Name",
+            description = "Updated playlist description",
+            public = false,
+        )
+        val updatedPlaylist = spotifyPlaylistsService.updatePlaylistDetails(playlist.id, updatedPlaylistBody).block()!!
+        assertNotNull(updatedPlaylist)
+        assertEquals(playlist.id, updatedPlaylist.id)
+        assertEquals(updatedPlaylistBody.name, updatedPlaylist.name)
+        assertEquals(updatedPlaylistBody.public, updatedPlaylist.public)
+    }
 }
