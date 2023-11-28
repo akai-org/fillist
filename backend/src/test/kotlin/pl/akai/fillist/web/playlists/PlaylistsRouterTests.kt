@@ -1,6 +1,7 @@
 package pl.akai.fillist.web.playlists
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
@@ -12,6 +13,7 @@ import org.springframework.test.web.reactive.server.body
 import pl.akai.fillist.configurations.SpotifyClientConfig
 import pl.akai.fillist.configurations.WebTestClientConfig
 import pl.akai.fillist.web.models.Playlist
+import pl.akai.fillist.web.models.PlaylistDetails
 import pl.akai.fillist.web.models.PlaylistsResponseBody
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyCreatePlaylistRequestBody
 import reactor.core.publisher.Mono
@@ -44,6 +46,14 @@ class PlaylistsRouterTests {
             .expectStatus().isOk.expectBody(Playlist::class.java).value {
                 assertEquals(it.name, createPlaylistRequestBody.name)
                 assertEquals(it.public, createPlaylistRequestBody.public)
+            }
+    }
+
+    @Test
+    fun getPlaylistDetails() {
+        webTestClient.get().uri("/playlists/37i9dQZF1EIUFF8VNSAZXh/details").exchange()
+            .expectStatus().isOk.expectBody(PlaylistDetails::class.java).value {
+                assertNotNull(it.title)
             }
     }
 }

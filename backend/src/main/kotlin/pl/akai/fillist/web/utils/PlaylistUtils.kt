@@ -1,7 +1,9 @@
 package pl.akai.fillist.web.utils
 
 import pl.akai.fillist.web.models.Playlist
+import pl.akai.fillist.web.models.PlaylistDetails
 import pl.akai.fillist.web.models.PlaylistsResponseBody
+import pl.akai.fillist.web.spotifywrapper.models.OwnerDetails
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylist
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylistsResponseBody
 import reactor.core.publisher.Mono
@@ -34,6 +36,22 @@ object PlaylistUtils {
             description = playlist.description,
             public = playlist.public,
         )
+    }
+
+    val toPlaylistDetails: (SpotifyPlaylist) -> Mono<PlaylistDetails> = { playlist ->
+        Mono.just(playlist)
+            .map {
+                PlaylistDetails(
+                    title = playlist.name,
+                    description = playlist.description,
+                    cover = playlist.images[0].url,
+                    owner = OwnerDetails(
+                        id = playlist.owner.id,
+                        name = playlist.owner.displayName,
+                        picture = null,
+                    ),
+                )
+            }
     }
 
     private fun getLargeImage(playlist: SpotifyPlaylist): String? {

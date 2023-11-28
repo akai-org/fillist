@@ -31,4 +31,10 @@ class PlaylistHandler(
         }
         return ServerResponse.ok().body(responseBody)
     }
+
+    fun getPlaylistDetails(serverRequest: ServerRequest): Mono<ServerResponse> {
+        val playlistId = serverRequest.pathVariable("playlist-id")
+        val body = spotifyPlaylistsService.getPlaylist(playlistId).flatMap(PlaylistUtils.toPlaylistDetails)
+        return ServerResponse.ok().body(body)
+    }
 }
