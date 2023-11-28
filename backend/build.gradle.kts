@@ -103,3 +103,7 @@ tasks.register<JavaExec>("ktlintFormat") {
         "--editorconfig=.editorconfig",
     )
 }
+
+tasks.withType<Test> {
+    systemProperty("spring.profiles.active", "DEV")
+}
