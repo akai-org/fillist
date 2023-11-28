@@ -9,5 +9,5 @@ data class SpotifyPlaylistDetails(
     val name: String,
     val description: String?,
     val cover: Image,
-    val owner: Owner
+    val owner: Owner,
 )

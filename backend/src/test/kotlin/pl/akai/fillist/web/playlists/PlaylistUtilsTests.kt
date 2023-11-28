@@ -8,7 +8,6 @@ import pl.akai.fillist.web.models.PlaylistsResponseBody
 import pl.akai.fillist.web.spotifywrapper.models.ExternalUrls
 import pl.akai.fillist.web.spotifywrapper.models.Image
 import pl.akai.fillist.web.spotifywrapper.models.Owner
-import pl.akai.fillist.web.spotifywrapper.models.OwnerDetails
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylist
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylistsResponseBody
 import pl.akai.fillist.web.utils.PlaylistUtils

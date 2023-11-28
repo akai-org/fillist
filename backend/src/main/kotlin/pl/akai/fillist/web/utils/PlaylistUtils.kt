@@ -38,7 +38,7 @@ object PlaylistUtils {
         )
     }
 
-    val toPlaylistDetails: (SpotifyPlaylist) -> Mono<PlaylistDetails> = {playlist ->
+    val toPlaylistDetails: (SpotifyPlaylist) -> Mono<PlaylistDetails> = { playlist ->
         Mono.just(playlist)
             .map {
                 PlaylistDetails(
@@ -48,8 +48,8 @@ object PlaylistUtils {
                     owner = OwnerDetails(
                         id = playlist.owner.id,
                         name = playlist.owner.displayName,
-                        picture = null
-                    )
+                        picture = null,
+                    ),
                 )
             }
     }
