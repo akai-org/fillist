@@ -23,4 +23,9 @@ class SpotifyPlaylistsService @Autowired constructor(
             .retrieve()
             .bodyToMono(SpotifyPlaylist::class.java)
     }
+
+    fun getPlaylist(playlistId: String): Mono<SpotifyPlaylist> {
+        return spotifyClient.get().uri("/playlists/$playlistId").retrieve()
+            .bodyToMono(SpotifyPlaylist::class.java)
+    }
 }

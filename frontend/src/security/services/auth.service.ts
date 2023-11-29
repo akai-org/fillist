@@ -6,7 +6,8 @@ import { environment } from 'src/environments/environment'
 import { AccessTokenResponseBodyInterface } from '../models/access-token-response-body.interface'
 import { Router } from '@angular/router'
 import { TopViewContainerRefService } from '../../shared/ui/services/top-view-container-ref.service'
-import { AlertColor } from '../../shared/ui/components/alert/alertColor'
+import { AlertColor } from '../../shared/ui/components/alert/alert-color'
+import { AlertInitializer } from '../../shared/ui/components/alert/alert.initializer'
 
 @Injectable({
   providedIn: 'root'
@@ -40,18 +41,23 @@ export class AuthService {
   }
 
   loginInErrorHandler (err: any): Error {
-    this.topViewContainerRef.displayAlert('Something went wrong. Please try again later.', AlertColor.ERROR, () => {
-      this.logout()
-      this.redirectToLoginIn()
-    })
+    const initializer = new AlertInitializer(
+      'Something went wrong. Please try again later.', AlertColor.ERROR, () => {
+        this.logout()
+        this.redirectToLoginIn()
+      }
+    )
+    this.topViewContainerRef.displayDialog(initializer)
     return new Error(err)
   }
 
   refreshTokenErrorHandler (err: any): Error {
-    this.topViewContainerRef.displayAlert('Session refresh error. Please try login in again.', AlertColor.WARNING, () => {
-      this.logout()
-      this.redirectToLoginIn()
-    })
+    this.topViewContainerRef.displayDialog(new AlertInitializer(
+      'Session refresh error. Please try login in again.', AlertColor.WARNING, () => {
+        this.logout()
+        this.redirectToLoginIn()
+      }
+    ))
     return new Error(err)
   }
 

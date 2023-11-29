@@ -12,5 +12,6 @@ class PlaylistRouter {
         router {
             GET("/playlists", playlistHandler::getCurrentPlaylists)
             POST("/playlists", playlistHandler::createPlaylist)
+            GET("/playlists/{playlist-id}/details", playlistHandler::getPlaylistDetails)
         }
 }
