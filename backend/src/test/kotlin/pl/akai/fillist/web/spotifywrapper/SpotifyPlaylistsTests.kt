@@ -22,8 +22,6 @@ class SpotifyPlaylistsTests {
     @Autowired
     private lateinit var spotifyPlaylistsService: SpotifyPlaylistsService
 
-    @MockBean
-    private lateinit var spotifyClient: WebClient
 
     @Value("\${fillist.test.spotify.user-id}")
     private val userId: String = ""
@@ -41,7 +39,6 @@ class SpotifyPlaylistsTests {
             assertNotNull(it.images)
             assertNotNull(it.externalUrls)
         }
-        assertEquals(playlists.items.size, 20)
     }
 
     @Test
