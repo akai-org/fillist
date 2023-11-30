@@ -36,4 +36,12 @@ class SpotifyPlaylistsService @Autowired constructor(
             .bodyToMono(SpotifyPlaylist::class.java)
             .then(getPlaylist(playlistId))
     }
+
+    fun changePlaylistCover(playlistId: String, imageData: String): Mono<Void> {
+        return spotifyClient.put().uri("/playlists/$playlistId/images")
+            .bodyValue(imageData)
+            .retrieve()
+            .toBodilessEntity()
+            .then()
+    }
 }

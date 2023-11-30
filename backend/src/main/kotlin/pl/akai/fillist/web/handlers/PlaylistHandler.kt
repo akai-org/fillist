@@ -80,6 +80,14 @@ class PlaylistHandler(
         }
         return ServerResponse.ok().body(responseBody)
     }
+
+    fun changePlaylistCover(serverRequest: ServerRequest): Mono<ServerResponse> {
+        val playlistId = serverRequest.pathVariable("playlist-id")
+        val requestBody = serverRequest.bodyToMono(String::class.java)
+
+        val operation = requestBody.flatMap { spotifyPlaylistsService.changePlaylistCover(playlistId, it) }
+        return operation.then(ServerResponse.ok().build())
+    }
 }
 
 private fun String.toSearchableRegex(): Regex {
