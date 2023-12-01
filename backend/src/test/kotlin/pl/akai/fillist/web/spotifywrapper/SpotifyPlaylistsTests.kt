@@ -7,10 +7,8 @@ import org.junit.jupiter.api.assertDoesNotThrow
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.context.annotation.Import
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.web.reactive.function.client.WebClient
 import pl.akai.fillist.configurations.SpotifyClientConfig
 import pl.akai.fillist.web.spotifywrapper.playlists.SpotifyPlaylistsService
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyCreatePlaylistRequestBody
@@ -21,7 +19,6 @@ import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyCreatePlaylist
 class SpotifyPlaylistsTests {
     @Autowired
     private lateinit var spotifyPlaylistsService: SpotifyPlaylistsService
-
 
     @Value("\${fillist.test.spotify.user-id}")
     private val userId: String = ""
