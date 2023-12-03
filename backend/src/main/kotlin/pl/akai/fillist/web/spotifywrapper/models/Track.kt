@@ -8,6 +8,5 @@ data class Track(
     val id: String,
     val uri: String,
     val album: Album,
-    val year: Int,
     val artists: List<Artist>? = null,
 )

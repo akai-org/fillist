@@ -1,9 +1,8 @@
-package pl.akai.fillist.web.spotifywrapper
+package pl.akai.fillist.web.spotifywrapper.user
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
-import pl.akai.fillist.web.spotifywrapper.user.SpotifySearchResponseBody
 import reactor.core.publisher.Mono
 
 @Service
@@ -55,14 +54,33 @@ data class SpotifySearchQueryFilters(
 ) {
     fun toQueryString(): String {
         val queryParameters = StringBuilder()
-        when {
-            genericFilter != null -> queryParameters.append("$genericFilter ")
-            album != null -> queryParameters.append("album:\"$album\" ")
-            artist != null -> queryParameters.append("artist:\"$artist\" ")
-            track != null -> queryParameters.append("track:\"$track\" ")
-            year != null -> queryParameters.append("year:\"$year\" ")
-            upc != null -> queryParameters.append("upc:\"$upc\" ")
-            genre != null -> queryParameters.append("genre:\"$genre\" ")
+
+        if (genericFilter != null) {
+            queryParameters.append("$genericFilter ")
+        }
+
+        if (album != null) {
+            queryParameters.append("album:\"$album\" ")
+        }
+
+        if (artist != null) {
+            queryParameters.append("artist:\"$artist\" ")
+        }
+
+        if (track != null) {
+            queryParameters.append("track:\"$track\" ")
+        }
+
+        if (year != null) {
+            queryParameters.append("year:\"$year\" ")
+        }
+
+        if (upc != null) {
+            queryParameters.append("upc:\"$upc\" ")
+        }
+
+        if (genre != null) {
+            queryParameters.append("genre:\"$genre\" ")
         }
 
         return queryParameters.toString().trim()

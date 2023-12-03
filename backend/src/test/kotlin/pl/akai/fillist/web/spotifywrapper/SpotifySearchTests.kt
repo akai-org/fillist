@@ -9,6 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Import
 import org.springframework.test.context.ContextConfiguration
 import pl.akai.fillist.configurations.SpotifyClientConfig
+import pl.akai.fillist.web.spotifywrapper.user.SpotifySearchQueryFilters
+import pl.akai.fillist.web.spotifywrapper.user.SpotifySearchService
+import pl.akai.fillist.web.spotifywrapper.user.SpotifySearchType
 
 @SpringBootTest
 @Import(SpotifyClientConfig::class)
