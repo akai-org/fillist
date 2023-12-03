@@ -8,6 +8,6 @@ import pl.akai.fillist.web.spotifywrapper.models.Owner
 data class SpotifyPlaylistDetails(
     val name: String,
     val description: String?,
-    val cover: Image,
+    val cover: Image?,
     val owner: Owner,
 )
