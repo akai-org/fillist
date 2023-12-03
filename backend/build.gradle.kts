@@ -105,5 +105,5 @@ tasks.register<JavaExec>("ktlintFormat") {
 }
 
 tasks.withType<Test> {
-    systemProperty("spring.profiles.active", "DEV")
+    systemProperty("spring.profiles.active", "dev")
 }
