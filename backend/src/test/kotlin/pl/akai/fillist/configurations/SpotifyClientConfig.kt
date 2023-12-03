@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders
 import org.springframework.http.codec.json.KotlinSerializationJsonDecoder
 import org.springframework.web.reactive.function.client.ExchangeStrategies
 import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.util.DefaultUriBuilderFactory
 
 @TestConfiguration
 class SpotifyClientConfig {
@@ -24,13 +25,15 @@ class SpotifyClientConfig {
 
     @Bean
     fun spotifyClient(): WebClient {
+        val factory = DefaultUriBuilderFactory(spotifyApiUri)
+        factory.encodingMode = DefaultUriBuilderFactory.EncodingMode.URI_COMPONENT
         val size = 16 * 1024 * 1024
         val strategies = ExchangeStrategies.builder()
             .codecs { clientDefaultCodecsConfigurer ->
                 clientDefaultCodecsConfigurer.defaultCodecs().maxInMemorySize(size)
             }
             .build()
-        return WebClient.builder().baseUrl(spotifyApiUri).defaultHeader(HttpHeaders.ACCEPT, "application/json")
+        return WebClient.builder().uriBuilderFactory(factory).defaultHeader(HttpHeaders.ACCEPT, "application/json")
             .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer ${spotifyToken.accessToken}").codecs {
                 it.defaultCodecs().kotlinSerializationJsonDecoder(KotlinSerializationJsonDecoder(spotifyJson))
             }
