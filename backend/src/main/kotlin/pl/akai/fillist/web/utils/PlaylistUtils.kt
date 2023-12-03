@@ -44,7 +44,7 @@ object PlaylistUtils {
                 PlaylistDetails(
                     title = playlist.name,
                     description = playlist.description,
-                    cover = playlist.images[0].url,
+                    cover = playlist.images?.get(0)?.url,
                     owner = OwnerDetails(
                         id = playlist.owner.id,
                         name = playlist.owner.displayName,
@@ -55,9 +55,9 @@ object PlaylistUtils {
     }
 
     private fun getLargeImage(playlist: SpotifyPlaylist): String? {
-        if (playlist.images.isEmpty()) return null
-        val max = playlist.images.maxOf { it.height ?: 0 }
-        return playlist.images.find { it.height == max }?.url ?: playlist.images.firstOrNull()?.url
+        if (playlist.images?.isEmpty() == true) return null
+        val max = playlist.images?.maxOf { it.height ?: 0 }
+        return playlist.images?.find { it.height == max }?.url ?: playlist.images?.firstOrNull()?.url
     }
 
     private fun checkNameLengthAndFix(name: String): String {

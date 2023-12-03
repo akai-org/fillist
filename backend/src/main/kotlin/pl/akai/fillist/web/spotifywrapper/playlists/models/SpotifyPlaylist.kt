@@ -10,7 +10,7 @@ data class SpotifyPlaylist(
     val description: String?,
     val externalUrls: ExternalUrls,
     val id: String,
-    val images: List<Image>,
+    val images: List<Image>?,
     val name: String,
     val owner: Owner,
     val public: Boolean,
