@@ -2,6 +2,13 @@
 
 set -e
 
+if ! command -v jq &> /dev/null
+then
+  echo "<jq> could not be found"
+  echo "Try installing it using your package manager"
+  exit 1
+fi
+
 read -rp "Enter spotify client id: " client_id
 read -rp "Enter spotify client secret: " client_secret
 read -rp "Enter redirect uri: " redirect_uri
