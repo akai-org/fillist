@@ -13,7 +13,7 @@ read -rp "Enter spotify client id: " client_id
 read -rp "Enter spotify client secret: " client_secret
 read -rp "Enter redirect uri: " redirect_uri
 state=$(tr -dc 'a-zA-Z0-9' < /dev/urandom | fold -w 16 | head -n 1)
-scope='user-read-private,user-read-email'
+scope='user-read-private,user-read-email,playlist-read-private,playlist-modify-public,playlist-modify-private,ugc-image-upload'
 
 echo "Go to the following link in your browser and get code from query string:"
 url="https://accounts.spotify.com/authorize?response_type=code&client_id=${client_id}&scope=${scope}&redirect_uri=${redirect_uri}&state=${state}"

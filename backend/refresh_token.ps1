@@ -4,7 +4,7 @@ $client_id = Read-Host -Prompt 'Enter your client id'
 $client_secret = Read-Host -Prompt 'Enter your client secret'
 $redirect_uri = Read-Host -Prompt 'Enter your redirect uri'
 $state = -join ((65..90) + (97..122) + (48..57) | Get-Random -Count 16 | % {[char]$_})
-$scope = "user-read-private,user-read-email"
+$scope = "user-read-private,user-read-email,playlist-read-private,playlist-modify-public,playlist-modify-private,ugc-image-upload"
 
 Write-Output "Go to the following link in your browser and get code from query string:"
 $url="https://accounts.spotify.com/authorize?response_type=code&client_id=${client_id}&scope=${scope}&redirect_uri=${redirect_uri}&state=${state}"
