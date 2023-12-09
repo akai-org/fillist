@@ -24,4 +24,9 @@ class SpotifyUserService @Autowired constructor(
         return spotifyClient.get().uri(PROFILE_ENDPOINT).header(HttpHeaders.AUTHORIZATION, "Bearer $spotifyToken").retrieve()
             .bodyToMono(SpotifyProfileResponseBody::class.java)
     }
+
+    fun getExternalUserProfile(userId: String): Mono<SpotifyExternalProfileResponseBody> {
+        return spotifyClient.get().uri("/users/$userId").retrieve()
+            .bodyToMono(SpotifyExternalProfileResponseBody::class.java)
+    }
 }

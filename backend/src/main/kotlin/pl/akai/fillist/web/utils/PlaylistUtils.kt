@@ -44,7 +44,7 @@ object PlaylistUtils {
                 PlaylistDetails(
                     title = playlist.name,
                     description = playlist.description,
-                    cover = playlist.images?.get(0)?.url,
+                    cover = playlist.images?.firstOrNull()?.url,
                     owner = OwnerDetails(
                         id = playlist.owner.id,
                         name = playlist.owner.displayName,
