@@ -13,6 +13,7 @@ import org.springframework.web.reactive.function.client.ClientRequest
 import org.springframework.web.reactive.function.client.ExchangeFunction
 import org.springframework.web.reactive.function.client.ExchangeStrategies
 import org.springframework.web.reactive.function.client.WebClient
+import org.springframework.web.util.DefaultUriBuilderFactory
 
 @Configuration
 class WebClientConfig {
@@ -22,6 +23,8 @@ class WebClientConfig {
     @OptIn(ExperimentalSerializationApi::class)
     @Bean
     fun spotifyClient(): WebClient {
+        val factory = DefaultUriBuilderFactory(spotifyApiUri)
+        factory.encodingMode = DefaultUriBuilderFactory.EncodingMode.URI_COMPONENT
         val size = 16 * 1024 * 1024
         val strategies = ExchangeStrategies.builder()
             .codecs { clientDefaultCodecsConfigurer ->
@@ -29,7 +32,7 @@ class WebClientConfig {
             }
             .build()
         return WebClient.builder()
-            .baseUrl(spotifyApiUri)
+            .uriBuilderFactory(factory)
             .defaultHeader(HttpHeaders.ACCEPT, "application/json")
             .codecs {
                 val decoder = KotlinSerializationJsonDecoder(
