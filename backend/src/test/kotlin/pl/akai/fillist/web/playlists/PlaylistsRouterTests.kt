@@ -56,4 +56,35 @@ class PlaylistsRouterTests {
                 assertNotNull(it.title)
             }
     }
+
+    @Test
+    fun updatePlaylistDetails() {
+        val createPlaylistRequestBody = SpotifyCreatePlaylistRequestBody(
+            name = "New Playlist",
+            description = "New playlist description",
+            public = false,
+        )
+        val playlist = webTestClient.post().uri("/playlists").body(Mono.just(createPlaylistRequestBody))
+            .exchange()
+            .expectStatus().isOk
+            .expectBody(Playlist::class.java)
+            .returnResult()
+            .responseBody
+
+        assertNotNull(playlist)
+        assertNotNull(playlist?.id)
+
+        val updatePlaylistRequestBody = SpotifyCreatePlaylistRequestBody(
+            name = "Updated Playlist",
+            description = "Updated playlist description",
+            public = false,
+        )
+        webTestClient.put().uri("/playlists/${playlist?.id}").body(Mono.just(updatePlaylistRequestBody))
+            .exchange()
+            .expectStatus().isOk.expectBody(Playlist::class.java).value {
+                assertEquals(it.id, playlist?.id)
+                assertEquals(it.name, updatePlaylistRequestBody.name)
+                assertEquals(it.public, updatePlaylistRequestBody.public)
+            }
+    }
 }
