@@ -8,12 +8,14 @@ import org.springframework.web.reactive.function.server.body
 import org.springframework.web.reactive.function.server.bodyToMono
 import pl.akai.fillist.web.spotifywrapper.playlists.SpotifyPlaylistsService
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyCreatePlaylistRequestBody
+import pl.akai.fillist.web.spotifywrapper.user.SpotifyUserService
 import pl.akai.fillist.web.utils.PlaylistUtils
 import reactor.core.publisher.Mono
 
 @Component
 class PlaylistHandler(
     private val spotifyPlaylistsService: SpotifyPlaylistsService,
+    private val spotifyUserService: SpotifyUserService
 ) {
     fun getCurrentPlaylists(serverRequest: ServerRequest): Mono<ServerResponse> {
         val limit = serverRequest.queryParam("limit").orElse("20").toInt()
@@ -35,8 +37,20 @@ class PlaylistHandler(
 
     fun getPlaylistDetails(serverRequest: ServerRequest): Mono<ServerResponse> {
         val playlistId = serverRequest.pathVariable("playlist-id")
-        val body = spotifyPlaylistsService.getPlaylist(playlistId).flatMap(PlaylistUtils.toPlaylistDetails)
-        return ServerResponse.ok().body(body)
+        val playlistDetails = spotifyPlaylistsService.getPlaylist(playlistId).flatMap(PlaylistUtils.toPlaylistDetails)
+        val userDetails = playlistDetails.flatMap {
+            spotifyUserService.getExternalUserProfile(it.owner.id)
+        }
+        return playlistDetails.zipWith(userDetails)
+            .flatMap {
+                val picture = if (it.t2.images.isNotEmpty()) {
+                    it.t2.images[0].url
+                } else {
+                    null
+                }
+                it.t1.owner.picture = picture
+                ServerResponse.ok().body(Mono.just(it.t1))
+            }
     }
 
     fun updatePlaylistDetails(serverRequest: ServerRequest): Mono<ServerResponse> {
