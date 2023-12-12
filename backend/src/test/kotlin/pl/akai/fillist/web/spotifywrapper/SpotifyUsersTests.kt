@@ -29,4 +29,12 @@ class SpotifyUsersTests {
         assertNotNull(profile.displayName)
         assertNotNull(profile)
     }
+
+    @Test
+    fun getExternalUserProfile() {
+        val userId = "31fnqab3t5khlppaindpem6cpvqi"
+        val profile = spotifyUserService.getExternalUserProfile(userId).block()!!
+        assertNotNull(profile.id)
+        assertNotNull(profile.displayName)
+    }
 }
