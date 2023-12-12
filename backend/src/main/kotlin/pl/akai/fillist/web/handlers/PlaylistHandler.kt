@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.reactive.function.server.body
+import org.springframework.web.reactive.function.server.bodyToMono
 import pl.akai.fillist.web.spotifywrapper.playlists.SpotifyPlaylistsService
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyCreatePlaylistRequestBody
 import pl.akai.fillist.web.spotifywrapper.user.SpotifyUserService
@@ -50,5 +51,16 @@ class PlaylistHandler(
                 it.t1.owner.picture = picture
                 ServerResponse.ok().body(Mono.just(it.t1))
             }
+    }
+
+    fun updatePlaylistDetails(serverRequest: ServerRequest): Mono<ServerResponse> {
+        val playlistId = serverRequest.pathVariable("playlist-id")
+        val requestBody = serverRequest.bodyToMono(SpotifyCreatePlaylistRequestBody::class.java)
+        val responseBody = Mono.zip(requestBody, Mono.just(playlistId)).flatMap {
+            spotifyPlaylistsService.updatePlaylistDetails(it.t2, it.t1)
+        }.map {
+            PlaylistUtils.toPlaylist(it)
+        }
+        return ServerResponse.ok().body(responseBody)
     }
 }
