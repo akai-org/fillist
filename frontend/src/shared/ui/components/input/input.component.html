@@ -1,0 +1,8 @@
+<div class="input-component">
+    <label [innerText]="labelText"></label>
+    <input
+        [value]="value"
+        (input)="onValueChange($event)"
+        [class]="type"
+    />
+</div>

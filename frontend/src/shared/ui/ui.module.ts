@@ -10,6 +10,7 @@ import { LayoutComponent } from './components/layout/layout.component'
 import { UserPanelComponent } from './components/user-panel/user-panel.component'
 import { UserPanelDialogComponent } from './components/user-panel/user-panel-dialog/user-panel-dialog.component'
 import { PaginatorComponent } from './components/paginator/paginator.component'
+import { InputComponent } from './components/input/input.component'
 
 @NgModule({
   declarations: [
@@ -19,13 +20,15 @@ import { PaginatorComponent } from './components/paginator/paginator.component'
     LayoutComponent,
     UserPanelComponent,
     UserPanelDialogComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    InputComponent
   ],
   exports: [
     SpinnerComponent,
     AlertComponent,
     HeaderComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    InputComponent
   ],
   imports: [
     CommonModule,
