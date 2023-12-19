@@ -8,6 +8,7 @@ import org.springframework.web.reactive.function.server.body
 import org.springframework.web.reactive.function.server.bodyToMono
 import pl.akai.fillist.web.spotifywrapper.playlists.SpotifyPlaylistsService
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyCreatePlaylistRequestBody
+import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylistsResponseBody
 import pl.akai.fillist.web.spotifywrapper.user.SpotifyUserService
 import pl.akai.fillist.web.utils.PlaylistUtils
 import reactor.core.publisher.Mono
@@ -33,6 +34,22 @@ class PlaylistHandler(
             PlaylistUtils.toPlaylist(it)
         }
         return ServerResponse.ok().body(responseBody)
+    }
+
+    fun getCurrentPlaylistsByName(serverRequest: ServerRequest): Mono<ServerResponse> {
+        val name = serverRequest.queryParam("name").orElse("")
+        val body = spotifyPlaylistsService
+            .getCurrentPlaylists(limit = 999)
+            .map { it ->
+                SpotifyPlaylistsResponseBody(
+                    it.total,
+                    it.limit,
+                    it.offset,
+                    it.items.filter { it.name == name }
+                )
+            }
+            .flatMap(PlaylistUtils.toPlaylists)
+        return ServerResponse.ok().body(body)
     }
 
     fun getPlaylistDetails(serverRequest: ServerRequest): Mono<ServerResponse> {

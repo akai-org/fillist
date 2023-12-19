@@ -56,6 +56,14 @@ class PlaylistsRouterTests {
                 assertNotNull(it.title)
             }
     }
+    @Test
+    fun getPlaylistsByName() {
+        webTestClient.get().uri("/playlists/name").attribute("name", "test")
+            .exchange()
+            .expectStatus().isOk.expectBody(PlaylistsResponseBody::class.java).value {
+                assertEquals(it.playlists.size, 20)
+            }
+    }
 
     @Test
     fun updatePlaylistDetails() {
