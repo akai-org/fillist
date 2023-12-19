@@ -37,6 +37,7 @@ class PlaylistHandler(
 
     fun getCurrentPlaylistsByName(serverRequest: ServerRequest): Mono<ServerResponse> {
         val name = serverRequest.queryParam("name").orElse("")
+
         val body = spotifyPlaylistsService
             .getCurrentPlaylists(limit = 999)
             .map { it ->
@@ -44,7 +45,7 @@ class PlaylistHandler(
                     it.total,
                     it.limit,
                     it.offset,
-                    it.items.filter { it.name == name }
+                    it.items.filter { it.name.matches( name.toSearchableRegex()) }
                 )
             }
             .flatMap(PlaylistUtils.toPlaylists)
@@ -79,4 +80,12 @@ class PlaylistHandler(
         }
         return ServerResponse.ok().body(responseBody)
     }
+}
+
+private fun String.toSearchableRegex(): Regex {
+    var rename = ".*"
+    for (ch in this)
+        rename += "[$ch].*"
+
+    return Regex(rename, RegexOption.IGNORE_CASE)
 }
