@@ -45,7 +45,7 @@ class PlaylistHandler(
                     it.total,
                     it.limit,
                     it.offset,
-                    it.items.filter { it.name.matches( name.toSearchableRegex()) }
+                    it.items.filter { it.name.matches(name.toSearchableRegex()) }
                 )
             }
             .flatMap(PlaylistUtils.toPlaylists)
