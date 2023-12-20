@@ -1,8 +1,10 @@
 <div class="input-component">
     <label [innerText]="labelText"></label>
-    <input
-        [value]="value"
+    <input *ngIf="type=='text'"
         (input)="onValueChange($event)"
-        [class]="type"
     />
+    <textarea
+            class="textarea"
+            (input)="onValueChange($event)"
+            *ngIf="type=='textarea'"></textarea>
 </div>

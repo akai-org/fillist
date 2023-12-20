@@ -4,6 +4,7 @@
                                owner=""
                                image="assets/images/add-new-playlist.png"
                                id="new"
+                               (click)="openUserPanel()"
         ></fillist-playlist-tile>
         <fillist-playlist-tile *ngFor="let playlist of playlistsResponse.playlists"
                                [name]="playlist.name"
@@ -16,4 +17,3 @@
                        [total]="playlistsResponse.total"
                        (onPageChange)="changePage($event)"></fillist-paginator>
 </div>
-

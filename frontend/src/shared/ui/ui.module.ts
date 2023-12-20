@@ -11,6 +11,9 @@ import { UserPanelComponent } from './components/user-panel/user-panel.component
 import { UserPanelDialogComponent } from './components/user-panel/user-panel-dialog/user-panel-dialog.component'
 import { PaginatorComponent } from './components/paginator/paginator.component'
 import { InputComponent } from './components/input/input.component'
+import {
+  CreatePlaylistDialogComponent
+} from './components/playlist-panel/create-playlist-dialog/create-playlist-dialog.component'
 
 @NgModule({
   declarations: [
@@ -21,14 +24,16 @@ import { InputComponent } from './components/input/input.component'
     UserPanelComponent,
     UserPanelDialogComponent,
     PaginatorComponent,
-    InputComponent
+    InputComponent,
+    CreatePlaylistDialogComponent
   ],
   exports: [
     SpinnerComponent,
     AlertComponent,
     HeaderComponent,
     PaginatorComponent,
-    InputComponent
+    InputComponent,
+    CreatePlaylistDialogComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,4 @@
-import {Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 
 @Component({
   selector: 'fillist-input',
@@ -10,8 +10,9 @@ export class InputComponent {
   @Input() labelText: string = 'Label'
   @Input() placeholder: string = 'placeholder'
   value: string = ''
+  @Output() valueChange = new EventEmitter<string>()
   onValueChange (e: any): void {
     this.value = e.target.value
-    console.log(this.value)
+    this.valueChange.emit(this.value)
   }
 }
