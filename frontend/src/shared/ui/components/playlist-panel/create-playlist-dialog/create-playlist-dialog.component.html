@@ -1,14 +1,16 @@
 <div class="gradient-border">
     <main>
+        <h3>Create Playlist</h3>
         <fillist-input
+                class="input-component"
                 (valueChange)="changeNameValue($event)"
                 [labelText]="'Playlist Name:'"
-                [placeholder]="'fillist-playlist'"
+                [placeholder]="'playlist name'"
         ></fillist-input>
         <fillist-input
                 (valueChange)="  changeDescriptionValue($event)"
                 [labelText]="'Playlist Description:'"
-                [placeholder]="'fillist-playlist'"
+                [placeholder]="'playlist description'"
                 [type]="'textarea'"
         ></fillist-input>
         <button (click)="postPlaylist()">Create Playlist</button>

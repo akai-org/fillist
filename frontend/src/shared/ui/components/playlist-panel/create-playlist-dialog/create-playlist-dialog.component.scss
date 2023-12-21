@@ -9,9 +9,17 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 35em;
 
-  h5, small, div {
+  h3, small, div, fillist-input {
     margin-bottom: 10px;
+  }
+  fillist-input{
+    align-self: first baseline;
+  }
+  button{
+    margin-top:2px;
+    align-self: flex-end;
   }
 
 }
