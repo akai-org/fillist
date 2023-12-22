@@ -67,7 +67,7 @@ class PlaylistsRouterTests {
                 assertEquals(it.playlists.size, 1)
                 assertEquals(it.playlists[0].name, "name")
                 assertEquals(it.playlists[0].description, "description")
-                assertEquals(it.playlists[0].public, false)
+                assertEquals(it.playlists[0].public, true)
             }
     }
 
@@ -111,9 +111,26 @@ class PlaylistsRouterTests {
 
     @Test
     fun getPlaylistDetails() {
+        `when`(playlistsService.getPlaylist(anyOrNull())).thenReturn(
+            Mono.just(
+                SpotifyPlaylist(
+                    id = "37i9dQZF1EIUFF8VNSAZXh",
+                    name = "New Playlist",
+                    description = "New playlist description",
+                    public = false,
+                    images = listOf(
+                        Image("url", 100, 100),
+                    ),
+                    externalUrls = ExternalUrls("url"),
+                    owner = Owner(ExternalUrls(""), "name", "url"),
+                ),
+            ),
+        )
         webTestClient.get().uri("/playlists/37i9dQZF1EIUFF8VNSAZXh/details").exchange()
             .expectStatus().isOk.expectBody(PlaylistDetails::class.java).value {
-                assertNotNull(it.title)
+                assertEquals(it.title, "New Playlist")
+                assertEquals(it.description, "New playlist description")
+                assertNotNull(it.owner)
             }
     }
 
