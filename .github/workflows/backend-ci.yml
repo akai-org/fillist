@@ -42,8 +42,8 @@ jobs:
           cache: gradle
       - name: Run Ktlint
         run: gradle ktlintScanning
-        continue-on-error: true
       - name: Upload analysis results to GitHub
+        if: always()
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: backend/report.sarif
