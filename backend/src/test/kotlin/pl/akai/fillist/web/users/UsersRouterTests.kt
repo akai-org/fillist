@@ -25,7 +25,7 @@ class UsersRouterTests {
     private lateinit var spotifyUserService: SpotifyUserService
 
     @Test
-    fun getPlaylists() {
+    fun getUserProfile() {
         val spotifyResponse = spotifyUserService.getProfile().block()!!
         webTestClient.get().uri("/me").exchange()
             .expectStatus().isOk.expectBody(UserProfileResponseBody::class.java).value {
