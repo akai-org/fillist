@@ -39,7 +39,7 @@ enum class SpotifySearchType(val value: String) {
     ALBUM("album"),
     ARTIST("artist"),
     PLAYLIST("playlist"),
-    TRACK("track")
+    TRACK("track"),
 }
 
 data class SpotifySearchQueryFilters(
