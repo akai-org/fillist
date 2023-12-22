@@ -79,10 +79,12 @@ class PlaylistsRouterTests {
             public = false,
         )
         whenever(
-            (playlistsService.createPlaylist(
-                anyOrNull(),
-                eq(createPlaylistRequestBody),
-            )),
+            (
+                playlistsService.createPlaylist(
+                    anyOrNull(),
+                    eq(createPlaylistRequestBody),
+                )
+                ),
         ).thenReturn(
             Mono.just(
                 SpotifyPlaylist(
@@ -138,7 +140,7 @@ class PlaylistsRouterTests {
                 ),
             ),
         )
-        webTestClient.put().uri("/playlists/${playlistId}}").body(Mono.just(updatePlaylistRequestBody))
+        webTestClient.put().uri("/playlists/$playlistId}").body(Mono.just(updatePlaylistRequestBody))
             .exchange()
             .expectStatus().isOk.expectBody(Playlist::class.java).value {
                 assertEquals(it.id, playlistId)
