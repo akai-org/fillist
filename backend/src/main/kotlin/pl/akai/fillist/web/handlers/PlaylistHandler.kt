@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.reactive.function.server.body
-import org.springframework.web.reactive.function.server.bodyToMono
 import pl.akai.fillist.web.spotifywrapper.playlists.SpotifyPlaylistsService
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyCreatePlaylistRequestBody
 import pl.akai.fillist.web.spotifywrapper.user.SpotifyUserService
@@ -15,7 +14,7 @@ import reactor.core.publisher.Mono
 @Component
 class PlaylistHandler(
     private val spotifyPlaylistsService: SpotifyPlaylistsService,
-    private val spotifyUserService: SpotifyUserService
+    private val spotifyUserService: SpotifyUserService,
 ) {
     fun getCurrentPlaylists(serverRequest: ServerRequest): Mono<ServerResponse> {
         val limit = serverRequest.queryParam("limit").orElse("20").toInt()
