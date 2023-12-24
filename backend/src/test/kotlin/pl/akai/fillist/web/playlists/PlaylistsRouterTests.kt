@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.context.annotation.Import
 import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.TestPropertySource
 import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.test.web.reactive.server.body
 import pl.akai.fillist.configurations.SpotifyClientConfig
@@ -135,10 +136,31 @@ class PlaylistsRouterTests {
     }
     @Test
     fun getPlaylistsByName() {
-        webTestClient.get().uri("/playlists/name").attribute("name", "test")
+        `when`(playlistsService.getCurrentPlaylists(anyOrNull())).thenReturn(
+            Mono.just(
+                SpotifyPlaylistsResponseBody(
+                    total = 1,
+                    limit = 999,
+                    offset = 0,
+                    items = listOf(SpotifyPlaylist(
+                            id = "37i9dQZF1EIUFF8VNSAZXh",
+                            name = "New Playlist",
+                            description = "New playlist description",
+                            public = false,
+                            images = listOf(
+                                Image("url", 100, 100),
+                            ),
+                            externalUrls = ExternalUrls("url"),
+                            owner = Owner(ExternalUrls(""), "name", "url"),
+                        ),
+                    ),
+                ),
+            ),
+        )
+        webTestClient.get().uri("/playlists/name").attribute("name", "New Playlist")
             .exchange()
             .expectStatus().isOk.expectBody(PlaylistsResponseBody::class.java).value {
-                assertEquals(it.playlists.size, 20)
+                assertEquals(1, it.playlists.size)
             }
     }
 
