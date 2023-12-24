@@ -135,6 +135,38 @@ class PlaylistsRouterTests {
     }
 
     @Test
+    fun getPlaylistsByName() {
+        `when`(playlistsService.getCurrentPlaylists(limit = 999)).thenReturn(
+            Mono.just(
+                SpotifyPlaylistsResponseBody(
+                    total = 1,
+                    limit = 999,
+                    offset = 0,
+                    items = listOf(
+                        SpotifyPlaylist(
+                            id = "37i9dQZF1EIUFF8VNSAZXh",
+                            name = "New Playlist",
+                            description = "New playlist description",
+                            public = false,
+                            images = listOf(
+                                Image("url", 100, 100),
+                            ),
+                            externalUrls = ExternalUrls("url"),
+                            owner = Owner(ExternalUrls(""), "name", "url"),
+                        ),
+                    ),
+                ),
+            ),
+        )
+
+        webTestClient.get().uri("/playlists/name").attribute("name", "New Playlist")
+            .exchange()
+            .expectStatus().isOk.expectBody(PlaylistsResponseBody::class.java).value {
+                assertEquals(1, it.playlists.size)
+            }
+    }
+
+    @Test
     fun updatePlaylistDetails() {
         val playlistId = "37i9dQZF1EIUFF8VNSAZXh"
         val updatePlaylistRequestBody = SpotifyCreatePlaylistRequestBody(
