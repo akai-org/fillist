@@ -133,6 +133,7 @@ class PlaylistsRouterTests {
                 assertNotNull(it.owner)
             }
     }
+
     @Test
     fun getPlaylistsByName() {
         `when`(playlistsService.getCurrentPlaylists(limit = 999)).thenReturn(
@@ -141,7 +142,8 @@ class PlaylistsRouterTests {
                     total = 1,
                     limit = 999,
                     offset = 0,
-                    items = listOf(SpotifyPlaylist(
+                    items = listOf(
+                        SpotifyPlaylist(
                             id = "37i9dQZF1EIUFF8VNSAZXh",
                             name = "New Playlist",
                             description = "New playlist description",
