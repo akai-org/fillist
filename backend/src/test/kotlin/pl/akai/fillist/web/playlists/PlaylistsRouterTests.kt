@@ -136,7 +136,7 @@ class PlaylistsRouterTests {
     }
     @Test
     fun getPlaylistsByName() {
-        `when`(playlistsService.getCurrentPlaylists(anyOrNull())).thenReturn(
+        `when`(playlistsService.getCurrentPlaylists(limit = 999)).thenReturn(
             Mono.just(
                 SpotifyPlaylistsResponseBody(
                     total = 1,
@@ -157,6 +157,7 @@ class PlaylistsRouterTests {
                 ),
             ),
         )
+
         webTestClient.get().uri("/playlists/name").attribute("name", "New Playlist")
             .exchange()
             .expectStatus().isOk.expectBody(PlaylistsResponseBody::class.java).value {
