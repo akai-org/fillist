@@ -27,7 +27,6 @@ export class CreatePlaylistDialogComponent {
 
   changeDescriptionValue (newValue: string): void {
     this.playlistDescription = newValue
-    console.log(this.playlistDescription)
   }
 
   changeNameValue (newValue: string): void {
