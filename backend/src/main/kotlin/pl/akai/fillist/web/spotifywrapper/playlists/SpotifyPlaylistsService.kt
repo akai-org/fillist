@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyCreatePlaylistRequestBody
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylist
+import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylistTracks
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylistsResponseBody
 import reactor.core.publisher.Mono
 
@@ -36,4 +37,10 @@ class SpotifyPlaylistsService @Autowired constructor(
             .bodyToMono(SpotifyPlaylist::class.java)
             .then(getPlaylist(playlistId))
     }
+
+    fun getSpotifyPlaylistTracks(playlistId: String): Mono<SpotifyPlaylistTracks> {
+        return spotifyClient.get().uri("/playlists/$playlistId/tracks").retrieve()
+            .bodyToMono(SpotifyPlaylistTracks::class.java)
+    }
+
 }

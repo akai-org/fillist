@@ -11,3 +11,5 @@ data class Playlist(
     val description: String?,
     val public: Boolean,
 )
+
+
