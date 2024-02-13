@@ -1,0 +1,21 @@
+<div class="gradient-border">
+    <main>
+        <h3>Create Playlist</h3>
+        <fillist-input
+                class="input-component"
+                (valueChange)="changeNameValue($event)"
+                [labelText]="'Playlist Name:'"
+                [placeholder]="'playlist name'"
+        ></fillist-input>
+        <fillist-input
+                (valueChange)="  changeDescriptionValue($event)"
+                [labelText]="'Playlist Description:'"
+                [placeholder]="'playlist description'"
+                [type]="'textarea'"
+        ></fillist-input>
+        <button (click)="postPlaylist()">Create Playlist</button>
+    </main>
+    <button (click)="close()" class="close-button">
+        <ng-icon size="20" name="cssClose" class="alert-icon"></ng-icon>
+    </button>
+</div>

@@ -1,0 +1,16 @@
+<div class="input-component">
+    <label [innerText]="labelText"></label>
+    <div *ngIf="type=='text'" class="input-gradient">
+        <input
+                [placeholder]="placeholder"
+        (input)="onValueChange($event)"
+                required
+    />
+        </div>
+    <div *ngIf="type=='textarea'" class="textarea-gradient">
+        <textarea
+                [placeholder]="placeholder"
+            (input)="onValueChange($event)"
+            ></textarea>
+    </div>
+</div>
