@@ -7,6 +7,7 @@ import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.reactive.function.server.body
 import pl.akai.fillist.web.spotifywrapper.playlists.SpotifyPlaylistsService
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyCreatePlaylistRequestBody
+import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylistsResponseBody
 import pl.akai.fillist.web.spotifywrapper.user.SpotifyUserService
 import pl.akai.fillist.web.utils.PlaylistUtils
 import reactor.core.publisher.Mono
@@ -14,7 +15,7 @@ import reactor.core.publisher.Mono
 @Component
 class PlaylistHandler(
     private val spotifyPlaylistsService: SpotifyPlaylistsService,
-    private val spotifyUserService: SpotifyUserService
+    private val spotifyUserService: SpotifyUserService,
 ) {
     fun getCurrentPlaylists(serverRequest: ServerRequest): Mono<ServerResponse> {
         val limit = serverRequest.queryParam("limit").orElse("20").toInt()
@@ -32,6 +33,23 @@ class PlaylistHandler(
             PlaylistUtils.toPlaylist(it)
         }
         return ServerResponse.ok().body(responseBody)
+    }
+
+    fun getCurrentPlaylistsByName(serverRequest: ServerRequest): Mono<ServerResponse> {
+        val name = serverRequest.queryParam("name").orElse("")
+
+        val body = spotifyPlaylistsService
+            .getCurrentPlaylists(limit = 999)
+            .map { it ->
+                SpotifyPlaylistsResponseBody(
+                    it.total,
+                    it.limit,
+                    it.offset,
+                    it.items.filter { it.name.matches(name.toSearchableRegex()) },
+                )
+            }
+            .flatMap(PlaylistUtils.toPlaylists)
+        return ServerResponse.ok().body(body)
     }
 
     fun getPlaylistDetails(serverRequest: ServerRequest): Mono<ServerResponse> {
@@ -68,4 +86,12 @@ class PlaylistHandler(
         val playlistTracks = spotifyPlaylistsService.getSpotifyPlaylistTracks(playlistId).flatMap(PlaylistUtils.toSpotifyPlaylistTracks)
         return ServerResponse.ok().body(playlistTracks)
     }
+}
+
+private fun String.toSearchableRegex(): Regex {
+    var rename = ".*"
+    for (ch in this)
+        rename += "[$ch].*"
+
+    return Regex(rename, RegexOption.IGNORE_CASE)
 }

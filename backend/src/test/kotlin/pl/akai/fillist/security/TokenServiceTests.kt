@@ -1,6 +1,7 @@
 package pl.akai.fillist.security
 
 import AccessTokenResponseBody
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mockito.`when`
@@ -26,6 +27,11 @@ class TokenServiceTests {
 
     var spotifyToken: String = "spotifyToken"
 
+    @BeforeEach
+    fun setUp() {
+        configMock()
+    }
+
     fun configMock() {
         `when`(spotifyUserService.getProfile(spotifyToken)).thenReturn(
             Mono.just(
@@ -43,7 +49,6 @@ class TokenServiceTests {
 
     @Test
     fun generateTokenResponse() {
-        configMock()
         val token = tokenService.generateTokensResponse(
             AccessTokenResponseBody(
                 accessToken = spotifyToken,
@@ -58,7 +63,6 @@ class TokenServiceTests {
 
     @Test
     fun validateToken() {
-        configMock()
         val token = tokenService.generateFillistAccessToken(
             AccessTokenResponseBody(
                 accessToken = spotifyToken,
@@ -77,7 +81,6 @@ class TokenServiceTests {
 
     @Test
     fun generateToken() {
-        configMock()
         val token = tokenService.generateFillistAccessToken(
             AccessTokenResponseBody(
                 accessToken = spotifyToken,
@@ -91,7 +94,6 @@ class TokenServiceTests {
 
     @Test
     fun getSpotifyToken() {
-        configMock()
         val token = tokenService.generateFillistAccessToken(
             AccessTokenResponseBody(
                 accessToken = spotifyToken,
@@ -131,7 +133,6 @@ class TokenServiceTests {
 
     @Test
     fun getSpotifyUserId() {
-        configMock()
         val token = tokenService.generateFillistAccessToken(
             AccessTokenResponseBody(
                 accessToken = spotifyToken,

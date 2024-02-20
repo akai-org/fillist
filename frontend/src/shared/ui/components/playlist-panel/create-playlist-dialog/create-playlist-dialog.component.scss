@@ -1,0 +1,75 @@
+@import "variables";
+@import "mixin";
+
+main {
+  background-color: $light-darker;
+  padding: 2em;
+  border-radius: 1.8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 35em;
+
+  h3, small, div, fillist-input {
+    margin-bottom: 10px;
+  }
+  fillist-input{
+    align-self: first baseline;
+  }
+  button{
+    margin-top:2px;
+    align-self: flex-end;
+  }
+
+}
+
+.gradient-border {
+  border-radius: 2em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.3em;
+  background: $accent-gradient;
+  width: min-content;
+  height: min-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include fade-in-animation()
+}
+
+.image-gradient {
+  border-radius: 100em;
+  padding: 0.3em;
+  background: $accent-gradient;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    border-radius: 100em;
+    width: 15em;
+    height: 15em;
+    background-color: $light;
+  }
+}
+
+
+.close-button {
+  all: unset;
+  position: fixed;
+  top: 1.5em;
+  right: 1.5em;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 700px) {
+  :host{
+    font-size: 16px;
+  }
+}

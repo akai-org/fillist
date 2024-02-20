@@ -35,6 +35,7 @@ dependencies {
 //    api("org.springframework.boot:spring-boot-starter-data-mongodb")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.springframework.security:spring-security-test")
 //    testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo:4.8.0")
