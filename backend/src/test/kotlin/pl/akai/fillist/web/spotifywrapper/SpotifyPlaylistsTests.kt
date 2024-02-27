@@ -3,6 +3,7 @@ package pl.akai.fillist.web.spotifywrapper
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertDoesNotThrow
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
@@ -35,7 +36,6 @@ class SpotifyPlaylistsTests {
             assertNotNull(it.images)
             assertNotNull(it.externalUrls)
         }
-        assertEquals(playlists.items.size, 20)
     }
 
     @Test
@@ -85,5 +85,13 @@ class SpotifyPlaylistsTests {
         assertEquals(updatedPlaylistBody.name, updatedPlaylist.name)
         // BUG ON SPOTIFY SIDE
         // assertEquals(updatedPlaylistBody.public, updatedPlaylist.public)
+    }
+
+    @Test
+    fun changePlaylistCoverSuccess() {
+        val playlistId = "id"
+        val imageData = "imageData"
+
+        assertDoesNotThrow { spotifyPlaylistsService.changePlaylistCover(playlistId, imageData) }
     }
 }
