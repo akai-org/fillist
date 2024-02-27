@@ -200,8 +200,12 @@ class PlaylistsRouterTests {
 
     @Test
     fun changePlaylistCover() {
+        val playlistId = "1B9WyPlzPbkyGMWcGlrgP7"
         val image = "/9j/2wCEABoZGSccJz4lJT5CLy8vQkc9Ozs9R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0cBHCcnMyYzPSYmPUc9Mj1HR0dEREdHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR//dAAQAAf/uAA5BZG9iZQBkwAAAAAH/wAARCAABAAEDACIAAREBAhEB/8QASwABAQAAAAAAAAAAAAAAAAAAAAYBAQAAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAARAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwAAARECEQA/AJgAH//Z"
-        webTestClient.put().uri("/playlists/1B9WyPlzPbkyGMWcGlrgP7/cover").body(Mono.just(image))
+        `when`(playlistsService.changePlaylistCover(eq(playlistId), eq(image))).thenReturn(
+            Mono.empty()
+        )
+        webTestClient.put().uri("/playlists/$playlistId/cover").body(Mono.just(image))
             .exchange()
             .expectStatus().isOk
     }
