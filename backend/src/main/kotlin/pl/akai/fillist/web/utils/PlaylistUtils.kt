@@ -82,7 +82,7 @@ object PlaylistUtils {
                     offset = playlistTracks.offset,
                     previous = playlistTracks.previous,
                     total = playlistTracks.total,
-                    items = playlistTracks.items
+                    items = playlistTracks.items.map { it.track }
                 )
             }
     }

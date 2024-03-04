@@ -201,7 +201,7 @@ class PlaylistsRouterTests {
 
     @Test
     fun getPlaylistTracks() {
-        webTestClient.get().uri("/playlists/37i9dQZF1EIUFF8VNSAZXh/tracks").exchange()
+        webTestClient.get().uri("/playlists/1WiIsyGhDQ0ZAD4vnEjOm3/tracks").exchange()
             .expectStatus().isOk.expectBody(PlaylistTracks::class.java).value{
                 assertNotNull(it.items);
             }
