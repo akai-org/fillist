@@ -19,6 +19,7 @@ import pl.akai.fillist.configurations.SpotifyClientConfig
 import pl.akai.fillist.configurations.WebTestClientConfig
 import pl.akai.fillist.web.models.Playlist
 import pl.akai.fillist.web.models.PlaylistDetails
+import pl.akai.fillist.web.models.PlaylistTracks
 import pl.akai.fillist.web.models.PlaylistsResponseBody
 import pl.akai.fillist.web.spotifywrapper.models.ExternalUrls
 import pl.akai.fillist.web.spotifywrapper.models.Image
@@ -195,6 +196,14 @@ class PlaylistsRouterTests {
                 assertEquals(it.id, playlistId)
                 assertEquals(it.name, updatePlaylistRequestBody.name)
                 assertEquals(it.public, updatePlaylistRequestBody.public)
+            }
+    }
+
+    @Test
+    fun getPlaylistTracks() {
+        webTestClient.get().uri("/playlists/37i9dQZF1EIUFF8VNSAZXh/tracks").exchange()
+            .expectStatus().isOk.expectBody(PlaylistTracks::class.java).value{
+                assertNotNull(it.items);
             }
     }
 }

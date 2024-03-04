@@ -2,6 +2,7 @@ package pl.akai.fillist.web.utils
 
 import pl.akai.fillist.web.models.Playlist
 import pl.akai.fillist.web.models.PlaylistDetails
+import pl.akai.fillist.web.models.PlaylistTracks
 import pl.akai.fillist.web.models.PlaylistsResponseBody
 import pl.akai.fillist.web.spotifywrapper.models.OwnerDetails
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylist
@@ -71,17 +72,17 @@ object PlaylistUtils {
         return name
     }
 
-    val toSpotifyPlaylistTracks: (SpotifyPlaylistTracks) -> Mono<SpotifyPlaylistTracks> = { spotifyPlaylistTracks ->
-        Mono.just(spotifyPlaylistTracks).
+    val toSpotifyPlaylistTracks: (SpotifyPlaylistTracks) -> Mono<PlaylistTracks> = { playlistTracks ->
+        Mono.just(playlistTracks).
             map {
-                SpotifyPlaylistTracks (
-                    href = spotifyPlaylistTracks.href,
-                    limit = spotifyPlaylistTracks.limit,
-                    next = spotifyPlaylistTracks.next,
-                    offset = spotifyPlaylistTracks.offset,
-                    previous = spotifyPlaylistTracks.previous,
-                    total = spotifyPlaylistTracks.total,
-                    items = spotifyPlaylistTracks.items
+                PlaylistTracks (
+                    href = playlistTracks.href,
+                    limit = playlistTracks.limit,
+                    next = playlistTracks.next,
+                    offset = playlistTracks.offset,
+                    previous = playlistTracks.previous,
+                    total = playlistTracks.total,
+                    items = playlistTracks.items
                 )
             }
     }
