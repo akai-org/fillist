@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Owner(
     val externalUrls: ExternalUrls,
-    val displayName: String,
+    val displayName: String?,
     val id: String,
 )
