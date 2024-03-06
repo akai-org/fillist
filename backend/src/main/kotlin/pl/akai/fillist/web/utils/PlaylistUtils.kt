@@ -73,16 +73,16 @@ object PlaylistUtils {
     }
 
     val toSpotifyPlaylistTracks: (SpotifyPlaylistTracks) -> Mono<PlaylistTracks> = { playlistTracks ->
-        Mono.just(playlistTracks).
-            map {
-                PlaylistTracks (
+        Mono.just(playlistTracks)
+            .map {
+                PlaylistTracks(
                     href = playlistTracks.href,
                     limit = playlistTracks.limit,
                     next = playlistTracks.next,
                     offset = playlistTracks.offset,
                     previous = playlistTracks.previous,
                     total = playlistTracks.total,
-                    items = playlistTracks.items.map { it.track }
+                    items = playlistTracks.items.map { it.track },
                 )
             }
     }
