@@ -19,14 +19,11 @@ import pl.akai.fillist.configurations.SpotifyClientConfig
 import pl.akai.fillist.configurations.WebTestClientConfig
 import pl.akai.fillist.web.models.Playlist
 import pl.akai.fillist.web.models.PlaylistDetails
+import pl.akai.fillist.web.models.PlaylistTracks
 import pl.akai.fillist.web.models.PlaylistsResponseBody
-import pl.akai.fillist.web.spotifywrapper.models.ExternalUrls
-import pl.akai.fillist.web.spotifywrapper.models.Image
-import pl.akai.fillist.web.spotifywrapper.models.Owner
+import pl.akai.fillist.web.spotifywrapper.models.*
 import pl.akai.fillist.web.spotifywrapper.playlists.SpotifyPlaylistsService
-import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyCreatePlaylistRequestBody
-import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylist
-import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylistsResponseBody
+import pl.akai.fillist.web.spotifywrapper.playlists.models.*
 import reactor.core.publisher.Mono
 
 @SpringBootTest()
@@ -196,6 +193,49 @@ class PlaylistsRouterTests {
                 assertEquals(it.name, updatePlaylistRequestBody.name)
                 // BUG ON SPOTIFY SIDE
                 // assertEquals(it.public, updatePlaylistRequestBody.public)
+            }
+    }
+
+    @Test
+    fun getPlaylistTracks() {
+        `when`(playlistsService.getSpotifyPlaylistTracks(anyOrNull())).thenReturn(
+            Mono.just(
+                SpotifyPlaylistTracks(
+                    href = "href",
+                    limit = 1,
+                    offset = 0,
+                    total = 1,
+                    next = "",
+                    previous = "",
+                    items = listOf(
+                        SpotifyTrackWrapper(
+                            track = Track(
+                                id = "1WiIsyGhDQ0ZAD4vnEjOm3",
+                                name = "name",
+                                uri = "uri",
+                                album = Album(
+                                    id = "id",
+                                    name = "name",
+                                    artists = listOf(),
+                                    href = "",
+                                    uri = "",
+                                ),
+                                artists = listOf(),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        )
+        webTestClient.get().uri("/playlists/1WiIsyGhDQ0ZAD4vnEjOm3/tracks").exchange()
+            .expectStatus().isOk.expectBody(PlaylistTracks::class.java).value {
+                assertNotNull(it.items)
+                assertEquals(it.items.size, 1)
+                assertEquals(it.items[0].id, "1WiIsyGhDQ0ZAD4vnEjOm3")
+                assertEquals(it.items[0].name, "name")
+                assertEquals(it.items[0].uri, "uri")
+                assertEquals(it.items[0].album.name, "name")
+                assertEquals(it.items[0].album.id, "id")
             }
     }
 

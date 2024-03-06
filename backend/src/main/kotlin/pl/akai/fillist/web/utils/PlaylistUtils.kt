@@ -2,9 +2,11 @@ package pl.akai.fillist.web.utils
 
 import pl.akai.fillist.web.models.Playlist
 import pl.akai.fillist.web.models.PlaylistDetails
+import pl.akai.fillist.web.models.PlaylistTracks
 import pl.akai.fillist.web.models.PlaylistsResponseBody
 import pl.akai.fillist.web.spotifywrapper.models.OwnerDetails
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylist
+import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylistTracks
 import pl.akai.fillist.web.spotifywrapper.playlists.models.SpotifyPlaylistsResponseBody
 import reactor.core.publisher.Mono
 
@@ -68,5 +70,20 @@ object PlaylistUtils {
             return "${words.subList(0, words.size - 2).joinToString(" ")}..."
         }
         return name
+    }
+
+    val toSpotifyPlaylistTracks: (SpotifyPlaylistTracks) -> Mono<PlaylistTracks> = { playlistTracks ->
+        Mono.just(playlistTracks)
+            .map {
+                PlaylistTracks(
+                    href = playlistTracks.href,
+                    limit = playlistTracks.limit,
+                    next = playlistTracks.next,
+                    offset = playlistTracks.offset,
+                    previous = playlistTracks.previous,
+                    total = playlistTracks.total,
+                    items = playlistTracks.items.map { it.track },
+                )
+            }
     }
 }

@@ -15,6 +15,7 @@ class PlaylistRouter {
             GET("/playlists/name", playlistHandler::getCurrentPlaylistsByName)
             GET("/playlists/{playlist-id}/details", playlistHandler::getPlaylistDetails)
             PUT("/playlists/{playlist-id}", playlistHandler::updatePlaylistDetails)
+            GET("/playlists/{playlist-id}/tracks", playlistHandler::getPlaylistTracks)
             PUT("/playlists/{playlist-id}/cover", playlistHandler::changePlaylistCover)
         }
 }
