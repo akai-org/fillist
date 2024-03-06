@@ -33,7 +33,7 @@ object PlaylistUtils {
         Playlist(
             id = playlist.id,
             name = checkNameLengthAndFix(playlist.name),
-            ownerDisplayName = playlist.owner.displayName,
+            ownerDisplayName = playlist.owner.displayName ?: "",
             image = this.getLargeImage(playlist),
             description = playlist.description,
             public = playlist.public,
@@ -49,7 +49,7 @@ object PlaylistUtils {
                     cover = playlist.images?.firstOrNull()?.url,
                     owner = OwnerDetails(
                         id = playlist.owner.id,
-                        name = playlist.owner.displayName,
+                        name = playlist.owner.displayName ?: "",
                         picture = null,
                     ),
                 )
