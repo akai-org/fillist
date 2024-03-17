@@ -14,6 +14,7 @@ class PlaylistRouter {
             POST("/playlists", playlistHandler::createPlaylist)
             GET("/playlists/name", playlistHandler::getCurrentPlaylistsByName)
             GET("/playlists/{playlist-id}/details", playlistHandler::getPlaylistDetails)
+            // ATTENTION: Update don't work properly (Spotify API bug) (state 2023-03-17)
             PUT("/playlists/{playlist-id}", playlistHandler::updatePlaylistDetails)
             PUT("/playlists/{playlist-id}/cover", playlistHandler::changePlaylistCover)
         }
