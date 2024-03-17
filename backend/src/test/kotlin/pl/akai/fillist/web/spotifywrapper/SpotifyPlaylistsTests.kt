@@ -88,6 +88,16 @@ class SpotifyPlaylistsTests {
     }
 
     @Test
+    fun getPlaylistTracks() {
+        val playlistId = "3cEYpjA9oz9GiPac4AsH4n"
+        val playlistTracks = spotifyPlaylistsService.getSpotifyPlaylistTracks(playlistId).block()!!
+        assertNotNull(playlistTracks.href)
+        assertNotNull(playlistTracks.limit)
+        assertNotNull(playlistTracks.items)
+        assertNotNull(playlistTracks.total)
+    }
+
+    @Test
     fun changePlaylistCoverSuccess() {
         val playlistId = "id"
         val imageData = "imageData"
