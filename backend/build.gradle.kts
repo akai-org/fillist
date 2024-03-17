@@ -8,6 +8,7 @@ plugins {
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
     kotlin("plugin.serialization") version "1.8.22"
+    id("jvm-test-suite")
 }
 
 group = "pl.akai"
@@ -32,13 +33,6 @@ dependencies {
     api("io.projectreactor.kotlin:reactor-kotlin-extensions")
     api("org.jetbrains.kotlin:kotlin-reflect")
     api("com.auth0:java-jwt:4.4.0")
-//    api("org.springframework.boot:spring-boot-starter-data-mongodb")
-
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
-    testImplementation("io.projectreactor:reactor-test")
-    testImplementation("org.springframework.security:spring-security-test")
-//    testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo:4.8.0")
 
     ktlint("com.pinterest:ktlint:0.50.0") {
         attributes {
@@ -54,8 +48,18 @@ tasks.withType<KotlinCompile> {
     }
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
+testing {
+    suites {
+        val test by getting(JvmTestSuite::class) {
+            useJUnitJupiter()
+            dependencies {
+                implementation("org.springframework.boot:spring-boot-starter-test")
+                implementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
+                implementation("io.projectreactor:reactor-test")
+                implementation("org.springframework.security:spring-security-test")
+            }
+        }
+    }
 }
 
 val ktlintCheck by tasks.registering(JavaExec::class) {
